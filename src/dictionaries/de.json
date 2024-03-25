@@ -1,0 +1,108 @@
+{
+    "navigation": {
+      "funding": "Fördermittel",
+      "search": "Suche",
+      "application": "Beantragung",
+      "financing": "Mix-Finanzierung",
+      "network": "Netzwerk",
+      "prices": "Preise"
+    },
+    "footer": {
+      "headings": {
+        "funding": "Fördermittel",
+        "network": "Netzwerk",
+        "financing": "Finanzierung",
+        "aboutFinyou": "Finyou"
+      },
+      "links": {
+        "search": "Suche",
+        "applicationAssistant": "Antrags-Assistent",
+        "billingAssistant": "Abrechnungs-Assistent",
+        "fundingAlarm": "Fördermittel-Alarm",
+        "competitionWatchlist": "Konkurrenz-Watchlist",
+        "fundingPlanner": "Förderungsplaner",
+        "fundingCombinator": "Fördermittel-Kombinator",
+        "locationComparison": "Standort-Vergleich",
+        "fundingComparison": "Fördermittelvergleich",
+        "fundingFAQ": "Fördermittel FAQ",
+        "fundingPrograms": "Förderprogramme",
+        "researchAndDevelopmentPartnerSearch": "F&E Partner-Suche",
+        "consultants": "Berater",
+        "serviceProviders": "Dienstleister",
+        "academiaToBusiness": "Academia 2 Business",
+        "investorsAndVCs": "Investoren & VC’s",
+        "leasing": "Leasing",
+        "factoring": "Factoring",
+        "loans": "Kredite",
+        "crowdfunding": "Crowdfunding",
+        "aboutUs": "Über uns",
+        "prices": "Preise",
+        "press": "Presse",
+        "contact": "Kontakt",
+        "legalNotice": "Impressum"
+      },
+      "followus": "Follow Us:",
+      "copyright": "Deine Fördermittelmanagement Plattform"
+    },
+    "common": {
+      "button": {
+        "readMore": "Jetzt suchen",
+        "register": "Anmelden",
+        "toRegister": "Registrieren"
+      }
+    },
+    "page": {
+      "home": {
+        "hero": {
+          "title": "Fördermittel",
+          "description": "Der KI-gestützte Fördermittelassistent für Unternehmen"
+        },
+        "section": {
+          "title": "So einfach ist die {kostenlose Fördermittelsuche} mit Finyou",
+          "company": {
+            "title": "1. Unternehmensdaten prüfen",
+            "description": "Unser {smarter KI-Fördermittelassistent recherchiert} alle Unternehmensdaten. Einfach prüfen und loslegen..."
+          },
+          "finance": {
+            "title": "2. Förderungen | Finanzierung vergleichen & auswählen",
+            "description": "{In Sekunden} erstellt Finyou eine auf das Unternehemen {maßgeschneiderte Übersicht} von Förderprogrammen & Finanzierungsmöglichkeiten",
+            "stack": {
+              "filter": "Filtern nach Ausgaben  & Projekttypen"
+            }
+          }
+        }
+      },
+      "about": {
+        "title": "Über uns",
+        "description": "Dies ist die About-Seite"
+      },
+      "auth": {
+        "provider": {
+          "google": "Ga verder met Google"
+        },
+        "signIn": {
+          "title": "Aanmelden",
+          "description": "Nieuw bij bedrijf?",
+          "link": "Aanmelden!",
+          "form": {
+            "button": "Aanmelden",
+            "forgot": "Je wachtwoord vergeten?",
+            "remember": "Onthoud me",
+            "password": "Wachtwoord",
+            "email": "E-mail"
+          }
+        },
+        "signUp": {
+          "title": "Aanmelden",
+          "description": "Heeft u al een account?",
+          "link": "Aanmelden!",
+          "form": {
+            "button": "Aanmelden",
+            "password": "Wachtwoord",
+            "email": "E-mail",
+            "name": "Naam"
+          }
+        }
+      }
+    }
+  }
