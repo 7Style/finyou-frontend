@@ -13,7 +13,6 @@ import DataTable from '@/screens/dashboard/datatable';
 
 
 export default function Dashboard() {
-  // Usage example
   const projectsData = [
     {
       title: "Transfer Bonus",

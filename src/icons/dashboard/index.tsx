@@ -71,7 +71,7 @@ return(
 function Copy(){
     return(        
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1.10673" y="1.18094" width="7.09958" height="7.09958" stroke="#07213A" stroke-width="1.01423"/>
+        <rect x="1.10673" y="1.18094" width="7.09958" height="7.09958" stroke="#07213A" strokeWidth="1.01423"/>
         <rect x="4.65723" y="4.73047" width="8.11381" height="8.11381" fill="#07213A"/>
         </svg>
     )

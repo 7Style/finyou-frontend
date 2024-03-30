@@ -80,9 +80,9 @@ export default function DynamicFilter() {
             <CommandInput placeholder="Filter By..." className="h-9" />
             <CommandEmpty>No option found.</CommandEmpty>
             <CommandGroup>
-              {options.map((option) => (
+              {options.map((option, index) => (
                 <CommandItem
-                  key={option.name}
+                  key={index}
                   value={option.name}
                   onSelect={() => handleFilterSelect(option.name)}
                 >

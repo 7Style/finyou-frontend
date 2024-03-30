@@ -152,7 +152,7 @@ function renderNotification(notification: NotificationItem[]) {
             <ul>
                 {
                     notification.map((item, index) => (
-                        <>
+                        <div key={index}>
                             <li className='py-2 px-4 flex items-start hover:bg-gray-50 text-black text-sm cursor-pointer'>
                                 <Avatar>
                                     <AvatarImage src={item.image} />
@@ -164,7 +164,7 @@ function renderNotification(notification: NotificationItem[]) {
                                 </div>
                             </li>
                             <Separator />
-                        </>
+                        </div>
                     ))
                 }
             </ul>
@@ -177,26 +177,26 @@ function renderSubMenu(subMenu: SubMenuItem[]) {
     return subMenu.map((item, index) => {
         if (item.subMenu) {
             return (
-                <>
+                <div key={index}>
                     {item.topSeprator && <MenubarSeparator />}
-                    <MenubarSub key={index}>
+                    <MenubarSub>
                         <MenubarSubTrigger>{item.label}</MenubarSubTrigger>
                         <MenubarSubContent>
                             {renderSubMenu(item.subMenu)}
                         </MenubarSubContent>
                     </MenubarSub>
                     {item.bottomSeprator && <MenubarSeparator />}
-                </>
+                </div>
             );
         } else {
             return (
-                <>
+                <div key={index}>
                     {item.topSeprator && <MenubarSeparator />}
-                    <MenubarItem key={index} disabled={item.disabled}>
+                    <MenubarItem disabled={item.disabled}>
                         {item.label} {item.shortcut && <MenubarShortcut>{item.shortcut}</MenubarShortcut>}
                     </MenubarItem>
                     {item.bottomSeprator && <MenubarSeparator />}
-                </>
+                </div>
             );
         }
     });

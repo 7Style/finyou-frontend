@@ -239,22 +239,22 @@ export default function DataTable() {
             getRowClassName={() => `fill-cyan-600`}
             sx={{
                 '&.MuiDataGrid-root': {
-                    border: 'none !important',
-                    '.MuiDataGrid-columnHeader': {
-                        backgroundColor: '#F9FAFB',
-                        borderRight: '1px solid #EAECF0',
-                        '&:last-child': {
-                            borderRight: 'none',
-                        },
+                  border: 'none !important',
+                  '.MuiDataGrid-columnHeader': {
+                    backgroundColor: '#F9FAFB',
+                    borderRight: '1px solid #EAECF0',
+                    '&:nth-last-of-type(1)': {
+                      borderRight: 'none',
                     },
-                    '.MuiDataGrid-cell': {
-                        borderRight: '1px solid #E5E7EB',
-                        '&:nth-last-child(2)': {
-                            borderRight: 'none',
-                        },
+                  },
+                  '.MuiDataGrid-cell': {
+                    borderRight: '1px solid #E5E7EB',
+                    '&:nth-last-of-type(2)': {
+                      borderRight: 'none',
                     },
+                  },
                 },
-            }}
+              }}              
         />
     </div>
 }

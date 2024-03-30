@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ArrowRight, ChatBot, Bot, DotsHorizontal, FinyouIcon, ThumbsUp, Copy } from '@/icons/dashboard';
+import { useChat } from '@/hooks/useChat';
 
 interface ChatWindowProps {
     messages: Array<{ text: string; isOwnMessage: boolean }>;
@@ -34,8 +35,8 @@ function ChatWindow({ messages }: ChatWindowProps) {
     return (
         <ScrollArea className="h-96">
             {messages.map((msg, index) => (
-                <>
-                    <div key={index} className={`flex gap-2 px-2 items-center ${msg.isOwnMessage ? 'justify-end py-3' : 'justify-start py-2'}`}>
+                <div key={index}>
+                    <div className={`flex gap-2 px-2 items-center ${msg.isOwnMessage ? 'justify-end py-3' : 'justify-start py-2'}`}>
                         {
                             msg.isOwnMessage && (
                                 <div className='w-7 h-7 p-1 fill-gray-700 rounded-full bg-teal-600 inline-flex items-center justify-center'>
@@ -67,7 +68,7 @@ function ChatWindow({ messages }: ChatWindowProps) {
                             </div>
                         )
                     }
-                </>
+                </div>
             ))}
         </ScrollArea>
     );
@@ -83,7 +84,10 @@ export default function Chat() {
         formState: { errors },
     } = useForm<ChatFormData>();
     const [showChatOption, setShowChatOption] = useState(false);
-
+    const { data } = useChat();
+    
+    console.log(data);
+    
     // Dummy data for messages
     const [messages, setMessages] = useState<Array<{ text: string; isOwnMessage: boolean }>>([
         { text: "Why is the sky blue?", isOwnMessage: true },
