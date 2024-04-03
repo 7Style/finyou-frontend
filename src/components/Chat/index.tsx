@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod'
 import { Input } from '@/components/ui/input';
@@ -84,19 +84,31 @@ export default function Chat() {
         formState: { errors },
     } = useForm<ChatFormData>();
     const [showChatOption, setShowChatOption] = useState(false);
-    const { data } = useChat();
-    
-    console.log(data);
-    
+
+
     // Dummy data for messages
     const [messages, setMessages] = useState<Array<{ text: string; isOwnMessage: boolean }>>([
         { text: "Why is the sky blue?", isOwnMessage: true },
-        { text: "The sky appears blue because of the scattering of sunlight by Earth's atmosphere...", isOwnMessage: false },
-        { text: "The sky appears blue because of the scattering of sunlight by Earth's atmosphere...", isOwnMessage: false },
-        { text: "Why is the sky blue?", isOwnMessage: true },
-        { text: "The sky appears blue because of the scattering of sunlight by Earth's atmosphere...", isOwnMessage: false },
-        // ... other messages
     ]);
+
+    
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const text = await useChat();
+    //             // setData(text);
+    //             setMessages(prevMessages => [
+    //                 ...prevMessages,
+    //                 { text: text, isOwnMessage: false }
+    //             ]);                
+    //         } catch (error) {
+    //             console.error("Error fetching data:", error);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
+
 
     const toggleChatOption = () => {
         setShowChatOption(!showChatOption);

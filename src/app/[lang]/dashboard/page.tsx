@@ -1,5 +1,5 @@
-'use client'
-import React from 'react';
+"use client"
+import React, { useEffect } from 'react';
 import { Calender, CheckList, Clock, EuroCoin, Overview, Percent, Loan, PiggyCoin } from '@/icons/dashboard';
 import FilterComponent from '@/screens/dashboard/filter-component';
 import DynamicFilter from '@/screens/dashboard/filters/dynamic-filter';
@@ -12,7 +12,7 @@ import DataTable from '@/screens/dashboard/datatable';
 
 
 
-export default function Dashboard() {
+export default async function Dashboard() {
   const projectsData = [
     {
       title: "Transfer Bonus",
@@ -48,6 +48,78 @@ export default function Dashboard() {
       icon: <Loan />
     }
   ];
+
+  
+useEffect(() => {
+  const fetchData = async () => {
+        // Fetch the original image
+const response = await fetch("http://10.10.1.86:8080/ai/chat?question=Förderprogramme&streaming=1");
+if (!response.ok) {
+    throw new Error("Failed to fetch data");
+}
+
+const reader = response.body?.getReader();
+if (!reader) {
+    throw new Error("Failed to get reader");
+}
+
+const decoder = new TextDecoder("utf-8");
+const maxIterations = 1000; // Limit the number of iterations
+let iterationCount = 0;
+let buffer = '';
+
+while (true) {
+    const { done, value } = await reader.read();
+    if (done || iterationCount >= maxIterations) break;
+    const val = decoder.decode(value);
+
+    // Concatenate the received data to buffer
+    buffer += val;
+
+    // Use regular expression to match complete JSON objects
+    // const jsonRegex = /{(?:[^{}]|{[^{}]*})*}/g;
+    const jsonRegex = /{^}/g;
+    let match;
+    while ((match = jsonRegex.exec(buffer)) !== null) {
+        try {
+          console.log(match);
+          
+            // const jsonData = JSON.parse(match[0]);
+            // console.log({
+            //   jsonData,
+            //   prompt: match.input
+            // });
+        } catch (error) {
+            console.error("Error parsing JSON:", error);
+        }
+    }
+
+    // Remove processed JSON objects from buffer
+    buffer = buffer.slice(jsonRegex.lastIndex);
+
+    iterationCount++;
+}
+
+// Close the stream after a certain time or number of iterations
+reader.cancel();
+
+  };
+  fetchData();
+}, []);
+    
+    
+
+// // Retrieve its body as ReadableStream
+// .then((response) => response.body)
+// .then(async (body) => {
+//   const reader = body?.getReader();
+//   const decoder = new TextDecoder("utf-8");
+
+//   while(true) {
+
+//   }
+// });
+    
 
   return (
       <Tabs defaultValue="overview" className='my-9'>
@@ -93,9 +165,9 @@ export default function Dashboard() {
               </TabsContent>
             ))}
           </Tabs>
-
-          <Chat />
         </TabsContent>
+        
+        <Chat />
       </Tabs>
   )
 }
