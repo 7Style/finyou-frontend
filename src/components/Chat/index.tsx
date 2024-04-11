@@ -1,12 +1,15 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod'
+import Markdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
+import { motion } from "framer-motion";
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ArrowRight, ChatBot, Bot, DotsHorizontal, FinyouIcon, ThumbsUp, Copy } from '@/icons/dashboard';
-import { useChat } from '@/hooks/useChat';
 
 interface ChatWindowProps {
     messages: Array<{ text: string; isReply: boolean }>;
@@ -35,7 +38,13 @@ function ChatWindow({ messages }: ChatWindowProps) {
     return (
         <ScrollArea className="h-96">
             {messages.map((msg, index) => (
-                <div key={index}>
+                <motion.div
+                initial={{
+                  opacity: 0,
+                  translateY: "100%",
+                }}
+                animate={{ opacity: 1, translateY: 0, transition: { duration: 0.3 } }}
+                exit={{ opacity: 0, translateY: 0 }} key={index}>
                     <div className={`flex gap-2 px-2 items-center ${msg.isReply ? 'justify-start py-2' : 'justify-end py-3' }`}>
                         {
                             !msg.isReply && (
@@ -44,7 +53,11 @@ function ChatWindow({ messages }: ChatWindowProps) {
                                 </div>
                             )
                         }
-                        <p className={`${msg.isReply ? 'bg-gray-100 text-dark' : 'bg-cyan-600 text-white'} rounded-tl-lg rounded-tr-lg rounded-bl-lg p-3 text-xs font-medium leading-sung`}>{msg.text}</p>
+                        <div className={`${msg.isReply ? 'bg-gray-100 text-dark' : 'bg-cyan-600 text-white'} rounded-tl-lg rounded-tr-lg rounded-bl-lg p-3 text-xs font-medium leading-sung`}>
+                        <Markdown remarkPlugins={[remarkGfm]}>
+                            {msg.text}
+                        </Markdown>
+                        </div>
                         {
                             msg.isReply && (
                                 <Avatar className='w-7 h-7 text-sm'>
@@ -68,7 +81,7 @@ function ChatWindow({ messages }: ChatWindowProps) {
                             </div>
                         )
                     }
-                </div>
+                </motion.div>
             ))}
         </ScrollArea>
     );
