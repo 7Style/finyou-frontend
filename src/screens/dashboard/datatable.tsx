@@ -10,6 +10,7 @@ import { TbCoinEuroFilled } from "react-icons/tb";
 import { Montserrat } from 'next/font/google'
 import { Calender, Clock, EuroCoin, Share } from '@/icons/dashboard';
 import GroupIcon from './group-icon';
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 const montserrat = Montserrat({
     weight: ['300', '400', '500', '700'],
@@ -234,27 +235,28 @@ const columns: GridColDef[] = [
 ];
 
 export default function DataTable() {
-    return <div className="w-full">
+    return <ScrollArea className="w-full whitespace-nowrap rounded-md border">
         <DataGrid rows={rows} columns={columns} autoHeight getRowHeight={() => 'auto'} getRowId={() => uuidv4()}
             getRowClassName={() => `fill-cyan-600`}
             sx={{
                 '&.MuiDataGrid-root': {
-                  border: 'none !important',
-                  '.MuiDataGrid-columnHeader': {
-                    backgroundColor: '#F9FAFB',
-                    borderRight: '1px solid #EAECF0',
-                    '&:nth-last-of-type(1)': {
-                      borderRight: 'none',
+                    border: 'none !important',
+                    '.MuiDataGrid-columnHeader': {
+                        backgroundColor: '#F9FAFB',
+                        borderRight: '1px solid #EAECF0',
+                        '&:nth-last-of-type(1)': {
+                            borderRight: 'none',
+                        },
                     },
-                  },
-                  '.MuiDataGrid-cell': {
-                    borderRight: '1px solid #E5E7EB',
-                    '&:nth-last-of-type(2)': {
-                      borderRight: 'none',
+                    '.MuiDataGrid-cell': {
+                        borderRight: '1px solid #E5E7EB',
+                        '&:nth-last-of-type(1)': {
+                            borderRight: 'none',
+                        },
                     },
-                  },
                 },
-              }}              
+            }}
         />
-    </div>
+        <ScrollBar orientation="horizontal" />
+    </ScrollArea>
 }

@@ -4,12 +4,9 @@ import { Calender, CheckList, Clock, EuroCoin, Overview, Percent, Loan, PiggyCoi
 import FilterComponent from '@/screens/dashboard/filter-component';
 import DynamicFilter from '@/screens/dashboard/filters/dynamic-filter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
 import Chat from '@/components/Chat';
 import Projects from '@/screens/dashboard/projects';
 import DataTable from '@/screens/dashboard/datatable';
-
-
 
 
 export default async function Dashboard() {
@@ -49,79 +46,8 @@ export default async function Dashboard() {
     }
   ];
 
-  
-useEffect(() => {
-  const fetchData = async () => {
-        // Fetch the original image
-const response = await fetch("http://10.10.1.86:8080/ai/chat?question=Förderprogramme&streaming=1");
-if (!response.ok) {
-    throw new Error("Failed to fetch data");
-}
-
-const reader = response.body?.getReader();
-if (!reader) {
-    throw new Error("Failed to get reader");
-}
-
-const decoder = new TextDecoder("utf-8");
-const maxIterations = 1000; // Limit the number of iterations
-let iterationCount = 0;
-let buffer = '';
-
-while (true) {
-    const { done, value } = await reader.read();
-    if (done || iterationCount >= maxIterations) break;
-    const val = decoder.decode(value);
-
-    // Concatenate the received data to buffer
-    buffer += val;
-
-    // Use regular expression to match complete JSON objects
-    // const jsonRegex = /{(?:[^{}]|{[^{}]*})*}/g;
-    const jsonRegex = /{^}/g;
-    let match;
-    while ((match = jsonRegex.exec(buffer)) !== null) {
-        try {
-          console.log(match);
-          
-            // const jsonData = JSON.parse(match[0]);
-            // console.log({
-            //   jsonData,
-            //   prompt: match.input
-            // });
-        } catch (error) {
-            console.error("Error parsing JSON:", error);
-        }
-    }
-
-    // Remove processed JSON objects from buffer
-    buffer = buffer.slice(jsonRegex.lastIndex);
-
-    iterationCount++;
-}
-
-// Close the stream after a certain time or number of iterations
-reader.cancel();
-
-  };
-  fetchData();
-}, []);
-    
-    
-
-// // Retrieve its body as ReadableStream
-// .then((response) => response.body)
-// .then(async (body) => {
-//   const reader = body?.getReader();
-//   const decoder = new TextDecoder("utf-8");
-
-//   while(true) {
-
-//   }
-// });
-    
-
   return (
+    <>
       <Tabs defaultValue="overview" className='my-9'>
         {/* Tabs */}
         <TabsList className='bg-transparent'>
@@ -160,14 +86,14 @@ reader.cancel();
             </TabsList>
 
             {projectsData.map((tab, index) => (
-              <TabsContent key={index} value={tab.title.toLowerCase()} className="w-full md:-ml-3 md:-mt-0 -mt-4">
+              <TabsContent key={index} value={tab.title.toLowerCase()} className="w-full -mt-2 md:-ml-3 md:-mt-4">
                 <Projects {...tab} />
               </TabsContent>
             ))}
           </Tabs>
-        </TabsContent>
-        
-        <Chat />
+        </TabsContent>        
       </Tabs>
+        <Chat />
+    </>    
   )
 }

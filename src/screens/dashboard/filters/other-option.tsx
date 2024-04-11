@@ -15,7 +15,7 @@ import {
   
   export function OtherOption() {
     return (
-      <Menubar className="border-0">
+      <Menubar className="md:flex hidden border-0">
         <MenubarMenu>
           <MenubarTrigger className="text-gray-400">Filter</MenubarTrigger>
           <MenubarContent>
