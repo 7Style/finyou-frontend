@@ -25,6 +25,7 @@ export const authOptions = {
           if (!credentials) {
             throw new Error("Credentials are undefined");
           }
+          console.log(credentials)
       
           // const resp = await performLogin({
           //   email: credentials.email,
@@ -47,10 +48,10 @@ export const authOptions = {
       
     })
   ],
-  // pages: {
-  //   signIn: "/auth/signin",
-  //   newUser: "/auth/signup",
-  // },
+  pages: {
+    signIn: "/auth/signin",
+    newUser: "/auth/signup",
+  },
   
   // callbacks: {
   //   async signIn({ user }: any) {

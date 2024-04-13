@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
+import { signOut } from "next-auth/react"
 import {
     Menubar,
     MenubarContent,
@@ -266,7 +266,7 @@ function Navigation() {
                         <MenubarItem>Github</MenubarItem>
                         <MenubarItem>Support</MenubarItem>
                         <MenubarSeparator />
-                        <MenubarItem>Logout</MenubarItem>
+                        <MenubarItem onClick={() => signOut()}>Logout</MenubarItem>
                     </MenubarContent>
                 </MenubarMenu>
             </Menubar>

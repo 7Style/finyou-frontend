@@ -13,7 +13,7 @@ export default function WebLayout({
     children: React.ReactNode
   }) {
     return (
-      <div className={`${poppins.className} w-full px-8`}>
+      <div className={`${poppins.className} w-full`}>
         {children}
       </div>
     )

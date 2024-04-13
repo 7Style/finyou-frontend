@@ -3,7 +3,7 @@ import { getToken } from 'next-auth/jwt';
 import { Locale, i18n } from '@/i18n.config';
 import { CustomMiddleware } from './chain';
 
-const protectedRoute = ['/about'];
+const protectedRoute = ['/dashboard'];
 
 function getProtectedRoute(protectedPaths: string[], locales: Locale[]) {
   let protectedPathsWithLocale: string[] = [...protectedPaths];
