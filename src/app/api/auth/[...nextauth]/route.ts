@@ -1,12 +1,35 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { login, getUser } from "@/hooks/auth/index";
+import { login, refreshToken } from "@/hooks/auth/index";
 
-type CredentialInput = {
+interface CredentialInput {
   email: string;
   password: string;
 };
+
+interface Token {
+  token: string;
+  accessTokenExpires: number;
+  refreshToken: string;
+  error?: string;
+}
+
+async function refreshAccessToken(token: Token): Promise<Token> {
+  try {
+    const refreshedTokens = await refreshToken(token.token)    
+    return {
+      token: refreshedTokens.token,
+      accessTokenExpires: Date.now() + 10 * 1000,
+      refreshToken: refreshedTokens.refreshToken,
+    }
+  } catch (error) {
+    return {
+      ...token,
+      error: "RefreshAccessTokenError",
+    }
+  }
+}
 
 export const authOptions = {
   providers: [
@@ -70,13 +93,20 @@ export const authOptions = {
       if (user?.token) {
         token = {
           token: user.token,
+          accessTokenExpires: Date.now() + 10 * 1000,
+          refreshToken: user.refreshToken,
+          user: user,
         };
       }
 
-      if (token.token && !token.user) {
-        token.user = await getUser(token.token as string);
+      // if (token.token && !token.user) {
+      //   token.user = await getUser(token.token as string);
+      // }
+
+      if (Date.now() < token.accessTokenExpires) {
+        return token
       }
-      return Promise.resolve(token);
+      return refreshAccessToken(token)
     },
   },
 };

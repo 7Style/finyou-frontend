@@ -36,7 +36,7 @@ export function authMiddleware(middleware: CustomMiddleware){
     ]);
 
     if (!token && protectedPathsWithLocale.includes(pathname)) {
-      const signInUrl = new URL('/auth/signin', request.url);
+      const signInUrl = new URL('/signin', request.url);
       signInUrl.searchParams.set('callbackUrl', pathname);
 
       return NextResponse.redirect(signInUrl);
