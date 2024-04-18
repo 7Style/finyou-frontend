@@ -1,5 +1,6 @@
 
-import service from "@/service";
+import service from "@/services";
+import { ENDPOINTS } from "../constant/endpoints";
 
 // Login
 export async function login({
@@ -12,7 +13,7 @@ export async function login({
     return service({
       method: "POST",
       noAuth: true,
-      url: `/auth/email/login`,
+      url: ENDPOINTS.LOGIN,
       body: {
         email,
         password,
@@ -23,7 +24,7 @@ export async function login({
   export async function getUser(token: string) {
     return service({
       method: "GET",
-      url: "/auth/me",
+      url: ENDPOINTS.PROFILE,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -32,7 +33,7 @@ export async function login({
   export async function refreshToken(token: string) {
     return service({
       method: "POST",
-      url: "/auth/refresh",
+      url: ENDPOINTS.REFRESH_TOKEN,
       headers: {
         Authorization: `Bearer ${token}`,
       },
