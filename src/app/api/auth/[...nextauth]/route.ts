@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-// import { performLogin, getUser } from "@/hooks/auth/index";
+import { login, getUser } from "@/hooks/auth/index";
 
 type CredentialInput = {
   email: string;
@@ -25,24 +25,21 @@ export const authOptions = {
           if (!credentials) {
             throw new Error("Credentials are undefined");
           }
-          console.log(credentials)
       
-          // const resp = await performLogin({
-          //   email: credentials.email,
-          //   password: credentials.password,
-          // });
+          const resp = await login({
+            email: credentials.email,
+            password: credentials.password,
+          });
       
           // Assuming your performLogin function returns a response similar to the provided response structure
-          // const { token, refreshToken, user } = resp;
-
-          return true;
-          // return {
-          //   token,
-          //   refreshToken,
-          //   user,
-          // };
+          const { token, refreshToken, user } = resp;
+          return {
+            token,
+            refreshToken,
+            user,
+          };
         } catch (e: any) {
-          return Promise.reject(new Error(e?.msg || "Something Wrong"));
+          return Promise.reject(new Error(e?.message || "Something Wrong"));
         }
       }
       
@@ -52,37 +49,36 @@ export const authOptions = {
     signIn: "/auth/signin",
     newUser: "/auth/signup",
   },
-  
-  // callbacks: {
-  //   async signIn({ user }: any) {
-  //     if (user?.token) {
-  //       return Promise.resolve(true);
-  //     }
-  //     return Promise.resolve(false);
-  //   },
-  //   async session({ session, token }: any) {
-  //     if (!token.token) {
-  //       return Promise.resolve(session);
-  //     }
+  callbacks: {
+    async signIn({ user }: any) {
+      if (user?.token) {
+        return Promise.resolve(true);
+      }
+      return Promise.resolve(false);
+    },
+    async session({ session, token }: any) {
+      if (!token.token) {
+        return Promise.resolve(session);
+      }
       
-  //     session.token = token.token;
-  //     session.user = token.user;
+      session.token = token.token;
+      session.user = token.user;
       
-  //     return Promise.resolve(session);
-  //   },
-  //   async jwt({ token, user }: any) {
-  //     if (user?.token) {
-  //       token = {
-  //         token: user.token,
-  //       };
-  //     }
+      return Promise.resolve(session);
+    },
+    async jwt({ token, user }: any) {
+      if (user?.token) {
+        token = {
+          token: user.token,
+        };
+      }
 
-  //     if (token.token && !token.user) {
-  //       token.user = await getUser(token.token as string);
-  //     }
-  //     return Promise.resolve(token);
-  //   },
-  // },
+      if (token.token && !token.user) {
+        token.user = await getUser(token.token as string);
+      }
+      return Promise.resolve(token);
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);

@@ -3,6 +3,8 @@ import Providers from './providers'
 import { Locale, i18n } from '@/i18n.config'
 import './globals.css'
 
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 export const metadata: Metadata = {
@@ -26,6 +28,18 @@ export default function RootLayout({
       <body suppressHydrationWarning={true} className="overflow-x-hidden">
         <Providers>
           {children}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </Providers>
       </body>
     </html>

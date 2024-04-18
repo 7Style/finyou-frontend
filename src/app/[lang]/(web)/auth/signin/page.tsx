@@ -1,11 +1,15 @@
-'use client'
+'use client';
+import { useState } from "react";
 import Link from "next/link"
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { toast } from "react-toastify";
+import { Loader2 } from "lucide-react"
 
 interface FormData {
     email: string;
@@ -13,6 +17,8 @@ interface FormData {
 }
 
 export default function Signin() {
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const schema = z.object({
         email: z.string().email("Invalid email format").min(1),
         password: z.string().min(8, "Password must be at least 8 characters"),
@@ -27,8 +33,19 @@ export default function Signin() {
 
     const submitHandler = async (data: FormData) => {
         try {
+            setLoading(true);
             await schema.parse(data);
-            await signIn("credentials", { ...data, callbackUrl: "/dashboard" });
+            await signIn("credentials", { ...data, redirect: false })
+                .then((res) => {
+                    if (res?.ok) {
+                        router.push("/dashboard", { scroll: false });
+                         toast.success("Login Successful", { position: "top-right" });
+                        setLoading(false);
+                    } else {
+                        toast.error("Login Failed", { position: "top-right" });
+                        setLoading(false);
+                    }
+                });
         } catch (error) {
             if (error instanceof z.ZodError) {
                 // Set Zod errors to the form state
@@ -77,10 +94,15 @@ export default function Signin() {
                     <Input id="password" type="password" required   {...register('password', { required: 'Password is required' })} />
                     {errors.password && <p className="text-red-500 pt-1 text-xs">{errors.password.message}</p>}
                 </div>
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" disabled={loading}>
+                    {
+                        loading && (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        )
+                    }
                     Sign In
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full" disabled={loading}>
                     Continue with Google
                 </Button>
             </form>
