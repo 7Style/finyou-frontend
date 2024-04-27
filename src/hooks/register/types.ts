@@ -12,8 +12,7 @@ export interface RegisterAPIMutationPayload {
     password: string;
     username: string;
     phoneNumber?: string;
-    firstName?: string;
-    lastName?: string;
+    fullname?: string;
     role: number;
     address?: string;
     bio?: string;

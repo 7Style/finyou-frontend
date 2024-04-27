@@ -11,21 +11,32 @@ import { toast } from "react-toastify";
 import { Loader2 } from "lucide-react"
 
 interface FormData {
-    first_name: string;
-    last_name: string;
+    fullname: string;
+    username: string;
     email: string;
     password: string;
+    confirmPassword: string;
 }
 
 export default function Signup() {
     const router = useRouter();
     const { isPending, isSuccess, mutate, isError, error } = useRegister();
     const schema = z.object({
-        first_name: z.string(),
-        last_name: z.string(),
+        fullname: z.string(),
+        username: z.string(),
         email: z.string().email("Invalid email format").min(1),
         password: z.string().min(8, "Password must be at least 8 characters"),
-    });
+        confirmPassword: z.string().min(8, "Confirm Password must be at least 8 characters")
+    }).refine(
+        (values) => {
+          return values.password === values.confirmPassword;
+        },
+        {
+          message: "Passwords must match!",
+          path: ["confirmPassword"],
+        }
+      );
+    
 
     const {
         register,
@@ -40,10 +51,9 @@ export default function Signup() {
             mutate({
                 email: data.email,
                 password: data.password,
-                firstName: data.first_name,
-                lastName: data.last_name,
+                fullname: data.fullname,
                 role: 2,
-                username: data.first_name + " " + data.last_name,
+                username: data.username,
                 phoneNumber: "92334444",
                 university: {
                     id: 1
@@ -83,14 +93,14 @@ export default function Signup() {
             <form className="grid gap-4" onSubmit={handleSubmit(submitHandler)}>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="first-name">First name</Label>
-                        <Input id="first-name" placeholder="Max" required {...register('first_name', { required: 'First Name is required' })} />
-                        {errors.first_name && <p className="text-red-500 pt-1 text-xs">{errors.first_name.message}</p>}
+                        <Label htmlFor="full-name">Full name</Label>
+                        <Input id="full-name" placeholder="Max" required {...register('fullname', { required: 'Name is required' })} />
+                        {errors.fullname && <p className="text-red-500 pt-1 text-xs">{errors.fullname.message}</p>}
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="last-name">Last name</Label>
-                        <Input id="last-name" placeholder="Robinson" required  {...register('last_name', { required: 'Last Name is required' })} />
-                        {errors.first_name && <p className="text-red-500 pt-1 text-xs">{errors.first_name.message}</p>}
+                        <Label htmlFor="user-name">User name</Label>
+                        <Input id="user-name" placeholder="Robinson" required  {...register('username', { required: 'User Name is required' })} />
+                        {errors.username && <p className="text-red-500 pt-1 text-xs">{errors.username.message}</p>}
                     </div>
                 </div>
                 <div className="grid gap-2">
@@ -105,17 +115,15 @@ export default function Signup() {
                     {errors.email && <p className="text-red-500 pt-1 text-xs">{errors.email.message}</p>}
                 </div>
                 <div className="grid gap-2">
-                    <div className="flex items-center">
-                        <Label htmlFor="password">Password</Label>
-                        <Link
-                            href="/forgot-password"
-                            className="ml-auto inline-block text-sm underline"
-                        >
-                            Forgot your password?
-                        </Link>
-                    </div>
+                    <Label htmlFor="password">Password</Label>                       
                     <Input id="password" type="password" required  {...register('password', { required: 'Password is required' })} />
                     {errors.password && <p className="text-red-500 pt-1 text-xs">{errors.password.message}</p>}
+                </div>
+
+                <div className="grid gap-2">
+                    <Label htmlFor="confirmPassword">Confirm Password</Label>                       
+                    <Input id="confirmPassword" type="password" required  {...register('confirmPassword', { required: 'Confirm Password is required' })} />
+                    {errors.confirmPassword && <p className="text-red-500 pt-1 text-xs">{errors.confirmPassword.message}</p>}
                 </div>
 
                 <Button type="submit" className="w-full" disabled={isPending}>
