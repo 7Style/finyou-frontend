@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod'
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -219,8 +219,24 @@ export default function Chat() {
                 </div>
             </div>
 
-            <div className={`fixed bottom-10 cursor-pointer right-10 bg-cyan-700 fill-white rounded-full p-2 ${showChatOption ? 'hidden' : 'block'}`} onClick={toggleChatOption}>
+            <div className={`fixed bottom-10 cursor-pointer right-10 ${showChatOption ? 'hidden' : 'block'}`} onClick={toggleChatOption}>
+            <motion.div
+                animate={{
+                    scale: [1, 1.1, 1.1, 1, 1],
+                    rotate: [0],
+                    borderRadius: ["0%", "0%", "50%", "50%", "0%"]
+                }}
+                transition={{
+                    duration: 2,
+                    ease: "easeInOut",
+                    times: [0, 0.2, 0.5, 0.8, 1],
+                    repeat: Infinity,
+                    repeatDelay: 0.5
+                }}>
+            <div className='bg-cyan-700 fill-white rounded-full p-2'>
                 <ChatBot />
+                </div>
+            </motion.div>
             </div>
         </>
     );

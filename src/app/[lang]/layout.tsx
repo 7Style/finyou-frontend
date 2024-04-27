@@ -5,6 +5,7 @@ import './globals.css'
 
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Chat from '@/components/chat';
 
 
 export const metadata: Metadata = {
@@ -40,6 +41,8 @@ export default function RootLayout({
             pauseOnHover
             theme="light"
           />
+          
+          <Chat />
         </Providers>
       </body>
     </html>

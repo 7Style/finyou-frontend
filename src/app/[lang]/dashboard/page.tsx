@@ -4,12 +4,11 @@ import { Calender, CheckList, Clock, EuroCoin, Overview, Percent, Loan, PiggyCoi
 import FilterComponent from '@/screens/dashboard/filter-component';
 import DynamicFilter from '@/screens/dashboard/filters/dynamic-filter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Chat from '@/components/chat';
 import Projects from '@/screens/dashboard/projects';
 import DataTable from '@/screens/dashboard/datatable';
 
-
-export default async function Dashboard() {
+export default function Dashboard() {
+  // Usage example
   const projectsData = [
     {
       title: "Transfer Bonus",
@@ -93,7 +92,6 @@ export default async function Dashboard() {
           </Tabs>
         </TabsContent>        
       </Tabs>
-        <Chat />
     </>    
   )
 }
