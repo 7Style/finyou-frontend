@@ -1,16 +1,11 @@
-'use client'
-import React from 'react';
+"use client"
+import React, { useEffect } from 'react';
 import { Calender, CheckList, Clock, EuroCoin, Overview, Percent, Loan, PiggyCoin } from '@/icons/dashboard';
 import FilterComponent from '@/screens/dashboard/filter-component';
 import DynamicFilter from '@/screens/dashboard/filters/dynamic-filter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
-import Chat from '@/components/Chat';
 import Projects from '@/screens/dashboard/projects';
 import DataTable from '@/screens/dashboard/datatable';
-
-
-
 
 export default function Dashboard() {
   // Usage example
@@ -51,6 +46,7 @@ export default function Dashboard() {
   ];
 
   return (
+    <>
       <Tabs defaultValue="overview" className='my-9'>
         {/* Tabs */}
         <TabsList className='bg-transparent'>
@@ -89,14 +85,13 @@ export default function Dashboard() {
             </TabsList>
 
             {projectsData.map((tab, index) => (
-              <TabsContent key={index} value={tab.title.toLowerCase()} className="w-full md:-ml-3 md:-mt-0 -mt-4">
+              <TabsContent key={index} value={tab.title.toLowerCase()} className="w-full -mt-2 md:-ml-3 md:-mt-4">
                 <Projects {...tab} />
               </TabsContent>
             ))}
           </Tabs>
-
-          <Chat />
-        </TabsContent>
+        </TabsContent>        
       </Tabs>
+    </>    
   )
 }

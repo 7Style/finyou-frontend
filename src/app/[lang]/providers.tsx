@@ -1,20 +1,25 @@
 /** @format */
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider } from "next-auth/react";
 
 export default function Providers({ children }: { children: ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient());
-
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false
+      }
+    }
+  })
 
   return (
     <SessionProvider>
-      {/* <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />  */}
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} /> 
             {children}
-      {/* </QueryClientProvider> */}
+      </QueryClientProvider>
     </SessionProvider>
   );
 }

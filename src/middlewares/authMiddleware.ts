@@ -3,7 +3,7 @@ import { getToken } from 'next-auth/jwt';
 import { Locale, i18n } from '@/i18n.config';
 import { CustomMiddleware } from './chain';
 
-const protectedRoute = ['/about'];
+const protectedRoute = ['/dashboard'];
 
 function getProtectedRoute(protectedPaths: string[], locales: Locale[]) {
   let protectedPathsWithLocale: string[] = [...protectedPaths];
@@ -28,20 +28,28 @@ export function authMiddleware(middleware: CustomMiddleware){
     // @ts-ignore
     request.nextauth = request.nextauth || {};
   
-    // @ts-ignore
-    request.nextauth.token = token;
+    // Assign the token value to request.nextauth.token only if it's available
+    if (token) {
+      // @ts-ignore
+      request.nextauth.token = token;
+    }
+
     const pathname = request.nextUrl.pathname;
     const protectedPathsWithLocale = getProtectedRoute(protectedRoute, [
       ...i18n.locales,
     ]);
 
     if (!token && protectedPathsWithLocale.includes(pathname)) {
-      const signInUrl = new URL('/auth/signin', request.url);
+      const signInUrl = new URL('/signin', request.url);
       signInUrl.searchParams.set('callbackUrl', pathname);
-
       return NextResponse.redirect(signInUrl);
     }
+    // If user is logged in and trying to access sign-in page, redirect to dashboard
+    // if (token && (token != null && pathname === '/signin')) {
+    //   return NextResponse.redirect('/dashboard');
+    // }
 
+    
     
     return middleware(request, event, response);
   }
