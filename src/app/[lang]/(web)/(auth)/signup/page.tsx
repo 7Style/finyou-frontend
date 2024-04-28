@@ -24,7 +24,7 @@ export default function Signup() {
         fullname: z.string(),
         username: z.string(),
         email: z.string().email("Invalid email format").min(1),
-        password: z.string().min(8, "Password must be at least 8 characters"),
+        password: z.string().regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, "Must contain at alphanumeric and special characters").min(8, "Password must be at least 8 characters"),
         confirmPassword: z.string().min(8, "Confirm Password must be at least 8 characters")
     }).refine(
         (values) => {

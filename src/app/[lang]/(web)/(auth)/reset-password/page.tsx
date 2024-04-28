@@ -21,7 +21,7 @@ export default function ResetPassword() {
 
   const { isPending, isSuccess, mutate, isError, error } = useResetPassword();
   const schema = z.object({
-    password: z.string().min(8, "Password must be at least 8 characters"),
+    password: z.string().regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, "Must contain at alphanumeric and special characters").min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string().min(8, "Confirm Password must be at least 8 characters")
   }).refine(
     (values) => {
