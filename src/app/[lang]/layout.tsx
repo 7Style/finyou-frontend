@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
 import Providers from './providers'
 import { Locale, i18n } from '@/i18n.config'
-import './globals.css'
-
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Chat from '@/components/chat';
+import './globals.css'
 
 
 export const metadata: Metadata = {

@@ -4,7 +4,7 @@ import { Locale, i18n } from '@/i18n.config';
 import { CustomMiddleware } from './chain';
 
 const protectedRoute = ['/dashboard'];
-
+    
 function getProtectedRoute(protectedPaths: string[], locales: Locale[]) {
   let protectedPathsWithLocale: string[] = [...protectedPaths];
 
@@ -24,7 +24,7 @@ export function authMiddleware(middleware: CustomMiddleware){
   return async(request: NextRequest, event: NextFetchEvent) => {
     const response = NextResponse.next();
     const token = await getToken({ req: request});
-
+    
     // @ts-ignore
     request.nextauth = request.nextauth || {};
   
@@ -44,6 +44,7 @@ export function authMiddleware(middleware: CustomMiddleware){
       signInUrl.searchParams.set('callbackUrl', pathname);
       return NextResponse.redirect(signInUrl);
     }
+    
     // If user is logged in and trying to access sign-in page, redirect to dashboard
     // if (token && (token != null && pathname === '/signin')) {
     //   return NextResponse.redirect('/dashboard');

@@ -1,10 +1,19 @@
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 
 export default function AuthLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode
 }) {
+  // const { status } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     redirect("/dashboard");
+  //   },
+  // })  
+
   return (
     <div className="w-full lg:grid lg:grid-cols-2 min-h-screen">
       <div className="flex items-center justify-center py-12">
