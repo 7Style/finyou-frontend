@@ -1,4 +1,4 @@
-import DashboardHeader from "@/screens/dashboard/layout/header"
+import DashboardHeader from "@/layouts/dashboard/header"
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({

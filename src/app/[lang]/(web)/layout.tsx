@@ -1,20 +1,24 @@
-import { Poppins } from 'next/font/google'
+import { Locale } from "@/i18n.config";
+import { getDictionary } from "@/lib/dictionary";
+import Header from '@/layouts/web/header';
+import Footer from '@/layouts/web/footer';
 
-const poppins = Poppins({
-  weight: ['300', '400', '500', '700', '800', '900'],
-  subsets: ['latin'],
-  display:'swap',
-  fallback: ['Arial', 'sans-serif'],
-});
 
-export default function WebLayout({
-    children, // will be a page or nested layout
+export default async function WebLayout({
+    children,
+    params: { lang },
   }: {
-    children: React.ReactNode
+    children: React.ReactNode,
+    params: { lang: Locale };
   }) {
+    const { footer } = await getDictionary(lang);
     return (
-      <div className={`${poppins.className} w-full`}>
-        {children}
-      </div>
+      <>
+        <Header />
+        <main>
+          {children}
+        </main>
+        <Footer footer={footer} />
+      </>
     )
   }

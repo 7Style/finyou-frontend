@@ -1,142 +1,77 @@
 import * as React from 'react';
-import TextFieldWithTooltip, { TextFieldWithoutTooltip } from '@/components/TextField';
-import Switch from '@/components/Switch';
-import Slider from '@/components/Slider';
-import RadioButtons from '@/components/Radio';
-import FilterDropdown from '@/components/FilterDropdown';
-import IndividualCard, { IconCard, CompanyOverview, JobCard, ProfileTag, ProfileCard, NumberCard } from '@/components/CustomCard';
-import List from '@/components/List';
-import FileUpload from '@/components/FileUpload';
-import { Modal } from '@/components/Modal';
-
+import { IconCard } from '@/components/CustomCard';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (
-    <div>
-    <div className='bg-neutral-100 mt-10 mb-2 p-5'>
-      <div className="flex flex-wrap gap-6">
-        <div className="w-[280px]">
-          <IndividualCard />
+    <>
+
+      {/* Hero */}
+      <section className="flex gap-5 py-10 px-4 md:px-20">
+        <div className="w-1/2">
+          <h2 className='text-xl font-bold'>3. Fördermittel beantragen & abrechnen</h2>
+          <p className="text-md mt-2 mb-4">
+          Finyou’s Fördermittelassistent und das Netzwerk unterstützen im gesamten Prozess von der Partnersuche, über die rechtssichere Beantragung bis hin zur Abrechnung und Dokumentation. 
+          </p>
+          <div className="flex items-center gap-3">
+            <Button size={"md"}>Jetzt suchen</Button>
+            <Button size={"md"} variant={'outline'}>Netzwerk</Button>
+          </div>
         </div>
-        <div className="w-[280px]">
-          <JobCard />
+        <div className="w-1/2">
+          
         </div>
-        <div className="w-[280px]">
-          <CompanyOverview />
-        </div>
-        <div className="w-[380px]">
+      </section>
+
+      {/* Cards */}
+      <section className="flex bg-sky-50 gap-5 py-10 px-4 md:px-20">
           <IconCard />
+          <IconCard />
+          <IconCard />
+      </section>
+
+      {/* Projects */}
+      <section className="flex gap-5 py-10 px-4 md:px-20">
+        <div className="w-1/2">
+          <h2 className='text-xl font-bold'>Projektpartnersuche</h2>
+          <p className="text-md mt-2 mb-4">
+          Passend zu Förderbedingungen findet Finyou <b>autorisierte Dienstleister & Partner</b>, wie für Digitalisierung, Design, Marketing, F&E, Patentanmeldung..
+          </p>
+          <div className="flex items-center gap-3">
+            <Button size={"md"} variant={'outline'}>Partner suchen</Button>
+            <Button size={"md"}>Partnernetzwerk</Button>
+          </div>
         </div>
-        <div className="w-[216px]">
-          <ProfileTag />
+        <div className="w-1/2">
+          <div className="flex gap-5 px-2">
+            <div className="flex flex-col gap-2 text-center">
+              <h3 className="text-sm font-bold">Service-Partner</h3>
+              <p className='text-xs'>Design, IT, Marketing, Zulieferer ...</p>
+            </div>
+
+            <div className="flex flex-col gap-2 text-center">
+              <h3 className="text-sm font-bold">Service-Partner</h3>
+              <p className='text-xs'>Design, IT, Marketing, Zulieferer ...</p>
+            </div>
+
+            <div className="flex flex-col gap-2 text-center">
+              <h3 className="text-sm font-bold">Service-Partner</h3>
+              <p className='text-xs'>Design, IT, Marketing, Zulieferer ...</p>
+            </div>
+          </div>
         </div>
-        <div className='w-[390px]'>
-          <ProfileCard />
+      </section>
+
+      {/* CTA */}
+      <section className="flex bg-sky-50 gap-5 py-10 px-4 md:px-20">
+        <p className="text-2xl">
+          Melde Dich jetzt für die <b>Alpha-Testphase</b> an oder bewirb Dich für unser <b>Alpha-Testphase</b>
+        </p>
+        <div className="flex items-center justify-end gap-5 w-1/2">
+          <Button size={"lg"} variant={'outline'}>Anmelden</Button>
+          <Button size={"lg"}>Zum Netzwerk</Button>
         </div>
-        <div className="w-[190px]">
-          <NumberCard />
-        </div>
-      </div>
-    </div>
-    
-    <div className='bg-neutral-100 mt-10 mb-2 p-5'>
-      <div className="flex flex-wrap gap-6">
-        <div className="w-[305px]">
-          <List />
-        </div>
-      </div>
-    </div>
-    
-
-    <div className='bg-neutral-100 mt-10 mb-2 p-5'>
-      <div className="flex flex-wrap gap-6">
-        <div className="w-[805px]">
-            <FileUpload />
-        </div>
-      </div>
-    </div>
-    
-    <div className='bg-neutral-100 mt-10 mb-2 p-5'>
-      <div className="flex flex-wrap gap-6">
-        <div className="w-[805px]">
-            <Modal />
-        </div>
-      </div>
-    </div>
-    
-
-      <div className='bg-neutral-100 my-2 p-2'>
-        <div className="py-4 flex items-center justify-around gap-4">
-          <FilterDropdown isMultiSelect={true} />
-          <FilterDropdown />
-        </div>
-
-        <div className="py-4 flex items-center justify-around gap-4">
-          <TextFieldWithTooltip />
-
-          <TextFieldWithoutTooltip />
-        </div>
-
-      </div>
-
-  
-
-
-      
-    <div className='bg-neutral-100 my-2 p-2'>
-      <div className="py-4 flex items-center justify-around gap-4">
-            <Switch />
-            {/* <Checkbox
-              label="Default checkbox"
-              checked={false}
-              onChange={() => {
-                // Handle checkbox state change here
-                console.log(`Checkbox is checked`);
-              }}
-            /> */}
-            <RadioButtons options={{ value: 'option1', label: 'Option 1' }} />
-      </div>
-    </div>
-
-    
-    <div className='bg-neutral-100 my-2 p-5'>
-      <div className="py-4 flex gap-3 items-center justify-around">
-        <Slider
-          min={0}
-          max={100}
-          step={5}
-          initialValues={[10, 90]}
-          showTooltip={false}
-        />
-
-        <Slider
-          min={0}
-          max={100}
-          step={5}
-          initialValues={[10, 90]}
-          showTooltip={true}
-          tooltipPosition="bottom"
-          includeTooltipBg={false}
-        />
-
-        <Slider
-          min={0}
-          max={100}
-          step={5}
-          initialValues={[10, 90]}
-          showTooltip={true}
-        />
-
-        <Slider
-          min={0}
-          max={100}
-          step={5}
-          initialValues={[10, 90]}
-          showTooltip={true}
-          tooltipPosition="bottom"
-        />
-      </div>
-    </div>
-    </div>
+      </section>
+    </>
   );
 }

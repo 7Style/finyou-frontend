@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Montserrat } from 'next/font/google'
 import Providers from './providers'
 import { Locale, i18n } from '@/i18n.config'
 import './globals.css'
@@ -7,6 +8,13 @@ import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Chat from '@/components/chat';
 
+
+const montserrat = Montserrat({
+  weight: ['300', '400', '500', '700', '800', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['Arial', 'sans-serif'],
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -26,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang={params.lang}>
-      <body suppressHydrationWarning={true} className="overflow-x-hidden">
+      <body suppressHydrationWarning={true} className={`${montserrat.className} w-full overflow-x-hidden`}>
         <Providers>
           {children}
           <ToastContainer
@@ -41,7 +49,7 @@ export default function RootLayout({
             pauseOnHover
             theme="light"
           />
-          
+
           <Chat />
         </Providers>
       </body>

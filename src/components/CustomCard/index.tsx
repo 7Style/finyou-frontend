@@ -77,16 +77,16 @@ export function CompanyOverview() {
 
 export function IconCard() {
     return (
-        <Card className='text-center py-4 px-8 relative shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]'>
+        <Card className='text-center py-4 px-8 relative border-0'>
             <Avatar className='mx-auto h-28 w-28'>
                 <AvatarImage src='/images/icon-card.png'></AvatarImage>
                 <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <CardHeader className='p-4 pb-1'>
-                <CardTitle className='text-xl'>Geld für Unternehmen & Startups</CardTitle>
+                <CardTitle className='text-lg'>Geld für Unternehmen & Startups</CardTitle>
             </CardHeader>   
             <CardContent className='p-4 pt-3'>
-                <p className='text-base'>Durch  Zuschüsse beteiligt sich der Staat bis zu 80% an der Finanzierung von Digitalisierungs-, Marketing-, F&E- & Beratungsprojekten sowie Personalkosten und...</p>
+                <p className='text-sm'>Durch  Zuschüsse beteiligt sich der Staat bis zu 80% an der Finanzierung von Digitalisierungs-, Marketing-, F&E- & Beratungsprojekten sowie Personalkosten und...</p>
             </CardContent>
         </Card>
     )
