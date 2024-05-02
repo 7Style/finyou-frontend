@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link"
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button"
@@ -19,13 +19,12 @@ interface FormData {
 }
 
 export default function Signup() {
-    const router = useRouter();
     const { isPending, isSuccess, mutate, isError, error } = useRegister();
     const schema = z.object({
         fullname: z.string(),
         username: z.string(),
         email: z.string().email("Invalid email format").min(1),
-        password: z.string().min(8, "Password must be at least 8 characters"),
+        password: z.string().regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, "Must contain at alphanumeric and special characters").min(8, "Password must be at least 8 characters"),
         confirmPassword: z.string().min(8, "Confirm Password must be at least 8 characters")
     }).refine(
         (values) => {
@@ -61,8 +60,8 @@ export default function Signup() {
             });
             if (isSuccess) {
                 toast.success("Registration successfully !", { position: "top-right" });
-                router.push("/signin", { scroll: false });;
-            } else if (isError) {
+                redirect("/signin");
+            } else {
                 error?.message
                     ? toast.error(error?.message, { position: "top-right" })
                     : toast.error("Failed to register", { position: "top-right" });
