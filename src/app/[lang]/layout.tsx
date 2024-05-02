@@ -1,19 +1,11 @@
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
 import Providers from './providers'
 import { Locale, i18n } from '@/i18n.config'
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Chat from '@/components/chat';
 import './globals.css'
-
-
-const montserrat = Montserrat({
-  weight: ['300', '400', '500', '700', '800', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  fallback: ['Arial', 'sans-serif'],
-});
+import { poppins } from '@/utils/font';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -26,14 +18,14 @@ export async function generateStaticParams() {
 
 export default function RootLayout({
   children,
-  params
+  params,
 }: {
   children: React.ReactNode,
   params: { lang: Locale }
 }) {
   return (
     <html lang={params.lang}>
-      <body suppressHydrationWarning={true} className={`${montserrat.className} w-full overflow-x-hidden`}>
+      <body suppressHydrationWarning={true} className={`${poppins.className} w-full overflow-x-hidden`}>
         <Providers>
           {children}
           <ToastContainer

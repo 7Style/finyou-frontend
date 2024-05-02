@@ -6,6 +6,7 @@ import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Image from "next/image"
+import { montserrat } from "@/utils/font"
 
 
 interface LinkData {
@@ -49,7 +50,7 @@ function Drawer() {
                         <Link
                             key={index}
                             href={link.href}
-                            className="text-muted-foreground hover:text-foreground"
+                            className={`${montserrat.className} text-muted-foreground hover:text-foreground`}
                         >
                             {link.text}
                         </Link>
@@ -66,14 +67,14 @@ function Drawer() {
 
 export default function Header() {
     return (
-        <header className="sticky top-0 flex h-16 items-center gap-4 bg-background px-4 md:px-20">
+        <header className="sticky top-0 flex h-16 items-center gap-4 bg-white z-10 px-4 md:px-8">
             <Link
                 href="#"
                 className="flex items-center gap-2 text-lg font-semibold md:text-base"
             >
                 <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
             </Link>
-            <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:w-2/3 md:justify-end md:items-center md:gap-5 md:text-sm lg:gap-6">
+            <nav className={`${montserrat.className} hidden flex-col gap-6 text-xs font-medium md:flex md:flex-row md:w-2/3 md:justify-end md:items-center md:gap-5 md:text-sm lg:gap-6`}>
                 {linksData.map((link, index) => (
                     <Link
                         key={index}
