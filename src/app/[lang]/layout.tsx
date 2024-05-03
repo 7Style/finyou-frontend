@@ -5,7 +5,6 @@ import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Chat from '@/components/chat';
 import './globals.css'
-import { poppins } from '@/utils/font';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang={params.lang}>
-      <body suppressHydrationWarning={true} className={`${poppins.className} w-full overflow-x-hidden`}>
+      <body suppressHydrationWarning={true} className="w-full overflow-x-hidden">
         <Providers>
           {children}
           <ToastContainer

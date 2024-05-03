@@ -12,6 +12,12 @@ import { Button } from '@/components/ui/button'
 import { BookMark, RightChevon } from '@/icons/dashboard'
 import Image from 'next/image'
 
+interface CardProps{
+    src: string; 
+    alt: string; 
+    title: string; 
+    description?: string;
+}
 
 export default function IndividualCard() {
     return (
@@ -33,7 +39,6 @@ export default function IndividualCard() {
         </Card>
     )
 }
-
 
 export function JobCard() {
     return (
@@ -75,7 +80,7 @@ export function CompanyOverview() {
 }
 
 
-export function IconCard({ src, alt, title, description }: { src: string; alt: string, title: string, description: string }) {
+export function IconCard({ src, alt, title, description }: CardProps) {
     return (
         <Card className='text-center pt-2 border-0'>
             <Avatar className='mx-auto h-28 w-28 z-0'>
@@ -89,6 +94,15 @@ export function IconCard({ src, alt, title, description }: { src: string; alt: s
                 <p className='text-base'>{description}</p>
             </CardContent>
         </Card>
+    )
+}
+
+export function InlineIconCard({ src, alt, title }: CardProps) {
+    return (
+        <div className="w-64 flex items-center gap-3">
+            <Image src={src} alt={alt} width={50} height={50} />
+            <p className="text-base font-semibold">{title}</p>
+        </div>
     )
 }
 

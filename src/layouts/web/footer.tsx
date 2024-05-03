@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button';
 import { Separator } from "@/components/ui/separator"
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
-import { montserrat } from '@/utils/font';
 
 interface FooterProps {
     footer: {
@@ -83,7 +82,7 @@ export default function Footer({ footer }: FooterProps) {
             {
                 footerData.map((data, index) => (
                     <div key={index} className="flex flex-col gap-3">
-                        {data.heading ? <p className={`${montserrat.className} text-xs font-bold`}>{data.heading}</p> : <p>&nbsp;</p>}
+                        {data.heading ? <p className="text-xs font-bold">{data.heading}</p> : <p>&nbsp;</p>}
                         {data.links.map((link, index) => (
                             <Link
                                 key={index}

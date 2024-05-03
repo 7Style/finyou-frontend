@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { IconCard } from '@/components/CustomCard';
+import { IconCard, InlineIconCard } from '@/components/CustomCard';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { montserrat } from '@/utils/font';
 
 interface Item {
   src: string;
@@ -57,11 +56,31 @@ const cardsData: Item[] = [
 export default function Home() {
   return (
     <>
-
-      {/* section 1 */}
-      <section className="flex items-center gap-5 py-10 px-4 md:px-8">
+      {/* Hero Section */}
+      <section className="flex items-center gap-5 py-10 px-4 md:px-16">
         <div className="w-1/2">
-          <h2 className={`${montserrat.className} text-2xl font-bold`}>1. Unternehmensdaten prüfen</h2>
+          <Image className='mr-auto mb-1' src="/images/finyou-findet.svg" alt="finyou-findet" width={500} height={87} />
+          <h1 className="text-6xl font-bold">Fördermittel</h1>
+          <p className="text-lg mt-2 mb-4 text-gray-600">
+            Der KI-gestützte Fördermittelassistent für <br></br>Unternehmen
+          </p>
+          <div className="flex items-center gap-3">
+            <Button size={"lg"}>Jetzt suchen</Button>
+          </div>
+        </div>
+        <div className="w-1/2">
+          <Image className='ml-auto' src="/images/hero.png" alt="hero" width={500} height={500} />
+        </div>
+      </section>
+
+
+      <div className="w-1/2 text-center mx-auto">
+        <h1 className='text-3xl text-center font-semibold'>So einfach ist die <span className='text-cyan-500 font-bold'>kostenlose Fördermittelsuche</span> mit Finyou</h1>
+      </div>
+      {/* section 1 */}
+      <section className="flex items-center gap-5 py-10 px-4 md:px-16">
+        <div className="w-1/2">
+          <h2 className="text-2xl font-bold">1. Unternehmensdaten prüfen</h2>
           <p className="text-lg mt-2 mb-4">
             Unser <b>smarter KI-Fördermittelassistent</b> recherchiert alle Unternehmensdaten. Einfach prüfen und loslegen...
           </p>
@@ -75,35 +94,20 @@ export default function Home() {
       </section>
 
       {/* section 2 */}
-      <section className="flex items-center gap-5 py-10 px-4 md:px-8">
+      <section className="flex items-center gap-5 py-10 px-4 md:px-16">
         <div className="w-1/2">
           <Image className='mr-auto' src="/images/funding-invoice.png" alt="funding-invoice" width={500} height={500} />
         </div>
         <div className="w-1/2">
-          <h2 className={`${montserrat.className} text-2xl font-bold`}>2. Förderungen | Finanzierung vergleichen & auswählen</h2>
+          <h2 className="text-2xl font-bold">2. Förderungen | Finanzierung vergleichen & auswählen</h2>
           <p className="text-lg mt-2 mb-4">
             <b>In Sekunden</b> erstellt Finyou eine auf das Unternehemen <b>maßgeschneiderte Übersicht</b> von Förderprogrammen & Finanzierungsmöglichkeiten
           </p>
-          <div className="flex items-center gap-2 mb-5">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center gap-2">
-                <Image src="/images/development-partner.svg" alt="development-partner" width={55} height={55} />
-                <p className="text-base font-medium">Filtern nach Ausgaben  & Projekttypen </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Image src="/images/development-partner.svg" alt="development-partner" width={55} height={55} />
-                <p className="text-base font-medium">Optimaler Fördermittelmix </p>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Image src="/images/development-partner.svg" alt="development-partner" width={55} height={55} />
-                <p className="text-base font-medium">Mix- Finanzierungen prüfen </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Image src="/images/development-partner.svg" alt="development-partner" width={55} height={55} />
-                <p className="text-base font-medium">Förderungen & Standorte vergleichen </p>
-              </div>
-            </div>
+          <div className="flex items-center flex-wrap gap-4 mb-5">
+              <InlineIconCard src="/images/expense-project.svg" alt="expense-project" title="Filtern nach Ausgaben & Projekttypen" />
+              <InlineIconCard src="/images/mix-funding.svg" alt="mix-funding" title="Optimaler Fördermittelmix" />
+              <InlineIconCard src="/images/mix-financing.svg" alt="mix-financing" title="Mix-Finanzierungen prüfen" />
+              <InlineIconCard src="/images/compare-funding.svg" alt="compare-funding" title="Förderungen & Standorte vergleichen" />
           </div>
 
           <div className="flex items-center md:justify-center gap-3">
@@ -113,26 +117,18 @@ export default function Home() {
       </section>
 
       {/* section 3 */}
-      <section className="flex  items-center gap-5 py-10 px-4 md:px-8">
+      <section className="flex  items-center gap-5 py-10 px-4 md:px-16">
         <div className="w-1/2">
          
-        <h2 className={`${montserrat.className} text-2xl font-bold`}>3. Fördermittel beantragen & abrechnen</h2>
+        <h2 className="text-2xl font-bold">3. Fördermittel beantragen & abrechnen</h2>
           <p className="text-lg mt-2 mb-4">
             Finyou’s <b>Fördermittelassistent</b> und das Netzwerk unterstützen im gesamten Prozess von der <b>Partnersuche</b>, über die rechtssichere <b>Beantragung</b> bis hin zur <b>Abrechnung</b> und Dokumentation.
           </p>
-          <div className="flex items-center gap-2 mb-5">
-            <div className="grid grid-cols-2 gap-2">
-              <div className="flex items-center gap-2">
-                <Image src="/images/development-partner.svg" alt="development-partner" width={55} height={55} />
-                <p className="text-base font-medium">Fördermittelkonforme  Dienstleister & Berater </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Image src="/images/development-partner.svg" alt="development-partner" width={55} height={55} />
-                <p className="text-base font-medium">Forschungs & Entwicklungs Partner </p>
-              </div>
-            </div>
+          <div className="flex items-center flex-wrap gap-4 mb-5">
+              <InlineIconCard src="/images/consultant.svg" alt="consultant" title="Fördermittelkonforme Dienstleister & Berater" />
+              <InlineIconCard src="/images/development-partner.svg" alt="development-partner" title="Forschungs & Entwicklungs Partner" />
           </div>
-
+          
           <div className="flex items-center gap-3">
             <Button size={"lg"}>Jetzt suchen</Button>
             <Button size={"lg"} variant={'outline'}>Netzwerk</Button>
@@ -144,7 +140,7 @@ export default function Home() {
       </section>
 
       {/* Cards */}
-      <section className="grid grid-cols-3 bg-sky-50 gap-4 py-10 px-4 md:px-8">
+      <section className="grid grid-cols-3 bg-sky-50 gap-4 py-10 px-4 md:px-16">
         {cardsData.map((card, index) => (
           <IconCard
             key={index}
@@ -157,9 +153,9 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <section className="flex gap-5 py-10 px-4 md:px-8">
+      <section className="flex gap-5 py-10 px-4 md:px-16">
         <div className="w-1/2">
-          <h2 className={`${montserrat.className} text-2xl font-bold`}>Projektpartnersuche</h2>
+          <h2 className="text-2xl font-bold">Projektpartnersuche</h2>
           <p className="text-lg mt-2 mb-6">
             Passend zu Förderbedingungen findet Finyou <b>autorisierte Dienstleister & Partner</b>, wie für Digitalisierung, Design, Marketing, F&E, Patentanmeldung..
           </p>
@@ -182,8 +178,8 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="flex bg-sky-50 gap-5 py-10 px-4 md:px-8">
-        <h2 className={`${montserrat.className} text-2xl`}>
+      <section className="flex bg-sky-50 gap-5 py-10 px-4 md:px-16">
+        <h2 className="text-2xl">
           Melde Dich jetzt für die <b>Alpha-Testphase</b> an oder bewirb Dich für unser <b>Alpha-Testphase</b>
         </h2>
         <div className="flex items-center justify-end gap-5 w-1/2">
