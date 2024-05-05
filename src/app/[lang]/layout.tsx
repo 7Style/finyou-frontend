@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang={params.lang}>
-      <body suppressHydrationWarning={true} className="w-full overflow-x-hidden">
+      <body suppressHydrationWarning={true} className="w-screen overflow-x-hidden">
         <Providers>
           {children}
           <ToastContainer

@@ -82,13 +82,13 @@ export function CompanyOverview() {
 
 export function IconCard({ src, alt, title, description }: CardProps) {
     return (
-        <Card className='text-center pt-2 border-0'>
+        <Card className='text-center p-3 rounded-lg border-0'>
             <Avatar className='mx-auto h-28 w-28 z-0'>
                 <AvatarImage src={src} alt={alt}></AvatarImage>
                 <AvatarFallback>JD</AvatarFallback>
             </Avatar>
-            <CardHeader className='pt-2 pb-0'>
-                <CardTitle className='text-xl'>{title}</CardTitle>
+            <CardHeader className='py-2'>
+                <CardTitle className='text-xl font-bold leading-6'>{title}</CardTitle>
             </CardHeader>   
             <CardContent>
                 <p className='text-base'>{description}</p>

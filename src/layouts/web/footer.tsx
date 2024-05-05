@@ -78,11 +78,11 @@ export default function Footer({ footer }: FooterProps) {
             <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
         </Link>
 
-        <div className="flex items-start justify-between py-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex flex-wrap gap-4 items-start justify-between py-5">
             {
                 footerData.map((data, index) => (
-                    <div key={index} className="flex flex-col gap-3">
-                        {data.heading ? <p className="text-xs font-bold">{data.heading}</p> : <p>&nbsp;</p>}
+                    <div key={index} className="flex flex-col gap-1 md:gap-3">
+                        {data.heading ? <p className="text-xs font-bold pt-3">{data.heading}</p> : <p>&nbsp;</p>}
                         {data.links.map((link, index) => (
                             <Link
                                 key={index}
@@ -104,7 +104,7 @@ export default function Footer({ footer }: FooterProps) {
 
         <Separator />
 
-        <div className="flex items-center justify-between py-3">
+        <div className="flex flex-wrap items-center justify-center md:justify-between gap-2 py-3">
             <p className="text-xs text-muted-foreground">© Finyou 2022. {footer.copyright}</p>
             <div className="flex text-xs items-center gap-3">
                 <p className="text-xs text-muted-foreground">{footer.followus}:</p>

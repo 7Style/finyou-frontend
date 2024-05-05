@@ -30,7 +30,7 @@ function Drawer() {
                 <Button
                     variant="outline"
                     size="icon"
-                    className="shrink-0 md:hidden"
+                    className="shrink-0 lg:hidden"
                 >
                     <Menu className="h-5 w-5" />
                     <span className="sr-only">Toggle navigation menu</span>
@@ -65,14 +65,14 @@ function Drawer() {
 
 export default function Header() {
     return (
-        <header className="sticky top-0 flex h-16 items-center gap-4 bg-white z-10 px-4 md:px-16">
+        <header className="sticky top-0 flex h-16 justify-between items-center gap-4 bg-white z-10 px-4 md:px-16">
             <Link
                 href="#"
                 className="flex items-center gap-2 text-lg font-semibold md:text-base"
             >
                 <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
             </Link>
-            <nav className="hidden flex-col gap-6 text-xs font-medium md:flex md:flex-row md:w-2/3 md:justify-end md:items-center md:gap-5 md:text-sm lg:gap-6">
+            <nav className="hidden flex-col gap-6 text-xs font-medium lg:flex md:flex-row md:w-2/3 md:justify-end md:items-center md:gap-5 md:text-sm lg:gap-6">
                 {linksData.map((link, index) => (
                     <Link
                         key={index}
