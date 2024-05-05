@@ -1,7 +1,9 @@
+"use client"
 import * as React from 'react';
+import Image from 'next/image';
 import { IconCard, InlineIconCard } from '@/components/CustomCard';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+import Animated from '@/components/animation';
 
 interface Item {
   src: string;
@@ -62,14 +64,22 @@ function Box({ children, className, section, ...props }: HtmlProps) {
     : 'w-full lg:w-1/2 py-6 relative';
 
   const combinedClassName = `${defaultClasses} ${className}`;
-
-  const Container = section ? 'section' : 'div';
-
-  return (
-    <Container className={combinedClassName} {...props}>
-      {children}
-    </Container>
-  );
+  
+  if (section) {
+    return (
+      <Animated>
+        <section className={combinedClassName} {...props}>
+          {children}
+        </section>
+      </Animated>
+    );
+  } else {
+    return (
+      <div className={combinedClassName} {...props}>
+        {children}
+      </div>
+    );
+  }
 }
 
 export default function Home() {
@@ -92,10 +102,12 @@ export default function Home() {
         </Box>
       </Box>
 
+      <Animated>
+        <div className="lg:w-1/2 text-center mx-auto mt-20 mb-5 lg:mb-10">
+          <h1 className='text-4xl text-center font-semibold'>So einfach ist die <span className='text-cyan-600 font-bold'>kostenlose Fördermittelsuche</span> mit Finyou</h1>
+        </div>
+      </Animated>
 
-      <div className="lg:w-1/2 text-center mx-auto mt-20 mb-5 lg:mb-10">
-        <h1 className='text-4xl text-center font-semibold'>So einfach ist die <span className='text-cyan-600 font-bold'>kostenlose Fördermittelsuche</span> mit Finyou</h1>
-      </div>
       {/* section 1 */}
       <Box section={true}>
         <Box>
@@ -165,17 +177,19 @@ export default function Home() {
       </Box>
 
       {/* Cards */}
-      <section className="grid md:grid-cols-2 lg:grid-cols-3 bg-sky-50 gap-6 py-16 px-4 md:px-16">
-        {cardsData.map((card, index) => (
-          <IconCard
-            key={index}
-            src={card.src}
-            alt={card.alt}
-            title={card.title}
-            description={card.description}
-          />
-        ))}
-      </section>
+      <Animated>
+        <section className="grid md:grid-cols-2 lg:grid-cols-3 bg-sky-50 gap-6 py-16 px-4 md:px-16">
+          {cardsData.map((card, index) => (
+            <IconCard
+              key={index}
+              src={card.src}
+              alt={card.alt}
+              title={card.title}
+              description={card.description}
+            />
+          ))}
+        </section>
+      </Animated>
 
       {/* Projects */}
       <Box section={true}>
