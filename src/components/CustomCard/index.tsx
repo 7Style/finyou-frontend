@@ -12,6 +12,12 @@ import { Button } from '@/components/ui/button'
 import { BookMark, RightChevon } from '@/icons/dashboard'
 import Image from 'next/image'
 
+interface CardProps{
+    src: string; 
+    alt: string; 
+    title: string; 
+    description?: string;
+}
 
 export default function IndividualCard() {
     return (
@@ -33,7 +39,6 @@ export default function IndividualCard() {
         </Card>
     )
 }
-
 
 export function JobCard() {
     return (
@@ -75,20 +80,29 @@ export function CompanyOverview() {
 }
 
 
-export function IconCard() {
+export function IconCard({ src, alt, title, description }: CardProps) {
     return (
-        <Card className='text-center py-4 px-8 relative shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]'>
-            <Avatar className='mx-auto h-28 w-28'>
-                <AvatarImage src='/images/icon-card.png'></AvatarImage>
+        <Card className='text-center p-3 rounded-lg border-0'>
+            <Avatar className='mx-auto h-28 w-28 z-0'>
+                <AvatarImage src={src} alt={alt}></AvatarImage>
                 <AvatarFallback>JD</AvatarFallback>
             </Avatar>
-            <CardHeader className='p-4 pb-1'>
-                <CardTitle className='text-xl'>Geld für Unternehmen & Startups</CardTitle>
+            <CardHeader className='py-2'>
+                <CardTitle className='text-xl font-bold leading-6'>{title}</CardTitle>
             </CardHeader>   
-            <CardContent className='p-4 pt-3'>
-                <p className='text-base'>Durch  Zuschüsse beteiligt sich der Staat bis zu 80% an der Finanzierung von Digitalisierungs-, Marketing-, F&E- & Beratungsprojekten sowie Personalkosten und...</p>
+            <CardContent>
+                <p className='text-base'>{description}</p>
             </CardContent>
         </Card>
+    )
+}
+
+export function InlineIconCard({ src, alt, title }: CardProps) {
+    return (
+        <div className="w-64 flex items-center gap-3">
+            <Image src={src} alt={alt} width={50} height={50} />
+            <p className="text-base font-semibold">{title}</p>
+        </div>
     )
 }
 

@@ -1,12 +1,4 @@
-import DashboardHeader from "@/screens/dashboard/layout/header"
-import { Poppins } from 'next/font/google'
-
-const poppins = Poppins({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display:'swap',
-  fallback: ['Arial', 'sans-serif'],
-});
+import DashboardHeader from "@/layouts/dashboard/header"
 
 export default function DashboardLayout({
     children, // will be a page or nested layout
@@ -14,7 +6,7 @@ export default function DashboardLayout({
     children: React.ReactNode
   }) {
     return (
-      <div className={`${poppins.className} w-full px-8`}>
+      <div className='w-full px-8'>
         <DashboardHeader />
         {children}
       </div>
