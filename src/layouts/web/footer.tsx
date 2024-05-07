@@ -1,120 +1,116 @@
 import React from 'react'
+import { useTranslations } from 'next-intl';
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button';
 import { Separator } from "@/components/ui/separator"
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
-interface FooterProps {
-    footer: {
-        [key: string]: string;
-     };
-  }
-  
 
-export default function Footer({ footer }: FooterProps) {
+export default function Footer() {
+    const t = useTranslations('footer');
     const footerData = [
         {
             links: [
-            { content:  footer.search, url: '/link1' },
-            { content: footer.applicationAssistant, url: '/link2' },
-            { content: footer.billingAssistant, url: '/link3' },
-            { content: footer.fundingAlarm, url: '/link5' },
+                { content: t('search'), url: '/link1' },
+                { content: t('applicationAssistant'), url: '/link2' },
+                { content: t('billingAssistant'), url: '/link3' },
+                { content: t('fundingAlarm'), url: '/link5' },
             ],
-            heading: footer.funding,
+            heading: t('funding'),
         },
         {
             links: [
-            { content: footer.competitionWatchlist, url: '/link1' },
-            { content: footer.fundingPlanner, url: '/link2' },
-            { content: footer.fundingCombinator, url: '/link3' },
-            { content: footer.locationComparison, url: '/link5' },
-            ],
-        },
-        {
-            links: [
-            { content: footer.fundingComparison, url: '/link1' },
-            { content: footer.fundingFAQ, url: '/link2' },
-            { content: footer.fundingPrograms, url: '/link3' },
+                { content: t('competitionWatchlist'), url: '/link1' },
+                { content: t('fundingPlanner'), url: '/link2' },
+                { content: t('fundingCombinator'), url: '/link3' },
+                { content: t('locationComparison'), url: '/link5' },
             ],
         },
         {
             links: [
-            { content: footer.researchAndDevelopmentPartnerSearch, url: '/link1' },
-            { content: footer.consultants, url: '/link2' },
-            { content: footer.serviceProviders, url: '/link3' },
-            { content: footer.academiaToBusiness, url: '/link5' },
-            { content: footer.investorsAndVCs, url: '/link5' },
+                { content: t('fundingComparison'), url: '/link1' },
+                { content: t('fundingFAQ'), url: '/link2' },
+                { content: t('fundingPrograms'), url: '/link3' },
             ],
-            heading: footer.network,
         },
         {
             links: [
-            { content: footer.leasing, url: '/link1' },
-            { content: footer.factoring, url: '/link2' },
-            { content: footer.loans, url: '/link5' },
-            { content: footer.crowdfunding, url: '/link3' },
-            { content: footer.aboutUs, url: '/link5' },
+                { content: t('researchAndDevelopmentPartnerSearch'), url: '/link1' },
+                { content: t('consultants'), url: '/link2' },
+                { content: t('serviceProviders'), url: '/link3' },
+                { content: t('academiaToBusiness'), url: '/link5' },
+                { content: t('investorsAndVCs'), url: '/link5' },
             ],
-            heading: footer.financing,
+            heading: t('network'),
         },
         {
             links: [
-            { content: footer.prices, url: '/link1' },
-            { content: footer.press, url: '/link2' },
-            { content: footer.contact, url: '/link5' },
-            { content: footer.legalNotice, url: '/link3' },
+                { content: t('leasing'), url: '/link1' },
+                { content: t('factoring'), url: '/link2' },
+                { content: t('loans'), url: '/link5' },
+                { content: t('crowdfunding'), url: '/link3' },
+                { content: t('aboutUs'), url: '/link5' },
             ],
-            heading: footer.aboutFinyou,
+            heading: t('financing'),
+        },
+        {
+            links: [
+                { content: t('prices'), url: '/link1' },
+                { content: t('press'), url: '/link2' },
+                { content: t('contact'), url: '/link5' },
+                { content: t('legalNotice'), url: '/link3' },
+            ],
+            heading: t('aboutFinyou'),
         },
     ];
 
-  return (
-    <footer className='pt-10 px-4 md:px-16'>
-        <Link
-            href="#"
-            className="flex items-center gap-2 text-lg font-semibold md:text-base"
-        >
-            <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
-        </Link>
+    return (
+        <footer className='pt-10 px-4 md:px-16'>
+            <Link
+                href="#"
+                className="flex items-center gap-2 text-lg font-semibold md:text-base"
+            >
+                <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
+            </Link>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex flex-wrap gap-4 items-start justify-between py-5">
-            {
-                footerData.map((data, index) => (
-                    <div key={index} className="flex flex-col gap-1 md:gap-3">
-                        {data.heading ? <p className="text-xs font-bold pt-3">{data.heading}</p> : <p>&nbsp;</p>}
-                        {data.links.map((link, index) => (
-                            <Link
-                                key={index}
-                                href={link.url}
-                                className="text-sm text-muted-foreground hover:text-foreground"
-                            >
-                                {link.content}
-                            </Link>
-                        ))}
-                    </div>
-                ))
-            }
-             <div className="flex flex-col gap-3">
-                <p>&nbsp;</p>
-                <Button size={"md"}>Registrieren</Button>
-                <Button size={"md"} variant={"outline"}>Anmelden</Button>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:flex flex-wrap gap-4 items-start justify-between py-5">
+                {
+                    footerData.map((data, index) => (
+                        <div key={index} className="flex flex-col gap-1 md:gap-3">
+                            {data.heading ? <p className="text-xs font-bold pt-3">{data.heading}</p> : <p>&nbsp;</p>}
+                            {data.links.map((link, index) => (
+                                <Link
+                                    key={index}
+                                    href={link.url}
+                                    className="text-sm text-muted-foreground hover:text-foreground"
+                                >
+                                    {link.content}
+                                </Link>
+                            ))}
+                        </div>
+                    ))
+                }
+                <div className="flex flex-col gap-3">
+                    <p>&nbsp;</p>
+                    <Button size={"md"}>Registrieren</Button>
+                    <Button size={"md"} variant={"outline"}>Anmelden</Button>
+                </div>
             </div>
-        </div>
 
-        <Separator />
+            <Separator />
 
-        <div className="flex flex-wrap items-center justify-center md:justify-between gap-2 py-3">
-            <p className="text-xs text-muted-foreground">© Finyou 2022. {footer.copyright}</p>
-            <div className="flex text-xs items-center gap-3">
-                <p className="text-xs text-muted-foreground">{footer.followus}:</p>
-                <Link href={'https://www.facebook.com'} target='_blank'><Facebook className='h-4 w-auto' stroke='#37ADBE' /></Link>
-                <Link href={'https://instagram.com'} target='_blank'><Instagram className='h-4 w-auto' stroke='#37ADBE' /></Link>
-                <Link href={'https://twitter.com'} target='_blank'><Twitter className='h-4 w-auto' stroke='#37ADBE' /></Link>
-                <Link href={'https://linkedin.com'} target='_blank'><Linkedin className='h-4 w-auto' stroke='#37ADBE' /></Link>
+            <div className="flex flex-wrap items-center justify-center md:justify-between gap-2 py-3">
+                <p className="text-xs text-muted-foreground">© Finyou 2022. {t('copyright')}</p>
+                <div className="flex text-xs items-center gap-3">
+                    <p className="text-xs text-muted-foreground">{t('followus')}:</p>
+                    <Link href={'https://www.facebook.com'} target='_blank'><Facebook className='h-4 w-auto' stroke='#37ADBE' /></Link>
+                    <Link href={'https://instagram.com'} target='_blank'><Instagram className='h-4 w-auto' stroke='#37ADBE' /></Link>
+                    <Link href={'https://twitter.com'} target='_blank'><Twitter className='h-4 w-auto' stroke='#37ADBE' /></Link>
+                    <Link href={'https://linkedin.com'} target='_blank'><Linkedin className='h-4 w-auto' stroke='#37ADBE' /></Link>
+                </div>
             </div>
-        </div>
-        
-    </footer>
-  )
+
+        </footer>
+    )
 }

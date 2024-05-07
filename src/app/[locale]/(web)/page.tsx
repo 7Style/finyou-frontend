@@ -1,4 +1,3 @@
-"use client"
 import * as React from 'react';
 import Image from 'next/image';
 import { IconCard, InlineIconCard } from '@/components/CustomCard';
