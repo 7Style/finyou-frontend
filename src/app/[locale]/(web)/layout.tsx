@@ -1,5 +1,5 @@
-import Header from '@/layouts/web/header';
-import Footer from '@/layouts/web/footer';
+import Header from './header';
+import Footer from './footer';
 
 export default function WebLayout({
     children,
