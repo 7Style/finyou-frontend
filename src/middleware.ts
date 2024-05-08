@@ -1,6 +1,7 @@
+import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
 import createIntlMiddleware from 'next-intl/middleware';
-import { NextRequest, NextFetchEvent } from 'next/server';
+import { NextRequest, NextFetchEvent, NextResponse } from 'next/server';
 
 const locales = ['en', 'de'];
 
@@ -25,8 +26,9 @@ const authMiddleware = withAuth(
   }
 );
 
-export default function middleware(request: NextRequest, event: NextFetchEvent) {
+export default async function middleware(request: NextRequest, event: NextFetchEvent) {
   const protectedRoutes = ['/dashboard']; // Add your protected routes here
+  const authRoutes = ['/signin', '/signup', '/forgot-password', '/reset-password']; // Add your protected routes here
   const pathname = request.nextUrl.pathname;
 
   // If it's a locale-related route, apply internationalization middleware
@@ -37,6 +39,11 @@ export default function middleware(request: NextRequest, event: NextFetchEvent) 
     if (protectedRoutes.some(route => pathname.startsWith(route))) {
       return (authMiddleware as any)(request);
     } else {
+      const isAuth = await getToken({ req: request });
+      if (isAuth && authRoutes.some(route => pathname.startsWith(route))) {
+        return NextResponse.redirect(new URL('/dashboard', request.url))
+      }
+    
       // For all other routes, apply internationalization middleware
       return intlMiddleware(request);
     }

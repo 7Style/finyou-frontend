@@ -9,6 +9,7 @@ import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 export default function Footer() {
     const t = useTranslations('footer');
+    const currentYear = new Date().getFullYear();
     const footerData = [
         {
             links: [
@@ -101,7 +102,7 @@ export default function Footer() {
             <Separator />
 
             <div className="flex flex-wrap items-center justify-center md:justify-between gap-2 py-3">
-                <p className="text-xs text-muted-foreground">© Finyou 2022. {t('copyright')}</p>
+                <p className="text-xs text-muted-foreground">© Finyou {currentYear}. {t('copyright')}</p>
                 <div className="flex text-xs items-center gap-3">
                     <p className="text-xs text-muted-foreground">{t('followus')}:</p>
                     <Link href={'https://www.facebook.com'} target='_blank'><Facebook className='h-4 w-auto' stroke='#37ADBE' /></Link>
