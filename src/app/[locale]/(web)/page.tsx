@@ -216,7 +216,7 @@ export default function Home() {
       <Box section={true} className="bg-sky-50">
         <h2 className="text-2xl py-1" dangerouslySetInnerHTML={{ __html: t.raw('alphaTestRegistration') }}></h2>
         <div className="flex items-center lg:justify-end gap-5 lg:w-1/2 py-1">
-          <Button size={"lg"} variant={'outline'}>{buttonTrans("register")}</Button>
+          <Button size={"lg"} variant={'outline'}>{buttonTrans("signIn")}</Button>
           <Button size={"lg"}>{buttonTrans("toNetwork")}</Button>
         </div>
       </Box>

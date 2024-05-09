@@ -86,8 +86,8 @@ export default function Header() {
             </nav>
            
             <div className="hidden md:flex items-end md:ml-auto md:gap-2 lg:gap-4">
-                <Button size={"sm"} variant={"outline"}>{buttonTrans("register")}</Button>
-                <Button size={"sm"}>{buttonTrans("toRegister")}</Button>
+                <Button size={"sm"} variant={"outline"}>{buttonTrans("signIn")}</Button>
+                <Button size={"sm"}>{buttonTrans("register")}</Button>
             </div>
             
             <Drawer data={linksData} />

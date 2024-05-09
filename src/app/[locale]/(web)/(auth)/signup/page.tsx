@@ -64,7 +64,7 @@ export default function Signup() {
             } else {
                 error?.message
                     ? toast.error(error?.message, { position: "top-right" })
-                    : toast.error("Failed to register", { position: "top-right" });
+                    : toast.error("Failed to signIn", { position: "top-right" });
             }
         } catch (error) {
             if (error instanceof z.ZodError) {

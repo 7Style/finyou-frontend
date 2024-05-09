@@ -43,17 +43,16 @@
   "common": {
     "button": {
       "readMore": "Jetzt suchen",
-      "register": "Anmelden",
+      "signIn": "Anmelden",
       "network": "Netzwerk",
       "lookingPartner": "Partner suchen",
-    "toNetwork": "Zum Netzwerk",
-    "partnerNetwork": "Partnernetzwerk",
-      "toRegister": "Registrieren"
+      "toNetwork": "Zum Netzwerk",
+      "partnerNetwork": "Partnernetzwerk",
+      "register": "Registrieren"
     }
   },
   "page": {
     "home": {
-
       "funding": "Fördermittel",
       "supportedFundingAssistant": "Der KI-gestützte Fördermittelassistent für Unternehmen",
       "fundingFreeEasy": "So einfach ist die <span class='text-cyan-600 font-bold'>kostenlose Fördermittelsuche</span> mit Finyou",
@@ -87,13 +86,14 @@
     },
     "auth": {
       "findFunds": "findet Fördermittel",
+      "requiredError": "{field} ist erforderlich",
       "provider": {
         "google": "Ga verder met Google"
       },
       "signIn": {
         "title": "Aanmelden",
-        "description": "Nieuw bij bedrijf?",
-        "link": "Aanmelden!",
+        "description": "Geben Sie unten Ihre E-Mail-Adresse ein, um sich bei Ihrem Konto anzumelden",
+        "noAccount": "Sie haben noch kein Konto?",
         "form": {
           "button": "Aanmelden",
           "forgot": "Je wachtwoord vergeten?",
