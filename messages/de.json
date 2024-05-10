@@ -86,6 +86,8 @@
     },
     "auth": {
       "findFunds": "findet Fördermittel",
+      "email": "Email",
+      "password": "Passwort",
       "requiredError": "{field} ist erforderlich",
       "provider": {
         "google": "Ga verder met Google"
@@ -93,25 +95,22 @@
       "signIn": {
         "title": "Aanmelden",
         "description": "Geben Sie unten Ihre E-Mail-Adresse ein, um sich bei Ihrem Konto anzumelden",
-        "noAccount": "Sie haben noch kein Konto?",
-        "form": {
-          "button": "Aanmelden",
-          "forgot": "Je wachtwoord vergeten?",
-          "remember": "Onthoud me",
-          "password": "Wachtwoord",
-          "email": "E-mail"
-        }
+        "link": "Sie haben noch kein Konto?"
       },
       "signUp": {
-        "title": "Aanmelden",
-        "description": "Heeft u al een account?",
-        "link": "Aanmelden!",
-        "form": {
-          "button": "Aanmelden",
-          "password": "Wachtwoord",
-          "email": "E-mail",
-          "name": "Naam"
-        }
+        "title": "Melden Sie sich an",
+        "description": "Geben Sie Ihre Daten ein, um ein Konto zu erstellen",
+        "link": "Sie haben bereits ein Konto?"
+      },
+      "forgotPassword": {
+        "title": "Passwort vergessen",
+        "description": "Wenn Sie Ihr Passwort vergessen haben, können Sie es hier zurücksetzen",
+        "link": "Kennen Sie Ihr Passwort?"
+      },
+      "changePassword": {
+        "title": "Neues Passwort erstellen",
+        "description": "Legen Sie Ihr neues Passwort fest, damit Sie sich anmelden können",
+        "link": "Kennen Sie Ihr Passwort?"
       }
     }
   }

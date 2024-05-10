@@ -81,7 +81,7 @@ export default function Home() {
     {
       src: '/images/tracking.png',
       alt: 'tracking',
-      title: t("competitorTrackings"),
+      title: t("competitorTracking"),
       description: t("fundingProgramCompetition")
     }
   ];
