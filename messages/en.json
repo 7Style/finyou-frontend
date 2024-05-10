@@ -1,5 +1,117 @@
 {
-  "Index": {
-    "test": "TEST"
+  "navigation": {
+    "funding": "Funding",
+    "search": "Search",
+    "application": "Application",
+    "mixFinancing": "Mix Financing",
+    "network": "Network",
+    "prices": "Prices"
+  },
+  "footer": {
+    "funding": "Funding",
+    "network": "Network",
+    "financing": "Financing",
+    "aboutFinyou": "Finyou",
+    "search": "Search",
+    "applicationAssistant": "Application Assistant",
+    "billingAssistant": "Billing Assistant",
+    "fundingAlarm": "Funding Alarm",
+    "competitionWatchlist": "Competition Watchlist",
+    "fundingPlanner": "Funding Planner",
+    "fundingCombinator": "Funding Combinator",
+    "locationComparison": "Location Comparison",
+    "fundingComparison": "Funding Comparison",
+    "fundingFAQ": "Funding FAQ",
+    "fundingPrograms": "Funding Programs",
+    "researchAndDevelopmentPartnerSearch": "Research & Development Partner Search",
+    "consultants": "Consultants",
+    "serviceProviders": "Service Providers",
+    "academiaToBusiness": "Academia to Business",
+    "investorsAndVCs": "Investors & VCs",
+    "leasing": "Leasing",
+    "factoring": "Factoring",
+    "loans": "Loans",
+    "crowdfunding": "Crowdfunding",
+    "aboutUs": "About Us",
+    "prices": "Prices",
+    "press": "Press",
+    "contact": "Contact",
+    "legalNotice": "Legal Notice",
+    "followus": "Follow Us:",
+    "copyright": "Your funding management platform"
+  },
+  "common": {
+    "button": {
+      "readMore": "Search Now",
+      "signIn": "Sign In",
+      "network": "Network",
+      "lookingPartner": "Looking for Partner",
+      "toNetwork": "To Network",
+      "partnerNetwork": "Partner Network",
+      "register": "Register"
+    }
+  },
+  "page": {
+    "home": {
+      "funding": "Funding",
+      "supportedFundingAssistant": "The AI-supported funding assistant for companies",
+      "fundingFreeEasy": "Finding <span class='text-cyan-600 font-bold'>free funding</span> with Finyou is this easy",
+      "checkCompanyData": "Check Company Data",
+      "smartAiFundingAsistant": "Our <b>smart AI funding assistant</b> researches all company data. Just check and get started...",
+      "compareChooseFinancing": "Compare & Choose Funding | Financing",
+      "overviewFundingProgram": "In seconds, Finyou creates a <b>customized overview</b> of funding programs & financing options tailored to your company",
+      "applyFundingInvoice": "Apply for Funding & Invoice",
+      "networkSupportDocumentation": "Finyou’s <b>funding assistant</b> and network support the entire process from <b>partner search</b>, through legally secure <b>application</b> to <b>billing</b> and documentation.",
+      "projectPartner": "Project Partner Search",
+      "authorizedServiceProvider": "Matching the funding conditions, Finyou finds <b>authorized service providers & partners</b>, such as for digitization, design, marketing, R&D, patent application...",
+      "alphaTestRegistration": "Sign up now for the <b>Alpha test phase</b> or apply for our <b>Alpha test phase</b>",
+      "filterByExpense": "Filter by expenses & project types",
+      "optimalFundingMix": "Optimal funding mix",
+      "checkMixFinance": "Check mix financing",
+      "compareFunctionLocation": "Compare funding & locations",
+      "fundingCompliment": "Funding-compliant service providers & consultants",
+      "researchDevelopment": "Research & Development Partners",
+      "moneyForStartup": "Money for Companies & Startups",
+      "grantsFinancingMarketing": "Through grants, the state contributes up to 80% to financing of digitization, marketing, R&D, and consulting projects as well as personnel costs and...",
+      "fundingAlert": "Funding Alert",
+      "accessFundingOpportunity": "Be the first to access coveted funding opportunities and never miss a funding opportunity again with the funding alert",
+      "competitorTracking": "Competitor Tracking",
+      "fundingProgramCompetition": "Learn which funding programs competitors are using and stay one step ahead thanks to competition tracking",
+      "servicePartner": "Service Partners",
+      "designMarketingSupplier": "Design, IT, Marketing, Suppliers...",
+      "fePartner": "R&D Partners",
+      "universityResearchCenter": "Whether universities, companies, or research centers",
+      "advisor": "Advisors",
+      "financePatents": "for R&D, finance, patents, IT, HR, strategy, M&A..."
+    },
+    "auth": {
+      "findFunds": "find funding",
+      "email": "Email",
+      "password": "Password",
+      "requiredError": "{field} is required",
+      "provider": {
+        "google": "Continue with Google"
+      },
+      "signIn": {
+        "title": "Sign In",
+        "description": "Enter your email below to sign in to your account",
+        "link": "Don't have an account yet?"
+      },
+      "signUp": {
+        "title": "Sign Up",
+        "description": "Enter your details to create an account",
+        "link": "Already have an account?"
+      },
+      "forgotPassword": {
+        "title": "Forgot Password",
+        "description": "If you forgot your password, you can reset it here",
+        "link": "Forgot your password?"
+      },
+      "changePassword": {
+        "title": "Create New Password",
+        "description": "Set your new password to be able to sign in",
+        "link": "Forgot your password?"
+      }
+    }
   }
 }
