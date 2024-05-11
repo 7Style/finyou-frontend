@@ -41,6 +41,11 @@
     "copyright": "Your funding management platform"
   },
   "common": {
+    "toast": {
+      "success": "{name} Successfully!",
+      "error": "{name} Failed!",
+      "verification": "Verification link sent over email"
+    },
     "button": {
       "readMore": "Search Now",
       "signIn": "Sign In",
@@ -85,12 +90,24 @@
       "financePatents": "for R&D, finance, patents, IT, HR, strategy, M&A..."
     },
     "auth": {
-      "findFunds": "find funding",
-      "email": "Email",
-      "password": "Password",
-      "requiredError": "{field} is required",
-      "provider": {
-        "google": "Continue with Google"
+      "common": {
+        "findFunds": "Find Funds",
+        "fullName": "Full Name",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "changePassword": "Change Password",
+        "confirmPassword": "Confirm Password",
+        "matchPassword": "Passwords must match!",
+        "resetPassword": "Reset Password",
+        "strongPasswordError": "Must contain at least alphanumeric characters and special characters",
+        "invalidFormat": "Invalid {name} format",
+        "passwordMin": "Password must be at least {min} characters long",
+        "requiredError": "{name} is required",
+        "createAccount": "Create Account",
+        "providers": {
+          "google": "Continue with Google"
+        }
       },
       "signIn": {
         "title": "Sign In",
@@ -104,12 +121,12 @@
       },
       "forgotPassword": {
         "title": "Forgot Password",
-        "description": "If you forgot your password, you can reset it here",
+        "description": "If you've forgotten your password, you can reset it here",
         "link": "Forgot your password?"
       },
       "changePassword": {
         "title": "Create New Password",
-        "description": "Set your new password to be able to sign in",
+        "description": "Set your new password so you can sign in",
         "link": "Forgot your password?"
       }
     }
