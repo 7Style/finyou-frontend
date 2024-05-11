@@ -41,6 +41,11 @@
     "copyright": "Deine Fördermittelmanagement Plattform"
   },
   "common": {
+    "toast": {
+      "success": "{name} Successfully!",
+      "error": "{name} Failed!",
+      "verification": "Verification link send over email"
+    },
     "button": {
       "readMore": "Jetzt suchen",
       "signIn": "Anmelden",
@@ -85,12 +90,24 @@
       "financePatents": "zu F&E, Finanzen, Patenten, IT, HR, Strategie, M&A..."
     },
     "auth": {
-      "findFunds": "findet Fördermittel",
-      "email": "Email",
-      "password": "Passwort",
-      "requiredError": "{field} ist erforderlich",
-      "provider": {
-        "google": "Ga verder met Google"
+      "common": {
+        "findFunds": "findet Fördermittel",
+        "fullName": "Vollständiger Name",
+        "username": "Nutzername",
+        "email": "Email",
+        "password": "Passwort",
+        "changePassword": "Kennwort ändern",
+        "confirmPassword": "Bestätige das Passwort",
+        "matchPassword": "Die Passwörter müssen übereinstimmen!",
+        "resetPassword": "Passwort zurücksetzen",
+        "strongPasswordError": "Muss mindestens alphanumerische Zeichen und Sonderzeichen enthalten",
+        "invalidFormat": "ungültiges {name}-Format",
+        "passwordMin": "Das Passwort muss mindestens {min} Zeichen lang sein",
+        "requiredError": "{name} ist erforderlich",
+        "createAccount": "Ein Konto erstellen",
+        "providers": {
+          "google": "Ga verder met Google"
+        }
       },
       "signIn": {
         "title": "Aanmelden",

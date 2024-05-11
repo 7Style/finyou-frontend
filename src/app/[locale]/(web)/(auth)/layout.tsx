@@ -6,7 +6,7 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode
 }) {
-  const t = useTranslations('page.auth');
+  const t = useTranslations('page.auth.common');
   return (
     <div className="w-full lg:grid lg:grid-cols-2 min-h-screen">
       <div className="flex items-center justify-center py-12">

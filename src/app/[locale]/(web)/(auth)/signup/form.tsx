@@ -1,13 +1,15 @@
 'use client';
+import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { redirect } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { toast } from "react-toastify";
+import { Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { toast } from "react-toastify";
-import { Loader2 } from "lucide-react"
 import { useRegister } from "@/hooks/register";
-import { redirect } from "next/navigation";
 
 
 interface FormData {
@@ -19,23 +21,27 @@ interface FormData {
 }
 
 export default function Form() {
+    const t = useTranslations("page.auth.common");
+    const commonTrans = useTranslations("common");
 
     const { isPending, isSuccess, mutate, isError, error } = useRegister();
-    const schema = z.object({
+    const schema = useMemo(() =>
+        z.object({
         fullname: z.string(),
         username: z.string(),
-        email: z.string().email("Invalid email format").min(1),
-        password: z.string().regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, "Must contain at alphanumeric and special characters").min(8, "Password must be at least 8 characters"),
-        confirmPassword: z.string().min(8, "Confirm Password must be at least 8 characters")
+        email: z.string().email(t('invalidFormat', { name: t('email') })).min(1),
+        password: z.string().regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, t("strongPasswordError")).min(8, t('passwordMin', { min: 8 })),
+        confirmPassword: z.string()
     }).refine(
         (values) => {
             return values.password === values.confirmPassword;
         },
         {
-            message: "Passwords must match!",
+            message: t("matchPassword"),
             path: ["confirmPassword"],
         }
-    );
+    )
+    , [t]);
 
 
     const {
@@ -60,12 +66,12 @@ export default function Form() {
                 }
             });
             if (isSuccess) {
-                toast.success("Registration successfully !", { position: "top-right" });
+                toast.success(commonTrans('toast.success', {name: commonTrans('button.register')}), { position: "top-right" });
                 redirect("/signin");
             } else {
                 error?.message
                     ? toast.error(error?.message, { position: "top-right" })
-                    : toast.error("Failed to signIn", { position: "top-right" });
+                    : toast.error(commonTrans('toast.error', {name: commonTrans('button.register')}), { position: "top-right" });
             }
         } catch (error) {
             if (error instanceof z.ZodError) {
@@ -87,36 +93,36 @@ export default function Form() {
         <form className="grid gap-4" onSubmit={handleSubmit(submitHandler)}>
             <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                    <Label htmlFor="full-name">Full name</Label>
-                    <Input id="full-name" placeholder="Max" required {...register('fullname', { required: 'Name is required' })} />
+                    <Label htmlFor="full-name">{t("fullName")}</Label>
+                    <Input id="full-name" placeholder="Max" required {...register('fullname', { required: t('requiredError', {name: t('fullName')}) })} />
                     {errors.fullname && <p className="text-red-500 pt-1 text-xs">{errors.fullname.message}</p>}
                 </div>
                 <div className="grid gap-2">
-                    <Label htmlFor="user-name">User name</Label>
-                    <Input id="user-name" placeholder="Robinson" required  {...register('username', { required: 'User Name is required' })} />
+                    <Label htmlFor="user-name">{t("username")}</Label>
+                    <Input id="username" placeholder="Robinson" required  {...register('username', { required: t('requiredError', {name: t('username')}) })} />
                     {errors.username && <p className="text-red-500 pt-1 text-xs">{errors.username.message}</p>}
                 </div>
             </div>
             <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t("email")}</Label>
                 <Input
                     id="email"
                     type="email"
                     placeholder="m@example.com"
                     required
-                    {...register('email', { required: 'Email is required' })}
+                    {...register('email', { required: t('requiredError', {name: t('email')}) })}
                 />
                 {errors.email && <p className="text-red-500 pt-1 text-xs">{errors.email.message}</p>}
             </div>
             <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" required  {...register('password', { required: 'Password is required' })} />
+                <Label htmlFor="password">{t("password")}</Label>
+                <Input id="password" type="password" required  {...register('password', { required: t('requiredError', {name: t('password')}) })} />
                 {errors.password && <p className="text-red-500 pt-1 text-xs">{errors.password.message}</p>}
             </div>
 
             <div className="grid gap-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
-                <Input id="confirmPassword" type="password" required  {...register('confirmPassword', { required: 'Confirm Password is required' })} />
+                <Label htmlFor="confirmPassword">{t('confirmPassword')}</Label>
+                <Input id="confirmPassword" type="password" required  {...register('confirmPassword', { required: t('requiredError', {name: t('confirmPassword')}) })} />
                 {errors.confirmPassword && <p className="text-red-500 pt-1 text-xs">{errors.confirmPassword.message}</p>}
             </div>
 
@@ -126,10 +132,10 @@ export default function Form() {
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     )
                 }
-                Create an account
+                {t("createAccount")}
             </Button>
             <Button variant="outline" className="w-full" disabled={isPending}>
-                Continue with Google
+            {t('providers.google')}
             </Button>
         </form>
     )
