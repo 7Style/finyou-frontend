@@ -2,6 +2,7 @@ version: '3.8'
 services:
   nextjs:
     build: .
+    restart: always
     volumes:
       - .:/app
       - /app/node_modules
