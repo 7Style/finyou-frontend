@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  nextjs:
+    build: .
+    restart: always
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3001:3000"
