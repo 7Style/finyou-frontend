@@ -65,7 +65,7 @@ function Drawer() {
 
 export default function Header() {
     return (
-        <header className="sticky top-0 flex h-16 justify-between items-center gap-4 bg-white z-10 px-4 md:px-16">
+        <header className="sticky top-0 flex h-16 justify-between items-center gap-4 bg-white z-10 px-4 md:px-12 max-w-screen-2xl mx-auto">
             <Link
                 href="#"
                 className="flex items-center gap-2 text-lg font-semibold md:text-base"

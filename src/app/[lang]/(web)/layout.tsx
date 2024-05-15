@@ -15,7 +15,7 @@ export default async function WebLayout({
     return (
       <>
         <Header />
-        <main>
+        <main className="overflow-hidden">
           {children}
         </main>
         <Footer footer={footer} />
