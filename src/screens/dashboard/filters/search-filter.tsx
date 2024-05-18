@@ -26,9 +26,9 @@ export const SearchFilter: React.FC<SearchFilterProps> = () => {
     };
 
     return (
-        <div className="relative md:w-64">
+        <div className="relative md:w-72">
             <Input className='h-9' placeholder='Search Result' value={searchTerm} onChange={handleSearchInputChange} />
-            <Button className="absolute top-0 end-0 h-9 px-2.5 text-sm font-medium text-white bg-cyan-700 rounded-sm" onClick={handleButtonClick}>
+            <Button className="absolute end-0.5 top-0.5 rounded-sm px-2.5 text-white bg-cyan-700 rounded-sm" size={"sm"} variant={"ghost"} onClick={handleButtonClick}>
                 <IoIosSearch className="text-lg" />
                 <span className="sr-only">Search</span>
             </Button>

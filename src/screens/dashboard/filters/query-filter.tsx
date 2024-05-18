@@ -18,13 +18,13 @@ interface QueryFilterProps {
 }
 
 const AddRuleButtons = (props: ActionWithRulesProps) => (
-  <Button variant={"outline"} size={"xs"} className="inline-flex gap-2 items-center" onClick={(e) => props.handleOnClick(e)}>
+  <Button variant={"outline"} size={"sm"} className="inline-flex gap-2 items-center" onClick={(e) => props.handleOnClick(e)}>
     <GoPlus /> Add filter Rule
   </Button>
 );
 
 const AddGroupButtons = (props: ActionWithRulesProps) => (
-  <Button variant={"outline"} size={"xs"} className="inline-flex gap-2 items-center" onClick={(e) => props.handleOnClick(e)}>
+  <Button variant={"outline"} size={"sm"} className="inline-flex gap-2 items-center" onClick={(e) => props.handleOnClick(e)}>
     <PiListPlusLight /> Add filter group
   </Button>
 );
@@ -50,7 +50,7 @@ export default function QueryFilter({
         <Button
             variant="outline"
             role="combobox"
-            size={"xs"}
+            size={"sm"}
             aria-expanded={selectedItem !== null}
             className="justify-between capitalize text-cyan-600 border-cyan-600"
         >
