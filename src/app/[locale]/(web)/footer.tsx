@@ -67,15 +67,15 @@ export default function Footer() {
     ];
 
     return (
-        <footer className='pt-10 px-4 md:px-16'>
+        <footer className='pt-10 px-4 md:px-12'>
             <Link
                 href="#"
-                className="flex items-center gap-2 text-lg font-semibold md:text-base"
+                className="flex items-center gap-2 text-lg font-semibold md:text-base max-w-screen-2xl mx-auto"
             >
                 <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
             </Link>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:flex flex-wrap gap-4 items-start justify-between py-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:flex flex-wrap gap-4 items-start justify-between py-5 max-w-screen-2xl mx-auto">
                 {
                     footerData.map((data, index) => (
                         <div key={index} className="flex flex-col gap-1 md:gap-3">
@@ -84,7 +84,7 @@ export default function Footer() {
                                 <Link
                                     key={index}
                                     href={link.url}
-                                    className="text-sm text-muted-foreground hover:text-foreground"
+                                    className="text-sm hover:text-foreground"
                                 >
                                     {link.content}
                                 </Link>
@@ -94,24 +94,23 @@ export default function Footer() {
                 }
                 <div className="flex flex-col gap-3">
                     <p>&nbsp;</p>
-                    <Button size={"md"}>Registrieren</Button>
-                    <Button size={"md"} variant={"outline"}>Anmelden</Button>
+                    <Button size={"lg"}>Registrieren</Button>
+                    <Button size={"lg"} variant={"outline"}>Anmelden</Button>
                 </div>
             </div>
 
             <Separator />
 
-            <div className="flex flex-wrap items-center justify-center md:justify-between gap-2 py-3">
-                <p className="text-xs text-muted-foreground">© Finyou {currentYear}. {t('copyright')}</p>
+            <div className="flex flex-wrap items-center justify-center md:justify-between gap-2 py-3 max-w-screen-2xl mx-auto">
+                <p className="text-xs">© Finyou {currentYear}. {t('copyright')}</p>
                 <div className="flex text-xs items-center gap-3">
-                    <p className="text-xs text-muted-foreground">{t('followus')}:</p>
+                    <p className="text-xs">{t('followus')}:</p>
                     <Link href={'https://www.facebook.com'} target='_blank'><Facebook className='h-4 w-auto' stroke='#37ADBE' /></Link>
                     <Link href={'https://instagram.com'} target='_blank'><Instagram className='h-4 w-auto' stroke='#37ADBE' /></Link>
                     <Link href={'https://twitter.com'} target='_blank'><Twitter className='h-4 w-auto' stroke='#37ADBE' /></Link>
                     <Link href={'https://linkedin.com'} target='_blank'><Linkedin className='h-4 w-auto' stroke='#37ADBE' /></Link>
                 </div>
             </div>
-
         </footer>
     )
 }
