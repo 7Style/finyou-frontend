@@ -1,10 +1,10 @@
-"use client"
 import * as React from "react"
 import Image from "next/image";
 import Link from "next/link"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useTranslations } from "next-intl";
 
 
 interface LinkData {
@@ -12,18 +12,8 @@ interface LinkData {
     href: string;
 }
 
-const linksData: LinkData[] = [
-    { text: "Fördermittel", href: "#" },
-    { text: "Suche", href: "#" },
-    { text: "Beantragung", href: "#" },
-    { text: "Mix-Finanzierung", href: "#" },
-    { text: "Netzwerk", href: "#" },
-    { text: "Preise", href: "#" },
-];
 
-
-
-function Drawer() {
+function Drawer({ data }: { data: LinkData[]}) {
     return (
         <Sheet>
             <SheetTrigger asChild>
@@ -44,7 +34,7 @@ function Drawer() {
                     >
                         <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
                     </Link>
-                    {linksData.map((link, index) => (
+                    {data.map((link, index) => (
                         <Link
                             key={index}
                             href={link.href}
@@ -64,6 +54,17 @@ function Drawer() {
 }
 
 export default function Header() {
+    const navigationTrans = useTranslations("navigation");
+    const buttonTrans = useTranslations("common.button");
+
+    const linksData: LinkData[] = [
+        { text: navigationTrans("funding"), href: "#" },
+        { text: navigationTrans("search"), href: "#" },
+        { text: navigationTrans("application"), href: "#" },
+        { text: navigationTrans("mixFinancing"), href: "#" },
+        { text: navigationTrans("network"), href: "#" },
+        { text: navigationTrans("prices"), href: "#" },
+    ];
     return (
         <header className="sticky top-0 flex h-16 justify-between items-center gap-4 bg-white z-10 px-4 md:px-16">
             <Link
@@ -85,12 +86,16 @@ export default function Header() {
             </nav>
            
             <div className="hidden md:flex items-end md:ml-auto md:gap-2 lg:gap-4">
-                <Button size={"sm"} variant={"outline"}>Anmelden</Button>
-                <Button size={"sm"}>Registrieren</Button>
+                <Button size={"sm"} variant={"outline"}>
+                    <Link href="/signin">{buttonTrans("signIn")}</Link>
+                </Button>
+                <Button size={"sm"}>
+                    <Link href="/signup">{buttonTrans("register")}</Link>
+                </Button>
             </div>
             
-            <Drawer />
-            
+            <Drawer data={linksData} />
+
         </header>
     )
 }

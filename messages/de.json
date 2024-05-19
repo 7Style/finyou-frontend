@@ -1,0 +1,134 @@
+{
+  "navigation": {
+    "funding": "Fördermittel",
+    "search": "Suche",
+    "application": "Beantragung",
+    "mixFinancing": "Mix-Finanzierung",
+    "network": "Netzwerk",
+    "prices": "Preise"
+  },
+  "footer": {
+    "funding": "Fördermittel",
+    "network": "Netzwerk",
+    "financing": "Finanzierung",
+    "aboutFinyou": "Finyou",
+    "search": "Suche",
+    "applicationAssistant": "Antrags-Assistent",
+    "billingAssistant": "Abrechnungs-Assistent",
+    "fundingAlarm": "Fördermittel-Alarm",
+    "competitionWatchlist": "Konkurrenz-Watchlist",
+    "fundingPlanner": "Förderungsplaner",
+    "fundingCombinator": "Fördermittel-Kombinator",
+    "locationComparison": "Standort-Vergleich",
+    "fundingComparison": "Fördermittelvergleich",
+    "fundingFAQ": "Fördermittel FAQ",
+    "fundingPrograms": "Förderprogramme",
+    "researchAndDevelopmentPartnerSearch": "F&E Partner-Suche",
+    "consultants": "Berater",
+    "serviceProviders": "Dienstleister",
+    "academiaToBusiness": "Academia 2 Business",
+    "investorsAndVCs": "Investoren & VC’s",
+    "leasing": "Leasing",
+    "factoring": "Factoring",
+    "loans": "Kredite",
+    "crowdfunding": "Crowdfunding",
+    "aboutUs": "Über uns",
+    "prices": "Preise",
+    "press": "Presse",
+    "contact": "Kontakt",
+    "legalNotice": "Impressum",
+    "followus": "Follow Us:",
+    "copyright": "Deine Fördermittelmanagement Plattform"
+  },
+  "common": {
+    "toast": {
+      "success": "{name} Successfully!",
+      "error": "{name} Failed!",
+      "verification": "Verification link send over email"
+    },
+    "button": {
+      "readMore": "Jetzt suchen",
+      "signIn": "Anmelden",
+      "network": "Netzwerk",
+      "lookingPartner": "Partner suchen",
+      "toNetwork": "Zum Netzwerk",
+      "partnerNetwork": "Partnernetzwerk",
+      "register": "Registrieren"
+    }
+  },
+  "page": {
+    "home": {
+      "funding": "Fördermittel",
+      "supportedFundingAssistant": "Der KI-gestützte Fördermittelassistent für Unternehmen",
+      "fundingFreeEasy": "So einfach ist die <span class='text-cyan-600 font-bold'>kostenlose Fördermittelsuche</span> mit Finyou",
+      "checkCompanyData": "Unternehmensdaten prüfen",
+      "smartAiFundingAsistant": "Unser <b>smarter KI-Fördermittelassistent</b> recherchiert alle Unternehmensdaten. Einfach prüfen und loslegen...",
+      "compareChooseFinancing": "Förderungen | Finanzierung vergleichen & auswählen",
+      "overviewFundingProgram": "<b>In Sekunden</b> erstellt Finyou eine auf das Unternehemen <b>maßgeschneiderte Übersicht</b> von Förderprogrammen & Finanzierungsmöglichkeiten",
+      "applyFundingInvoice": "Fördermittel beantragen & abrechnen",
+      "networkSupportDocumentation": "Finyou’s <b>Fördermittelassistent</b> und das Netzwerk unterstützen im gesamten Prozess von der <b>Partnersuche</b>, über die rechtssichere <b>Beantragung</b> bis hin zur <b>Abrechnung</b> und Dokumentation.",
+      "projectPartner": "Projektpartnersuche",
+      "authorizedServiceProvider": "Passend zu Förderbedingungen findet Finyou <b>autorisierte Dienstleister & Partner</b>, wie für Digitalisierung, Design, Marketing, F&E, Patentanmeldung..",
+      "alphaTestRegistration": "Melde Dich jetzt für die <b>Alpha-Testphase</b> an oder bewirb Dich für unser <b>Alpha-Testphase</b>",
+      "filterByExpense": "Filtern nach Ausgaben & Projekttypen",
+      "optimalFundingMix": "Optimal funding mix",
+      "checkMixFinance": "Mix-Finanzierungen prüfen",
+      "compareFunctionLocation": "Förderungen & Standorte vergleichen",
+      "fundingCompliment": "Fördermittelkonforme Dienstleister & Berater",
+      "researchDevelopment": "Forschungs & Entwicklungs Partner",
+      "moneyForStartup": "Geld für Unternehmen & Startups",
+      "grantsFinancingMarketing": "Durch  Zuschüsse beteiligt sich der Staat bis zu 80% an der Finanzierung von Digitalisierungs-, Marketing-, F&E- & Beratungsprojekten sowie Personalkosten und...",
+      "fundingAlert": "Fördermittel-Alarm",
+      "accessFundingOpportunity": "Als erster auf begehrte Förderungen zugreifen und mit dem Fördermittel-Alarm nie wieder eine Fördermöglichkeit verpassen",
+      "competitorTracking": "Wettbewerbs-Tracking",
+      "fundingProgramCompetition": "Erfahren welche Förderprogramme  Wettbewerber nutzen und sei dank des Wettbewerbs-Trackings einen Schritt voraus sein",
+      "servicePartner": "Service-Partner",
+      "designMarketingSupplier": "Design, IT, Marketing, Zulieferer ...",
+      "fePartner": "F&E-Partner",
+      "universityResearchCenter": "Ob Unis, Firmen oder Forschungszentren",
+      "advisor": "Berater",
+      "financePatents": "zu F&E, Finanzen, Patenten, IT, HR, Strategie, M&A..."
+    },
+    "auth": {
+      "common": {
+        "findFunds": "findet Fördermittel",
+        "fullName": "Vollständiger Name",
+        "username": "Nutzername",
+        "email": "Email",
+        "password": "Passwort",
+        "changePassword": "Kennwort ändern",
+        "confirmPassword": "Bestätige das Passwort",
+        "matchPassword": "Die Passwörter müssen übereinstimmen!",
+        "resetPassword": "Passwort zurücksetzen",
+        "strongPasswordError": "Muss mindestens alphanumerische Zeichen und Sonderzeichen enthalten",
+        "invalidFormat": "ungültiges {name}-Format",
+        "passwordMin": "Das Passwort muss mindestens {min} Zeichen lang sein",
+        "requiredError": "{name} ist erforderlich",
+        "createAccount": "Ein Konto erstellen",
+        "providers": {
+          "google": "Ga verder met Google"
+        }
+      },
+      "signIn": {
+        "title": "Aanmelden",
+        "description": "Geben Sie unten Ihre E-Mail-Adresse ein, um sich bei Ihrem Konto anzumelden",
+        "link": "Sie haben noch kein Konto?"
+      },
+      "signUp": {
+        "title": "Melden Sie sich an",
+        "description": "Geben Sie Ihre Daten ein, um ein Konto zu erstellen",
+        "link": "Sie haben bereits ein Konto?"
+      },
+      "forgotPassword": {
+        "title": "Passwort vergessen",
+        "description": "Wenn Sie Ihr Passwort vergessen haben, können Sie es hier zurücksetzen",
+        "link": "Kennen Sie Ihr Passwort?"
+      },
+      "changePassword": {
+        "title": "Neues Passwort erstellen",
+        "description": "Legen Sie Ihr neues Passwort fest, damit Sie sich anmelden können",
+        "link": "Kennen Sie Ihr Passwort?"
+      }
+    }
+  }
+}
