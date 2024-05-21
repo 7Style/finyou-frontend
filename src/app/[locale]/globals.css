@@ -128,10 +128,14 @@
 }
 
 
-h1, h2, h3, h4, h5, h6, a{
+h1, h2, h3, h4, h5, h6, a, th, .ag-header-cell-text{
   font-family: "Montserrat", sans-serif;
 }
 
-p, span {
+p, span, button, input {
+  font-family: "Poppins", sans-serif;
+}
+
+.dashboard h3{
   font-family: "Poppins", sans-serif;
 }

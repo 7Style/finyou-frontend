@@ -1,0 +1,82 @@
+.ag-theme-quartz, .ag-theme-quartz-dark {
+    /* Changes the color of the grid text */
+    --ag-foreground-color: rgb(14, 68, 145);
+    /* Changes the color of the grid background */
+    --ag-background-color: rgb(235, 235, 235);
+    /* Changes the header color of the top row */
+    --ag-header-background-color: rgb(240, 240, 240);
+    /* Changes the hover color of the row*/
+    --ag-row-hover-color: rgb(233, 233, 233);
+  }
+  
+  /* General cell alignment */
+.ag-theme-alpine .ag-cell {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.ag-theme-alpine .ag-cell svg{
+    fill: #1AA5B9;
+}
+
+  /* Remove all borders initially */
+  .ag-theme-alpine .ag-root-wrapper,
+  .ag-theme-alpine .ag-header,
+  .ag-theme-alpine .ag-header-cell,
+  .ag-theme-alpine .ag-row,
+  .ag-theme-alpine .ag-cell,
+  .ag-theme-alpine .ag-paging-panel {
+      border: none !important;
+      border-width: 0 !important;
+      box-shadow: none !important;
+  }
+  
+  /* Add horizontal borders to all rows except the last one */
+  .ag-theme-alpine .ag-row:not(:last-child) .ag-cell {
+      border-bottom: 1px solid #EAECF0 !important;
+  }
+  
+  /* Add vertical borders to cells except the first and last ones */
+  .ag-theme-alpine .ag-row .ag-cell:not(:last-child) {
+      border-right: 1px solid #EAECF0 !important;
+  }
+  
+  /* Remove borders from header cells */
+  .ag-theme-alpine .ag-header-cell {
+      border-right: none !important;
+      border-bottom: none !important;
+  }
+  
+  /* Remove borders from header cells */
+.ag-theme-alpine .ag-header-cell {
+    border-right: none !important;
+    border-bottom: none !important;
+}
+
+  /* Header styles */
+.ag-theme-alpine .ag-header {
+    background: #F9FAFB !important;
+}
+
+.ag-theme-alpine .ag-header-cell {
+    color: #667085 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+/* Smooth scrolling */
+.ag-body-viewport-wrapper.ag-layout-normal {
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(182, 180, 180, 0.5);
+    box-shadow: 0 0 1px rgba(255,255,255,.5);
+  }

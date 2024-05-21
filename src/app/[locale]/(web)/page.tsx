@@ -18,7 +18,7 @@ interface HtmlProps extends React.HTMLAttributes<HTMLElement> {
 
 function Box({ children, className, section, ...props }: HtmlProps) {
   const defaultClasses = section
-    ? 'w-full relative lg:overflow-x-visible overflow-x-hidden flex flex-col lg:flex-row items-center gap-5 py-16 px-4 md:px-16'
+    ? 'w-full relative flex flex-col lg:flex-row items-center gap-5 py-16 px-4 md:px-12 max-w-screen-2xl mx-auto'
     : 'w-full lg:w-1/2 py-6 relative';
 
   const combinedClassName = `${defaultClasses} ${className}`;
@@ -106,15 +106,15 @@ export default function Home() {
 
       <Animated>
         <div className="lg:w-1/2 text-center mx-auto mt-20 mb-5 lg:mb-10">
-          <h1 className='text-4xl text-center font-semibold' dangerouslySetInnerHTML={{ __html: t.raw('fundingFreeEasy') }}></h1>
+          <h1 className='text-[42px] leading-tight text-center font-semibold' dangerouslySetInnerHTML={{ __html: t.raw('fundingFreeEasy') }}></h1>
         </div>
       </Animated>
 
       {/* section 1 */}
       <Box section={true}>
         <Box>
-          <h2 className="text-2xl font-bold">1. {t("checkCompanyData")}</h2>
-          <p className="text-lg mt-2 mb-4" dangerouslySetInnerHTML={{ __html: t.raw('smartAiFundingAsistant') }}>
+          <h2 className="text-[32px] font-bold">1. {t("checkCompanyData")}</h2>
+            <p className="text-xl leading-8 mt-2 mb-4" dangerouslySetInnerHTML={{ __html: t.raw('smartAiFundingAsistant') }}>
           </p>
           <div className="flex items-center gap-3 py-2">
             <Button size={"lg"}>{buttonTrans("readMore")}</Button>
@@ -137,8 +137,8 @@ export default function Home() {
           <Image className='lg:ml-0 ml-auto mr-auto' src="/images/databoard.png" alt="databoard" width={500} height={500} />
         </Box>
         <Box>
-          <h2 className="text-2xl font-bold">2. {t("compareChooseFinancing")}</h2>
-          <p className="text-lg mt-2 mb-4" dangerouslySetInnerHTML={{ __html: t.raw('overviewFundingProgram') }}></p>
+          <h2 className="text-[32px] font-bold">2. {t("compareChooseFinancing")}</h2>
+          <p className="text-lg leading-8 mt-2 mb-4" dangerouslySetInnerHTML={{ __html: t.raw('overviewFundingProgram') }}></p>
           <div className="flex items-center flex-wrap gap-4 mb-5">
             <InlineIconCard src="/images/expense-project.svg" alt="expense-project" title={t("filterByExpense")} />
             <InlineIconCard src="/images/mix-funding.svg" alt="mix-funding" title={t("optimalFundingMix")} />
@@ -155,8 +155,8 @@ export default function Home() {
       {/* section 3 */}
       <Box section={true}>
         <Box>
-          <h2 className="text-2xl font-bold">3. {t("applyFundingInvoice")}</h2>
-          <p className="text-lg mt-2 mb-4" dangerouslySetInnerHTML={{ __html: t.raw('networkSupportDocumentation') }}></p>
+          <h2 className="text-[32px] font-bold">3. {t("applyFundingInvoice")}</h2>
+          <p className="text-lg leading-8 mt-2 mb-4" dangerouslySetInnerHTML={{ __html: t.raw('networkSupportDocumentation') }}></p>
 
           <div className="flex items-center flex-wrap gap-4 mb-5">
             <InlineIconCard src="/images/consultant.svg" alt="consultant" title={t("fundingCompliment")} />
@@ -173,25 +173,28 @@ export default function Home() {
         </Box>
       </Box>
 
+      
       {/* Cards */}
-      <Animated>
-        <section className="grid md:grid-cols-2 lg:grid-cols-3 bg-sky-50 gap-6 py-16 px-4 md:px-16">
-          {cardsData.map((card, index) => (
-            <IconCard
-              key={index}
-              src={card.src}
-              alt={card.alt}
-              title={card.title}
-              description={card.description}
-            />
-          ))}
-        </section>
-      </Animated>
+      <div className='bg-sky-50'>
+        <Animated>
+          <section className="grid md:grid-cols-2 lg:grid-cols-3 py-16 px-4 md:px-12 max-w-screen-2xl mx-auto">
+            {cardsData.map((card, index) => (
+              <IconCard
+                key={index}
+                src={card.src}
+                alt={card.alt}
+                title={card.title}
+                description={card.description}
+              />
+            ))}
+          </section>
+        </Animated>
+      </div>
 
       {/* Projects */}
       <Box section={true}>
         <Box>
-          <h2 className="text-2xl font-bold">{t("projectPartner")}</h2>
+          <h2 className="text-[32px] font-bold">{t("projectPartner")}</h2>
           <p className="text-lg mt-2 mb-6" dangerouslySetInnerHTML={{ __html: t.raw('authorizedServiceProvider') }}></p>
 
           <div className="flex items-center gap-3">
@@ -213,13 +216,15 @@ export default function Home() {
       </Box>
 
       {/* CTA */}
-      <Box section={true} className="bg-sky-50">
-        <h2 className="text-2xl py-1" dangerouslySetInnerHTML={{ __html: t.raw('alphaTestRegistration') }}></h2>
-        <div className="flex items-center lg:justify-end gap-5 lg:w-1/2 py-1">
-          <Button size={"lg"} variant={'outline'}>{buttonTrans("signIn")}</Button>
-          <Button size={"lg"}>{buttonTrans("toNetwork")}</Button>
-        </div>
-      </Box>
+      <div className="bg-sky-50">
+        <Box section={true}>
+          <h2 className="text-[25px] leading-10 py-1" dangerouslySetInnerHTML={{ __html: t.raw('alphaTestRegistration') }}></h2>
+          <div className="flex items-center lg:justify-end gap-5 lg:w-1/2 py-1">
+            <Button size={"lg"} variant={'outline'}>{buttonTrans("signIn")}</Button>
+            <Button size={"lg"}>{buttonTrans("toNetwork")}</Button>
+          </div>
+        </Box>
+      </div>
     </>
   );
 }

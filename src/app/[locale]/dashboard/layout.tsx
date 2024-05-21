@@ -6,7 +6,7 @@ export default function DashboardLayout({
     children: React.ReactNode
   }) {
     return (
-      <div className='w-full px-8'>
+      <div className='w-full px-8 dashboard'>
         <DashboardHeader />
         {children}
       </div>
