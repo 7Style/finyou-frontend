@@ -10,8 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRegister } from "@/hooks/register";
-import { ButtonGroup } from "@/components/common/button-group";
-import { providers } from "@/constants/common";
 import { companyNameSuggestions } from "@/constants/sign-up";
 
 interface IFormData {
@@ -261,13 +259,6 @@ export default function Form() {
         {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {t("createAccount")}
       </Button>
-
-      <ButtonGroup
-        array={providers}
-        variant="outline"
-        className="w-full"
-        disabled={isPending}
-      />
     </form>
   );
 }
