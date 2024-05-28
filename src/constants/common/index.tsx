@@ -10,22 +10,22 @@ type Provider = {
 
 const providers: Provider[] = [
   {
-    onClick: () => signIn(Providers.Google),
+    onClick: () => signIn(Providers.GOOGLE),
     icon: <FaGoogle />,
     title: "providers.google",
   },
   {
-    onClick: () => signIn(Providers.LinkedIn),
+    onClick: () => signIn(Providers.LINKEDIN),
     icon: <FaLinkedin />,
     title: "providers.linkedin",
   },
   {
-    onClick: () => signIn(Providers.Apple),
+    onClick: () => signIn(Providers.APPLE),
     icon: <FaApple />,
     title: "providers.apple",
   },
   {
-    onClick: () => signIn(Providers.Xing),
+    onClick: () => signIn(Providers.XING),
     icon: <FaXing />,
     title: "providers.xing",
   },

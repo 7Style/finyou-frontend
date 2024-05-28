@@ -106,6 +106,7 @@
         "passwordMin": "Das Passwort muss mindestens {min} Zeichen lang sein",
         "requiredError": "{name} ist erforderlich",
         "createAccount": "Ein Konto erstellen",
+        "corporateEmail": "Geschäftliche E-Mail",
         "providers": {
           "google": "Google",
           "linkedin": "LinkedIn",
@@ -121,7 +122,10 @@
       "signUp": {
         "title": "Melden Sie sich an",
         "description": "Geben Sie Ihre Daten ein, um ein Konto zu erstellen",
-        "link": "Sie haben bereits ein Konto?"
+        "link": "Sie haben bereits ein Konto?",
+        "companyName": "Firmenname",
+        "position": "Position",
+        "corporateEmailValidation": "Geschäftliche E-Mail-Validierung"
       },
       "forgotPassword": {
         "title": "Passwort vergessen",

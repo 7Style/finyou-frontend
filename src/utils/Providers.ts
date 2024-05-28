@@ -1,8 +1,8 @@
 enum Providers {
-  Google = "google",
-  LinkedIn = "linkedin",
-  Apple = "apple",
-  Xing = "xing",
+  GOOGLE = "google",
+  LINKEDIN = "linkedin",
+  APPLE = "apple",
+  XING = "xing",
 }
 
 export { Providers };

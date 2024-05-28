@@ -12,20 +12,26 @@ import { Label } from "@/components/ui/label";
 import { useRegister } from "@/hooks/register";
 import { ButtonGroup } from "@/components/common/button-group";
 import { providers } from "@/constants/common";
+import { companyNameSuggestions } from "@/constants/sign-up";
 
-interface FormData {
-  fullname: string;
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+interface IFormData {
+  readonly fullname: string;
+  readonly username: string;
+  readonly email: string;
+  readonly password: string;
+  readonly confirmPassword: string;
+  readonly companyName?: string;
+  readonly corporateEmail?: string;
+  readonly position?: string;
 }
 
 export default function Form() {
   const t = useTranslations("page.auth.common");
+  const authTrans = useTranslations("page.auth");
   const commonTrans = useTranslations("common");
 
-  const { isPending, isSuccess, mutate, isError, error } = useRegister();
+  const { isPending, isSuccess, mutate, error, isError } = useRegister();
+
   const schema = useMemo(
     () =>
       z
@@ -44,16 +50,14 @@ export default function Form() {
             )
             .min(8, t("passwordMin", { min: 8 })),
           confirmPassword: z.string(),
+          companyName: z.string().optional(),
+          corporateEmail: z.string().optional(),
+          position: z.string().optional(),
         })
-        .refine(
-          (values) => {
-            return values.password === values.confirmPassword;
-          },
-          {
-            message: t("matchPassword"),
-            path: ["confirmPassword"],
-          }
-        ),
+        .refine((values) => values.password === values.confirmPassword, {
+          message: t("matchPassword"),
+          path: ["confirmPassword"],
+        }),
     [t]
   );
 
@@ -62,22 +66,24 @@ export default function Form() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<FormData>();
+    setValue,
+    getValues,
+  } = useForm<IFormData>();
 
-  const submitHandler = async (data: FormData) => {
+  const submitHandler = async (data: IFormData) => {
     try {
-      await schema.parse(data);
+      await schema.parseAsync(data);
+
       mutate({
         email: data.email,
         password: data.password,
-        fullname: data.fullname,
-        role: 2,
         username: data.username,
-        phoneNumber: "92334444",
-        university: {
-          id: 1,
-        },
+        fullname: data.fullname,
+        companyName: data.companyName,
+        corporateEmail: data.corporateEmail,
+        position: data.position,
       });
+
       if (isSuccess) {
         toast.success(
           commonTrans("toast.success", {
@@ -101,7 +107,7 @@ export default function Form() {
         // Set Zod errors to the form state
         error.errors.forEach((err) => {
           if (err.path) {
-            setError(err.path[0] as keyof FormData, {
+            setError(err.path[0] as keyof IFormData, {
               type: "manual",
               message: err.message,
             });
@@ -115,10 +121,12 @@ export default function Form() {
     <form className="grid gap-4" onSubmit={handleSubmit(submitHandler)}>
       <div className="grid grid-cols-2 gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="full-name">{t("fullName")}</Label>
+          <Label htmlFor="full-name">
+            {t("fullName")} <span className="text-red-500">*</span>
+          </Label>
           <Input
             id="full-name"
-            placeholder="Max"
+            placeholder="Max Robinson"
             required
             {...register("fullname", {
               required: t("requiredError", { name: t("fullName") }),
@@ -131,10 +139,12 @@ export default function Form() {
           )}
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="user-name">{t("username")}</Label>
+          <Label htmlFor="user-name">
+            {t("username")} <span className="text-red-500">*</span>
+          </Label>
           <Input
             id="username"
-            placeholder="Robinson"
+            placeholder="maxrobinson"
             required
             {...register("username", {
               required: t("requiredError", { name: t("username") }),
@@ -148,7 +158,9 @@ export default function Form() {
         </div>
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="email">{t("email")}</Label>
+        <Label htmlFor="email">
+          {t("email")} <span className="text-red-500">*</span>
+        </Label>
         <Input
           id="email"
           type="email"
@@ -163,10 +175,13 @@ export default function Form() {
         )}
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="password">{t("password")}</Label>
+        <Label htmlFor="password">
+          {t("password")} <span className="text-red-500">*</span>
+        </Label>
         <Input
           id="password"
           type="password"
+          placeholder={"**********"}
           required
           {...register("password", {
             required: t("requiredError", { name: t("password") }),
@@ -178,10 +193,13 @@ export default function Form() {
       </div>
 
       <div className="grid gap-2">
-        <Label htmlFor="confirmPassword">{t("confirmPassword")}</Label>
+        <Label htmlFor="confirmPassword">
+          {t("confirmPassword")} <span className="text-red-500">*</span>
+        </Label>
         <Input
           id="confirmPassword"
           type="password"
+          placeholder={"**********"}
           required
           {...register("confirmPassword", {
             required: t("requiredError", { name: t("confirmPassword") }),
@@ -191,6 +209,56 @@ export default function Form() {
           <p className="text-red-500 pt-1 text-xs">
             {errors.confirmPassword.message}
           </p>
+        )}
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="companyName">{authTrans("signUp.companyName")}</Label>
+        <Input
+          id="companyName"
+          placeholder={authTrans("signUp.companyName")}
+          {...register("companyName")}
+          onInput={(e) => {
+            setValue("companyName", e.currentTarget.value);
+          }}
+          list="company-suggestions"
+        />
+        <datalist id="company-suggestions">
+          {companyNameSuggestions.map((suggestion) => (
+            <option key={suggestion.id} value={suggestion.name} />
+          ))}
+        </datalist>
+        {errors.companyName && (
+          <p className="text-red-500 pt-1 text-xs">
+            {errors.companyName.message}
+          </p>
+        )}
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="corporateEmail">{t("corporateEmail")}</Label>
+        <Input
+          id="corporateEmail"
+          type="email"
+          placeholder={t("corporateEmail")}
+          {...register("corporateEmail")}
+        />
+        {errors.corporateEmail && (
+          <p className="text-red-500 pt-1 text-xs">
+            {errors.corporateEmail.message}
+          </p>
+        )}
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="position">{authTrans("signUp.position")}</Label>
+        <Input
+          id="position"
+          placeholder={authTrans("signUp.position")}
+          {...register("position")}
+        />
+        {errors.position && (
+          <p className="text-red-500 pt-1 text-xs">{errors.position.message}</p>
         )}
       </div>
 
