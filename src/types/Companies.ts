@@ -9,7 +9,4 @@ export enum Companies {
   APPLE = "Apple",
   MICROSOFT = "Microsoft",
   XING = "Xing",
-  FACEBOOK = "Facebook",
-  TWITTER = "Twitter",
-  GITHUB = "GitHub",
 }
