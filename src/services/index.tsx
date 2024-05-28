@@ -1,5 +1,5 @@
 import qs from "query-string";
-import {API_ENDPOINT} from "../config";
+import { API_ENDPOINT } from "../config";
 
 interface IDefaultHeadersProps {
   medium: string;
@@ -14,7 +14,10 @@ const defaultHeaders: IDefaultHeadersProps = {
 
 type ObjectWithKeys<T> = { [key: string]: T };
 
-export function omit<T>(obj: ObjectWithKeys<T>, keysToOmit: string[]): ObjectWithKeys<T> {
+export function omit<T>(
+  obj: ObjectWithKeys<T>,
+  keysToOmit: string[]
+): ObjectWithKeys<T> {
   return Object.keys(obj).reduce((acc: ObjectWithKeys<T>, key: string) => {
     if (!keysToOmit.includes(key)) {
       acc[key] = obj[key];
@@ -22,8 +25,6 @@ export function omit<T>(obj: ObjectWithKeys<T>, keysToOmit: string[]): ObjectWit
     return acc;
   }, {});
 }
-
-  
 
 export function setAuthenticationHeader(token: string): void {
   defaultHeaders.Authorization = `Bearer ${token}`;
