@@ -1,4 +1,9 @@
-enum Companies {
+export type Company = {
+  id: number;
+  name: string;
+};
+
+export enum Companies {
   GOOGLE = "Google",
   LINKEDIN = "LinkedIn",
   APPLE = "Apple",
@@ -8,5 +13,3 @@ enum Companies {
   TWITTER = "Twitter",
   GITHUB = "GitHub",
 }
-
-export { Companies };

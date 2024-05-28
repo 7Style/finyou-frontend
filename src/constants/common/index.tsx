@@ -1,12 +1,6 @@
-import { Providers } from "@/utils/Providers";
-import { signIn, SignInResponse } from "next-auth/react";
+import { Provider, Providers } from "@/types/Providers";
+import { signIn } from "next-auth/react";
 import { FaApple, FaGoogle, FaLinkedin, FaXing } from "react-icons/fa";
-
-type Provider = {
-  onClick: () => Promise<SignInResponse | undefined>;
-  icon: React.ReactNode;
-  title?: string;
-};
 
 const providers: Provider[] = [
   {
