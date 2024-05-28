@@ -74,15 +74,11 @@ export default function Form() {
     try {
       await schema.parseAsync(data);
 
-      mutate({
-        email: data.email,
-        password: data.password,
-        username: data.username,
-        fullname: data.fullname,
-        companyName: data.companyName,
-        corporateEmail: data.corporateEmail,
-        position: data.position,
-      });
+      const filteredData = Object.fromEntries(
+        Object.entries(data).filter(([_, value]) => value)
+      );
+
+      mutate(filteredData as IFormData);
 
       if (isSuccess) {
         toast.success(
@@ -104,7 +100,6 @@ export default function Form() {
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
-        // Set Zod errors to the form state
         error.errors.forEach((err) => {
           if (err.path) {
             setError(err.path[0] as keyof IFormData, {
