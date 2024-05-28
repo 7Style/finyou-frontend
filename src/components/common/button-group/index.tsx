@@ -11,7 +11,7 @@ type ButtonVariants =
   | "secondary"
   | "ghost";
 
-interface ButtonGroupProps {
+interface IButtonGroupProps {
   readonly children?: React.ReactNode;
   readonly array?: {
     onClick: () => Promise<SignInResponse | undefined>;
@@ -30,7 +30,7 @@ function ButtonGroup({
   className,
   disabled,
   ...props
-}: ButtonGroupProps): JSX.Element {
+}: IButtonGroupProps): JSX.Element {
   const t = useTranslations("page.auth.common");
   const childrenArray = React.Children.toArray(children);
 
