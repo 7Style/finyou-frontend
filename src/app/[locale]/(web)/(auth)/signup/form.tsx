@@ -1,15 +1,24 @@
 "use client";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "react-toastify";
-import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRegister } from "@/hooks/register";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import { Loader2 } from "lucide-react";
 import { companyNameSuggestions } from "@/constants/sign-up";
 
 interface IFormData {
@@ -27,6 +36,12 @@ export default function Form() {
   const t = useTranslations("page.auth.common");
   const authTrans = useTranslations("page.auth");
   const commonTrans = useTranslations("common");
+
+  const ref = useRef<HTMLDivElement>(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredSuggestions, setFilteredSuggestions] = useState(
+    companyNameSuggestions
+  );
 
   const { isPending, isSuccess, mutate, error, isError } = useRegister();
 
@@ -67,6 +82,26 @@ export default function Form() {
     setValue,
     getValues,
   } = useForm<IFormData>();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    setValue("companyName", value);
+    setShowSuggestions(true);
+
+    if (value.length > 0) {
+      const filtered = companyNameSuggestions.filter((suggestion) =>
+        suggestion.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredSuggestions(filtered);
+    } else {
+      setFilteredSuggestions(companyNameSuggestions);
+    }
+  };
+
+  const handleSelectSuggestion = (name: string) => {
+    setValue("companyName", name);
+    setShowSuggestions(false);
+  };
 
   const submitHandler = async (data: IFormData) => {
     try {
@@ -109,6 +144,19 @@ export default function Form() {
       }
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
 
   return (
     <form className="grid gap-4" onSubmit={handleSubmit(submitHandler)}>
@@ -174,7 +222,6 @@ export default function Form() {
         <Input
           id="password"
           type="password"
-          placeholder={"**********"}
           required
           {...register("password", {
             required: t("requiredError", { name: t("password") }),
@@ -192,7 +239,6 @@ export default function Form() {
         <Input
           id="confirmPassword"
           type="password"
-          placeholder={"**********"}
           required
           {...register("confirmPassword", {
             required: t("requiredError", { name: t("confirmPassword") }),
@@ -207,20 +253,39 @@ export default function Form() {
 
       <div className="grid gap-2">
         <Label htmlFor="companyName">{authTrans("signUp.companyName")}</Label>
-        <Input
-          id="companyName"
-          placeholder={authTrans("signUp.companyName")}
-          {...register("companyName")}
-          onInput={(e) => {
-            setValue("companyName", e.currentTarget.value);
-          }}
-          list="company-suggestions"
-        />
-        <datalist id="company-suggestions">
-          {companyNameSuggestions.map((suggestion) => (
-            <option key={suggestion.id} value={suggestion.name} />
-          ))}
-        </datalist>
+        <div ref={ref}>
+          <Command className="rounded-lg border">
+            <CommandInput
+              placeholder={authTrans("signUp.companyNamePlaceholder")}
+              onClick={() => setShowSuggestions(true)}
+              onInput={handleInputChange}
+              value={getValues("companyName")}
+              {...register("companyName")}
+            />
+            {showSuggestions && (
+              <CommandList className="border-t">
+                {filteredSuggestions.length === 0 ? (
+                  <CommandEmpty>{t("noResults")}</CommandEmpty>
+                ) : (
+                  <CommandGroup
+                    heading="Suggestions"
+                    className="max-h-[100px] overflow-y-auto"
+                  >
+                    {filteredSuggestions.map((suggestion) => (
+                      <CommandItem
+                        key={suggestion.id}
+                        onSelect={() => handleSelectSuggestion(suggestion.name)}
+                      >
+                        {suggestion.name}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                )}
+                <CommandSeparator />
+              </CommandList>
+            )}
+          </Command>
+        </div>
         {errors.companyName && (
           <p className="text-red-500 pt-1 text-xs">
             {errors.companyName.message}
@@ -233,7 +298,6 @@ export default function Form() {
         <Input
           id="corporateEmail"
           type="email"
-          placeholder={t("corporateEmail")}
           {...register("corporateEmail")}
         />
         {errors.corporateEmail && (
@@ -245,11 +309,7 @@ export default function Form() {
 
       <div className="grid gap-2">
         <Label htmlFor="position">{authTrans("signUp.position")}</Label>
-        <Input
-          id="position"
-          placeholder={authTrans("signUp.position")}
-          {...register("position")}
-        />
+        <Input id="position" {...register("position")} />
         {errors.position && (
           <p className="text-red-500 pt-1 text-xs">{errors.position.message}</p>
         )}

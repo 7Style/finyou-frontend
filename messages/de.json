@@ -107,6 +107,7 @@
         "requiredError": "{name} ist erforderlich",
         "createAccount": "Ein Konto erstellen",
         "corporateEmail": "Geschäftliche E-Mail",
+        "noResults": "Keine Ergebnisse gefunden.",
         "providers": {
           "google": "Google",
           "linkedin": "LinkedIn",
@@ -125,7 +126,8 @@
         "link": "Sie haben bereits ein Konto?",
         "companyName": "Firmenname",
         "position": "Position",
-        "corporateEmailValidation": "Geschäftliche E-Mail-Validierung"
+        "corporateEmailValidation": "Geschäftliche E-Mail-Validierung",
+        "companyNamePlaceholder": "Geben Sie den Firmennamen ein..."
       },
       "forgotPassword": {
         "title": "Passwort vergessen",
