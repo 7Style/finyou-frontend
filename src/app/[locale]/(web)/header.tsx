@@ -5,12 +5,20 @@ import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useTranslations } from "next-intl";
-
+import { Poppins } from 'next/font/google'
 
 interface LinkData {
     text: string;
     href: string;
 }
+
+const poppins = Poppins({ 
+    weight: ['400', '600'],
+    style: ['normal', 'italic'],
+    subsets: ['latin'],
+    display: 'swap',
+ })
+
 
 
 function Drawer({ data }: { data: LinkData[]}) {
@@ -29,7 +37,7 @@ function Drawer({ data }: { data: LinkData[]}) {
             <SheetContent side="left">
                 <nav className="grid gap-6 text-lg font-medium">
                     <Link
-                        href="#"
+                        href="/"
                         className="flex items-center gap-2 text-lg font-semibold"
                     >
                         <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
@@ -44,8 +52,8 @@ function Drawer({ data }: { data: LinkData[]}) {
                         </Link>
                     ))}
                     <div className="flex flex-col gap-3">
-                        <Button size={"sm"} variant={"outline"}>Anmelden</Button>
-                        <Button size={"sm"}>Registrieren</Button>
+                        <Link href="/signin"><Button size={"sm"} className={poppins.className} variant={"outline"}>Anmelden</Button></Link>
+                        <Link href="/signup"><Button size={"sm"} className={poppins.className}>Registrieren</Button></Link>
                     </div>
                 </nav>
             </SheetContent>
@@ -68,7 +76,7 @@ export default function Header() {
     return (
         <header className="sticky top-0 flex h-16 justify-between items-center gap-4 bg-white z-10 px-4 md:px-12 max-w-screen-2xl mx-auto">
             <Link
-                href="#"
+                href="/"
                 className="flex items-center gap-2 text-lg font-semibold md:text-base"
             >
                 <Image src="/images/logo.svg" width={120} height={30} alt="logo" />
@@ -86,12 +94,17 @@ export default function Header() {
             </nav>
            
             <div className="hidden md:flex items-end md:ml-auto md:gap-2 lg:gap-4">
-                <Button size={"sm"} variant={"outline"}>
-                    <Link href="/signin">{buttonTrans("signIn")}</Link>
-                </Button>
-                <Button size={"sm"}>
-                    <Link href="/signup">{buttonTrans("register")}</Link>
-                </Button>
+                <Link href="/signin">
+                    <Button size={"xs"} className={poppins.className} variant={"outline"}>
+                        {buttonTrans("signIn")}
+                    </Button>
+                </Link>
+
+                <Link href="/signup">
+                    <Button size={"xs"} className={poppins.className} >
+                        {buttonTrans("register")}
+                    </Button>
+                </Link>
             </div>
             
             <Drawer data={linksData} />
