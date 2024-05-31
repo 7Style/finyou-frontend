@@ -1,15 +1,15 @@
-import * as React from "react"
+import * as React from "react";
 import Image from "next/image";
-import Link from "next/link"
-import { Menu } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import Link from "next/link";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTranslations } from "next-intl";
 import { Poppins } from 'next/font/google'
 
 interface LinkData {
-    text: string;
-    href: string;
+  text: string;
+  href: string;
 }
 
 const poppins = Poppins({ 
@@ -62,8 +62,8 @@ function Drawer({ data }: { data: LinkData[]}) {
 }
 
 export default function Header() {
-    const navigationTrans = useTranslations("navigation");
-    const buttonTrans = useTranslations("common.button");
+  const navigationTrans = useTranslations("navigation");
+  const buttonTrans = useTranslations("common.button");
 
     const linksData: LinkData[] = [
         { text: navigationTrans("funding"), href: "#" },
@@ -108,7 +108,6 @@ export default function Header() {
             </div>
             
             <Drawer data={linksData} />
-
-        </header>
-    )
+    </header>
+  );
 }
