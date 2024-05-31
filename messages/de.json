@@ -53,7 +53,8 @@
       "lookingPartner": "Partner suchen",
       "toNetwork": "Zum Netzwerk",
       "partnerNetwork": "Partnernetzwerk",
-      "register": "Registrieren"
+      "register": "Registrieren",
+      "forgotPassword": "Passwort vergessen"
     }
   },
   "page": {
@@ -106,7 +107,10 @@
         "requiredError": "{name} ist erforderlich",
         "createAccount": "Ein Konto erstellen",
         "providers": {
-          "google": "Ga verder met Google"
+          "google": "Google",
+          "linkedin": "LinkedIn",
+          "apple": "Apple",
+          "xing": "Xing"
         }
       },
       "signIn": {

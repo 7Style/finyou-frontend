@@ -1,10 +1,15 @@
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
 import * as api from "./api";
-import { ForgotPassword, ForgotPasswordAPIMutationPayload, ForgotPasswordResponse } from "./types";
+import {
+  ForgotPassword,
+  ForgotPasswordAPIMutationPayload,
+  ForgotPasswordResponse,
+} from "./types";
 
-
-export function useForgotPassword(props: ForgotPassword = {}): UseMutationResult<
-ForgotPasswordResponse,
+export function useForgotPassword(
+  props: ForgotPassword = {}
+): UseMutationResult<
+  ForgotPasswordResponse,
   { message?: string },
   ForgotPasswordAPIMutationPayload
 > {
@@ -12,6 +17,5 @@ ForgotPasswordResponse,
     mutationFn: (payload) => {
       return api.forgotPassword({ ...props, data: payload });
     },
-  })
-
+  });
 }
