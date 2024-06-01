@@ -106,6 +106,8 @@
         "passwordMin": "Password must be at least {min} characters long",
         "requiredError": "{name} is required",
         "createAccount": "Create Account",
+        "corporateEmail": "Corporate Email",
+        "noResults": "No results found.",
         "providers": {
           "google": "Google",
           "linkedin": "LinkedIn",
@@ -121,7 +123,11 @@
       "signUp": {
         "title": "Sign Up",
         "description": "Enter your details to create an account",
-        "link": "Already have an account?"
+        "link": "Already have an account?",
+        "companyName": "Company Name",
+        "position": "Position",
+        "corporateEmailValidation": "Please enter a valid corporate email address",
+        "companyNamePlaceholder": "Type a company name..."
       },
       "forgotPassword": {
         "title": "Forgot Password",

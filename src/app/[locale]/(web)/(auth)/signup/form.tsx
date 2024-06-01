@@ -1,31 +1,50 @@
 "use client";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "react-toastify";
-import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRegister } from "@/hooks/register";
-import { ButtonGroup } from "@/components/common/button-group";
-import { providers } from "@/constants/common";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import { Loader2 } from "lucide-react";
+import { companyNameSuggestions } from "@/constants/sign-up";
 
-interface FormData {
-  fullname: string;
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+interface IFormData {
+  readonly fullname: string;
+  readonly username: string;
+  readonly email: string;
+  readonly password: string;
+  readonly confirmPassword: string;
+  readonly companyName?: string;
+  readonly corporateEmail?: string;
+  readonly position?: string;
 }
 
 export default function Form() {
   const t = useTranslations("page.auth.common");
+  const authTrans = useTranslations("page.auth");
   const commonTrans = useTranslations("common");
 
-  const { isPending, isSuccess, mutate, isError, error } = useRegister();
+  const ref = useRef<HTMLDivElement>(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredSuggestions, setFilteredSuggestions] = useState(
+    companyNameSuggestions
+  );
+
+  const { isPending, isSuccess, mutate, error, isError } = useRegister();
+
   const schema = useMemo(
     () =>
       z
@@ -44,16 +63,14 @@ export default function Form() {
             )
             .min(8, t("passwordMin", { min: 8 })),
           confirmPassword: z.string(),
+          companyName: z.string().optional(),
+          corporateEmail: z.string().optional(),
+          position: z.string().optional(),
         })
-        .refine(
-          (values) => {
-            return values.password === values.confirmPassword;
-          },
-          {
-            message: t("matchPassword"),
-            path: ["confirmPassword"],
-          }
-        ),
+        .refine((values) => values.password === values.confirmPassword, {
+          message: t("matchPassword"),
+          path: ["confirmPassword"],
+        }),
     [t]
   );
 
@@ -62,22 +79,40 @@ export default function Form() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<FormData>();
+    setValue,
+    getValues,
+  } = useForm<IFormData>();
 
-  const submitHandler = async (data: FormData) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    setValue("companyName", value);
+    setShowSuggestions(true);
+
+    if (value.length > 0) {
+      const filtered = companyNameSuggestions.filter((suggestion) =>
+        suggestion.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredSuggestions(filtered);
+    } else {
+      setFilteredSuggestions(companyNameSuggestions);
+    }
+  };
+
+  const handleSelectSuggestion = (name: string) => {
+    setValue("companyName", name);
+    setShowSuggestions(false);
+  };
+
+  const submitHandler = async (data: IFormData) => {
     try {
-      await schema.parse(data);
-      mutate({
-        email: data.email,
-        password: data.password,
-        fullname: data.fullname,
-        role: 2,
-        username: data.username,
-        phoneNumber: "92334444",
-        university: {
-          id: 1,
-        },
-      });
+      await schema.parseAsync(data);
+
+      const filteredData = Object.fromEntries(
+        Object.entries(data).filter(([_, value]) => value)
+      );
+
+      mutate(filteredData as IFormData);
+
       if (isSuccess) {
         toast.success(
           commonTrans("toast.success", {
@@ -98,10 +133,9 @@ export default function Form() {
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
-        // Set Zod errors to the form state
         error.errors.forEach((err) => {
           if (err.path) {
-            setError(err.path[0] as keyof FormData, {
+            setError(err.path[0] as keyof IFormData, {
               type: "manual",
               message: err.message,
             });
@@ -111,14 +145,29 @@ export default function Form() {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   return (
     <form className="grid gap-4" onSubmit={handleSubmit(submitHandler)}>
       <div className="grid grid-cols-2 gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="full-name">{t("fullName")}</Label>
+          <Label htmlFor="full-name">
+            {t("fullName")} <span className="text-red-500">*</span>
+          </Label>
           <Input
             id="full-name"
-            placeholder="Max"
+            placeholder="Max Robinson"
             required
             {...register("fullname", {
               required: t("requiredError", { name: t("fullName") }),
@@ -131,10 +180,12 @@ export default function Form() {
           )}
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="user-name">{t("username")}</Label>
+          <Label htmlFor="user-name">
+            {t("username")} <span className="text-red-500">*</span>
+          </Label>
           <Input
             id="username"
-            placeholder="Robinson"
+            placeholder="maxrobinson"
             required
             {...register("username", {
               required: t("requiredError", { name: t("username") }),
@@ -148,7 +199,9 @@ export default function Form() {
         </div>
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="email">{t("email")}</Label>
+        <Label htmlFor="email">
+          {t("email")} <span className="text-red-500">*</span>
+        </Label>
         <Input
           id="email"
           type="email"
@@ -163,7 +216,9 @@ export default function Form() {
         )}
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="password">{t("password")}</Label>
+        <Label htmlFor="password">
+          {t("password")} <span className="text-red-500">*</span>
+        </Label>
         <Input
           id="password"
           type="password"
@@ -178,7 +233,9 @@ export default function Form() {
       </div>
 
       <div className="grid gap-2">
-        <Label htmlFor="confirmPassword">{t("confirmPassword")}</Label>
+        <Label htmlFor="confirmPassword">
+          {t("confirmPassword")} <span className="text-red-500">*</span>
+        </Label>
         <Input
           id="confirmPassword"
           type="password"
@@ -194,17 +251,74 @@ export default function Form() {
         )}
       </div>
 
+      <div className="grid gap-2">
+        <Label htmlFor="companyName">{authTrans("signUp.companyName")}</Label>
+        <div ref={ref}>
+          <Command className="rounded-lg border">
+            <CommandInput
+              placeholder={authTrans("signUp.companyNamePlaceholder")}
+              onClick={() => setShowSuggestions(true)}
+              onInput={handleInputChange}
+              value={getValues("companyName")}
+              {...register("companyName")}
+            />
+            {showSuggestions && (
+              <CommandList className="border-t">
+                {filteredSuggestions.length === 0 ? (
+                  <CommandEmpty>{t("noResults")}</CommandEmpty>
+                ) : (
+                  <CommandGroup
+                    heading="Suggestions"
+                    className="max-h-[100px] overflow-y-auto"
+                  >
+                    {filteredSuggestions.map((suggestion) => (
+                      <CommandItem
+                        key={suggestion.id}
+                        onSelect={() => handleSelectSuggestion(suggestion.name)}
+                      >
+                        {suggestion.name}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                )}
+                <CommandSeparator />
+              </CommandList>
+            )}
+          </Command>
+        </div>
+        {errors.companyName && (
+          <p className="text-red-500 pt-1 text-xs">
+            {errors.companyName.message}
+          </p>
+        )}
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="corporateEmail">{t("corporateEmail")}</Label>
+        <Input
+          id="corporateEmail"
+          type="email"
+          {...register("corporateEmail")}
+        />
+        {errors.corporateEmail && (
+          <p className="text-red-500 pt-1 text-xs">
+            {errors.corporateEmail.message}
+          </p>
+        )}
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="position">{authTrans("signUp.position")}</Label>
+        <Input id="position" {...register("position")} />
+        {errors.position && (
+          <p className="text-red-500 pt-1 text-xs">{errors.position.message}</p>
+        )}
+      </div>
+
       <Button type="submit" className="w-full" disabled={isPending}>
         {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {t("createAccount")}
       </Button>
-
-      <ButtonGroup
-        array={providers}
-        variant="outline"
-        className="w-full"
-        disabled={isPending}
-      />
     </form>
   );
 }
