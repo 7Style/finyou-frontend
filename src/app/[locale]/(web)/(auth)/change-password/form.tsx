@@ -27,7 +27,7 @@ export default function Form() {
 
   const schema = useMemo(() =>
     z.object({
-      password: z.string().regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, t("strongPasswordError")).min(8, t('passwordMin', { min: 8 })),
+      password: z.string().regex(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, t("strongPasswordError")).min(4, t('passwordMin', { min: 4 })),
       confirmPassword: z.string()
     }).refine(
       (values) => {

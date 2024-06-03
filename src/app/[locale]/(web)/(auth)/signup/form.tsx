@@ -61,7 +61,7 @@ export default function Form() {
               /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
               t("strongPasswordError")
             )
-            .min(8, t("passwordMin", { min: 8 })),
+            .min(4, t("passwordMin", { min: 4 })),
           confirmPassword: z.string(),
           companyName: z.string().optional(),
           corporateEmail: z.string().optional(),

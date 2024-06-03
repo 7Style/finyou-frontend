@@ -34,7 +34,7 @@ export default function Form() {
           .string()
           .email(t("invalidFormat", { name: t("email") }))
           .min(1),
-        password: z.string().min(8, t("passwordMin", { min: 8 })),
+        password: z.string(),
       }),
     [t]
   );
