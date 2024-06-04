@@ -109,6 +109,7 @@ export default function Form() {
           <Link
             href="/forgot-password"
             className="ml-auto inline-block text-sm underline"
+            tabIndex={-1}
           >
             {authTrans("forgotPassword.link")}
           </Link>
