@@ -27,10 +27,8 @@ const authMiddleware = withAuth(
 );
 
 export default async function middleware(request: NextRequest, event: NextFetchEvent) {
-  // const protectedRoutes = ['/dashboard']; // Add your protected routes here
-  const protectedRoutes = ['/about']; // Add your protected routes here
-  // const authRoutes = ['/signin', '/signup', '/forgot-password', '/reset-password']; // Add your protected routes here
-  const authRoutes = ['/signin', '/signup', '/forgot-password', '/reset-password', '/dashboard']; // Add your protected routes here
+  const protectedRoutes = ['/dashboard']; // Add your protected routes here
+  const authRoutes = ['/signin', '/signup', '/forgot-password', '/reset-password']; // Add your protected routes here
   const pathname = request.nextUrl.pathname;
 
   // If it's a locale-related route, apply internationalization middleware

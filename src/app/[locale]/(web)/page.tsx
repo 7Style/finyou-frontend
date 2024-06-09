@@ -92,7 +92,7 @@ export default function Home() {
       <Box section={true}>
         <Box>
           <Image className='mr-auto mb-1' src="/images/finyou-findet.svg" alt="finyou-findet" width={500} height={87} />
-          <h1 className="text-6xl font-bold">{t("funding")}</h1>
+          <h1 className="sm:text-6xl text-5xl font-bold">{t("funding")}</h1>
           <p className="text-lg mt-2 mb-4 text-gray-600" dangerouslySetInnerHTML={{ __html: t.raw('supportedFundingAssistant') }}>
           </p>
           <div className="flex items-center gap-3 py-2">
@@ -106,7 +106,7 @@ export default function Home() {
 
       <Animated>
         <div className="lg:w-1/2 text-center mx-auto mt-20 mb-5 lg:mb-10">
-          <h1 className='text-[42px] leading-tight text-center font-semibold' dangerouslySetInnerHTML={{ __html: t.raw('fundingFreeEasy') }}></h1>
+          <h1 className='sm:text-[42px] text-[36px] leading-tight text-center font-semibold' dangerouslySetInnerHTML={{ __html: t.raw('fundingFreeEasy') }}></h1>
         </div>
       </Animated>
 
@@ -177,7 +177,7 @@ export default function Home() {
       {/* Cards */}
       <div className='bg-sky-50'>
         <Animated>
-          <section className="grid md:grid-cols-2 lg:grid-cols-3 py-16 px-4 md:px-12 max-w-screen-2xl mx-auto">
+          <section className="grid md:grid-cols-2 lg:grid-cols-3 py-16 px-4 md:px-12 max-w-screen-2xl mx-auto gap-4">
             {cardsData.map((card, index) => (
               <IconCard
                 key={index}
@@ -203,12 +203,12 @@ export default function Home() {
           </div>
         </Box>
         <Box>
-          <div className="flex gap-2">
+          <div className="flex sm:flex-row flex-col gap-5 sm:gap-2">
             {items.map((item, index) => (
               <div key={index} className="flex flex-col gap-1 text-center">
                 <Image src={item.src} className='mx-auto' width={50} height={50} alt={item.alt} />
-                <h3 className="text-base font-bold">{item.title}</h3>
-                <p className='text-sm'>{item.description}</p>
+                <h3 className="text-md sm:text-base font-bold">{item.title}</h3>
+                <p className='text-base sm:text-sm'>{item.description}</p>
               </div>
             ))}
           </div>
@@ -218,8 +218,8 @@ export default function Home() {
       {/* CTA */}
       <div className="bg-sky-50">
         <Box section={true}>
-          <h2 className="text-[25px] leading-10 py-1" dangerouslySetInnerHTML={{ __html: t.raw('alphaTestRegistration') }}></h2>
-          <div className="flex items-center lg:justify-end gap-5 lg:w-1/2 py-1">
+          <h2 className="text-[25px] text-center sm:text-left leading-10 py-1" dangerouslySetInnerHTML={{ __html: t.raw('alphaTestRegistration') }}></h2>
+          <div className="flex items-center lg:justify-end gap-2 md:gap-5 lg:w-1/2 py-1">
             <Button size={"lg"} variant={'outline'}>{buttonTrans("signIn")}</Button>
             <Button size={"lg"}>{buttonTrans("toNetwork")}</Button>
           </div>

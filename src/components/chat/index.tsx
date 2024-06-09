@@ -178,7 +178,7 @@ export default function Chat() {
 
     return (
         <>
-            <div className={`h-[550px] w-96 ease-in-out duration-300 fixed bottom-0 ${showChatOption ? '-right-0' : '-right-full'} bg-white shadow rounded-tl-xl rounded-tr-xl p-4`}>
+            <div className={`h-[550px] w-11/12 md:w-96 ease-in-out duration-300 fixed bottom-0 z-50 ${showChatOption ? '-right-0' : '-right-full'} bg-white shadow rounded-tl-xl rounded-tr-xl p-4`}>
                 <div className="relative h-full">
                     <div className="flex items-center justify-between">
                         <Button variant={'outline'} className='rounded-full p-2 w-8 h-8' onClick={toggleChatOption}>
