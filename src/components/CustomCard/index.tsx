@@ -82,7 +82,7 @@ export function CompanyOverview() {
 
 export function IconCard({ src, alt, title, description }: CardProps) {
     return (
-        <Card className='text-center p-3 rounded-lg border-0'>
+        <Card className='text-center p-3 pb-0 rounded-lg border-0 max-w-96 shadow-[0_35px_40px_-15px_rgba(0,0,0,0.1)]'>
             <Avatar className='mx-auto h-28 w-28 z-0'>
                 <AvatarImage src={src} alt={alt}></AvatarImage>
                 <AvatarFallback>JD</AvatarFallback>
@@ -91,7 +91,7 @@ export function IconCard({ src, alt, title, description }: CardProps) {
                 <CardTitle className='text-xl font-bold leading-6'>{title}</CardTitle>
             </CardHeader>   
             <CardContent>
-                <p className='text-base'>{description}</p>
+                <p className='text-base leading-8'>{description}</p>
             </CardContent>
         </Card>
     )
@@ -100,7 +100,7 @@ export function IconCard({ src, alt, title, description }: CardProps) {
 export function InlineIconCard({ src, alt, title }: CardProps) {
     return (
         <div className="w-64 flex items-center gap-3">
-            <Image src={src} alt={alt} width={50} height={50} />
+            <Image src={src} alt={alt} width={58} height={58} />
             <p className="text-base font-semibold">{title}</p>
         </div>
     )

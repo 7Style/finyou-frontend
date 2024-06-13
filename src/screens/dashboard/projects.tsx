@@ -32,7 +32,7 @@ export default function Projects({ title, badges, description, statistics, progr
         </div>
         <div className="flex pt-1 pb-3 space-x-2 my-2">
           {badges.map((badge, index) => (
-            <Badge key={index} className={`px-3 md:px-6 ${badge.active ? 'bg-cyan-600 text-white' : 'bg-sky-200'}`}>{badge.label}</Badge>
+            <Badge key={index} className={`px-3 md:px-6 ${badge.active ? 'bg-cyan-600 text-white' : 'bg-sky-200 text-dark'}`}>{badge.label}</Badge>
           ))}
         </div>
         <p className="text-sm leading-snug">{description}</p>

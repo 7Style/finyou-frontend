@@ -68,7 +68,8 @@ export default function DynamicFilter() {
           <Button
             role="combobox"
             aria-expanded={filterOpen}
-            size={"xs"}
+            size={"sm"}
+            variant={"ghost"}
             className="text-teal-700 bg-sky-100 hover:bg-sky-200"
           >
             <FaPlusCircle />
@@ -116,7 +117,7 @@ export default function DynamicFilter() {
           }
           </QueryBuilderDnD>
 
-          <Button variant={"ghost"} size={"xs"} className="text-cyan-600 inline-flex items-center font-medium" onClick={handleClearFilter}>
+          <Button variant={"ghost"} size={"sm"} className="text-cyan-600 inline-flex items-center font-medium" onClick={handleClearFilter}>
             <RxCross1 />Clear Filters
           </Button>
           </>
