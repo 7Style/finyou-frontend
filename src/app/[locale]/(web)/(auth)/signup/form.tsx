@@ -53,7 +53,7 @@ export default function Form() {
           username: z.string(),
           email: z
             .string()
-            .email(t("invalidFormat", { name: t("email") }))
+            .email(t("invalidFormat", { name: t("workEmail") }))
             .min(1),
           password: z
             .string()
@@ -200,7 +200,7 @@ export default function Form() {
       </div>
       <div className="grid gap-2">
         <Label htmlFor="email">
-          {t("email")} <span className="text-red-500">*</span>
+          {t("workEmail")} <span className="text-red-500">*</span>
         </Label>
         <Input
           id="email"
@@ -208,7 +208,7 @@ export default function Form() {
           placeholder="m@example.com"
           required
           {...register("email", {
-            required: t("requiredError", { name: t("email") }),
+            required: t("requiredError", { name: t("workEmail") }),
           })}
         />
         {errors.email && (

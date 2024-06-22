@@ -7,21 +7,28 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   const t = useTranslations("page.auth.common");
+  const transHome = useTranslations('page.home');
+
   return (
-    <div className="w-full lg:grid lg:grid-cols-2 min-h-screen">
-      <div className="flex items-center justify-center py-12">{children}</div>
-      <div className="hidden lg:flex grow items-center justify-center bg-cover bg-center bg-[url('/images/auth-bg.png')]">
-        <div className="flex flex-col items-center py-7 lg:py-15 px-5 md:px-15 w-100">
+    <div className="w-full flex min-h-screen">
+      <div className="hidden lg:block w-[61%] bg-[#C3E6EB] pl-32 pr-4 py-10">
+        <div className="grid gap-12">
           <Image
-            src="/images/logo-white.svg"
+            src="/images/hero.png"
             alt="Image"
-            width="290"
-            height="75"
-            className="block mx-auto"
+            width="588"
+            height="538"
+            className="block"
           />
-          <p className="text-white text-4xl font-bold pt-2">{t("findFunds")}</p>
+          <div className="grid">
+            <Image src="/images/finyou-findet.svg" alt="finyou-findet" width={255} height={65} />
+            <h1 className="text-teal-950 text-[52px] font-semibold leading-[109.12px]">{transHome("funding")}</h1>
+            <h3 className="text-gray-800 text-[32px] font-medium leading-[44.80px]">{transHome("supportedFundingAssistant")}</h3>
+          </div>
         </div>
       </div>
+
+      <div className="flex flex-col justify-between items-center pl-32 pr-16 py-16">{children}</div>
     </div>
   );
 }

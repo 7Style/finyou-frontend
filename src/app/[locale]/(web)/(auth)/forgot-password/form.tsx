@@ -72,13 +72,13 @@ export default function Form() {
     return (
         <form className="grid gap-4" onSubmit={handleSubmit(submitHandler)}>
        <div className="grid gap-2">
-                <Label htmlFor="email">{t('email')}</Label>
+                <Label htmlFor="email">{t('workEmail')}</Label>
                 <Input
                     id="email"
                     type="email"
                     placeholder="m@example.com"
                     required
-                    {...register('email', { required: t('requiredError', {name: t('email')}) })}
+                    {...register('email', { required: t('requiredError', {name: t('workEmail')}) })}
                 />
                 {errors.email && <p className="text-red-500 pt-1 text-xs">{errors.email.message}</p>}
             </div>

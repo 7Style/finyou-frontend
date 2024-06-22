@@ -95,7 +95,7 @@
         "findFunds": "findet Fördermittel",
         "fullName": "Vollständiger Name",
         "username": "Nutzername",
-        "email": "Email",
+        "workEmail": "Arbeits Email",
         "password": "Passwort",
         "changePassword": "Kennwort ändern",
         "confirmPassword": "Bestätige das Passwort",
@@ -108,6 +108,7 @@
         "createAccount": "Ein Konto erstellen",
         "corporateEmail": "Geschäftliche E-Mail",
         "noResults": "Keine Ergebnisse gefunden.",
+        "keepSignIn": "Ich möchte angemeldet bleiben",
         "providers": {
           "google": "Google",
           "linkedin": "LinkedIn",
@@ -116,9 +117,9 @@
         }
       },
       "signIn": {
-        "title": "Aanmelden",
-        "description": "Geben Sie unten Ihre E-Mail-Adresse ein, um sich bei Ihrem Konto anzumelden",
-        "link": "Sie haben noch kein Konto?"
+        "title": "Melden Sie sich bei Ihrem Konto an",
+        "link": "Sie haben kein Arbeitskonto?",
+        "registerNow": "Jetzt registrieren"
       },
       "signUp": {
         "title": "Melden Sie sich an",

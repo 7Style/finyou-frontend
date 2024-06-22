@@ -35,17 +35,17 @@ function ButtonGroup({
   const childrenArray = React.Children.toArray(children);
 
   return (
-    <div className={`flex space-x-2 ${className}`}>
+    <div className={`flex gap-2 flex-wrap ${className}`}>
       {childrenArray.map((child, index) => (
         <Button {...props} key={index} variant={variant} disabled={disabled}>
           {child}
         </Button>
       ))}
-      {array &&
+        {array &&
         array.map((item, index) => (
           <Button
             {...props}
-            key={index}
+            key={item.title}
             onClick={item.onClick}
             variant={variant}
             disabled={disabled}
