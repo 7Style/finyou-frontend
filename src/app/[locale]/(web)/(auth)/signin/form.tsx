@@ -119,7 +119,7 @@ export default function Form() {
         )}
       </div>
 
-      <div className="flex justify-between items-center pt-4 pb-6">
+      <div className="flex justify-between items-center pt-4">
         <div className="inline-flex items-center">
           <label className="relative flex items-center rounded-sm cursor-pointer" htmlFor="check">
             <input type="checkbox"
@@ -146,7 +146,7 @@ export default function Form() {
             {authTrans("forgotPassword.title")}?
           </Link>
       </div>
-      <Button variant={"secondary"} type="submit" className="w-full bg-cyan-100 rounded-md text-white text-base font-medium border-0 hover:bg-teal-600" disabled={loading}>
+      <Button variant={"secondary"} type="submit" className="mt-8 w-full bg-cyan-100 rounded-md text-white text-base font-medium border-0 hover:bg-teal-600" disabled={loading}>
         {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {commonTrans("button.signIn")}
       </Button>

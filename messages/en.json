@@ -93,8 +93,7 @@
     "auth": {
       "common": {
         "findFunds": "Find Funds",
-        "fullName": "Full Name",
-        "username": "Username",
+        "fullName": "Your Name and Surname",
         "workEmail": "Work Email",
         "password": "Password",
         "changePassword": "Change Password",
@@ -122,11 +121,12 @@
         "registerNow": "Register Now"
       },
       "signUp": {
-        "title": "Sign Up",
-        "description": "Enter your details to create an account",
+        "title": "Create your account",
+        "description": "Create your account by entering your institution information",
         "link": "Already have an account?",
         "companyName": "Company Name",
         "position": "Position",
+        "login": "Login Now",
         "corporateEmailValidation": "Please enter a valid corporate email address",
         "companyNamePlaceholder": "Type a company name..."
       },

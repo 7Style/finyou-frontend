@@ -93,8 +93,7 @@
     "auth": {
       "common": {
         "findFunds": "findet Fördermittel",
-        "fullName": "Vollständiger Name",
-        "username": "Nutzername",
+        "fullName": "Ihr Vor- und Nachname",
         "workEmail": "Arbeits Email",
         "password": "Passwort",
         "changePassword": "Kennwort ändern",
@@ -122,11 +121,12 @@
         "registerNow": "Jetzt registrieren"
       },
       "signUp": {
-        "title": "Melden Sie sich an",
-        "description": "Geben Sie Ihre Daten ein, um ein Konto zu erstellen",
+        "title": "Erstelle deinen Account",
+        "description": "Erstellen Sie Ihr Konto, indem Sie Ihre Institutionsinformationen eingeben",
         "link": "Sie haben bereits ein Konto?",
         "companyName": "Firmenname",
         "position": "Position",
+        "login": "Jetzt einloggen",
         "corporateEmailValidation": "Geschäftliche E-Mail-Validierung",
         "companyNamePlaceholder": "Geben Sie den Firmennamen ein..."
       },
