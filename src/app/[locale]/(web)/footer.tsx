@@ -20,8 +20,10 @@ const Footer = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:flex flex-wrap gap-4 items-start justify-between py-5 max-w-screen-2xl mx-auto">
         {footerNav.map((section, index) => (
           <div key={index} className="flex flex-col gap-3">
-            {section.heading && (
+            {section.heading ? (
               <p className="text-xs font-bold pt-3">{t(section.heading)}</p>
+            ) : (
+              <p>&nbsp;</p>
             )}
             {section.links.map((link, idx) => (
               <Link key={idx} href={link.href} className="text-sm hover:text-foreground">

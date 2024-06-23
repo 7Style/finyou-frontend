@@ -9,6 +9,8 @@ import { Loader2 } from "lucide-react";
 import { FormProps, FormSchema } from "@/types/auth";
 import { providers } from "@/constants/common";
 import ButtonGroup from "@/components/common/button-group";
+import Link from 'next/link';
+import Checkbox from '../common/checkbox';
 
 const Form: React.FC<FormProps> = ({
   submitHandler,
@@ -19,6 +21,7 @@ const Form: React.FC<FormProps> = ({
   password,
   confirmPassword,
   isSubmitting,
+  signedIn,
   btnText
 }) => {
   const t = useTranslations();
@@ -132,6 +135,21 @@ const Form: React.FC<FormProps> = ({
           )}
         </div>
       )}
+
+      {
+        signedIn && (
+          <div className="flex justify-between items-center pt-4">
+            <Checkbox label={t("keepSignedIn")} />
+            <Link
+              href="/forgot-password"
+              className="text-neutral-500 text-sm font-medium"
+            >
+              {t("forgotTitle")}?
+            </Link>
+          </div>
+        )
+      }
+
 
       <Button
         variant={"secondary"}

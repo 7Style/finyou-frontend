@@ -11,7 +11,7 @@ export default function AuthLayout({
   return (
     <div className="flex lg:min-h-screen">
       {/* Left Panel */}
-      <div className="hidden lg:flex flex-col justify-center items-center w-7/12 bg-[#C3E6EB]  pl-32 pr-4 py-10">
+      <div className="hidden lg:flex flex-col justify-center items-center w-7/12 bg-[#C3E6EB]  pl-32 pr-8 py-10">
         <div className="mr-auto mb-8">
           <Image src="/images/hero.png" alt="Image" width={588} height={538} className="block" />
         </div>
@@ -23,7 +23,7 @@ export default function AuthLayout({
       </div>
 
       {/* Right Panel */}
-      <div className="flex flex-col justify-between items-center w-full lg:w-[39%] px-10 py-16 lg:pl-20 lg:pr-8 lg:py-16">
+      <div className="flex flex-col justify-between items-center w-full lg:w-[39%] px-10 py-16 lg:pl-32 lg:pr-16 lg:py-16">
         {children}
       </div>
     </div>

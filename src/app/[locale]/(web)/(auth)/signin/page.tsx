@@ -72,6 +72,7 @@ export default function Signin() {
         username={t("username")}
         password={t("password")}
         isSubmitting={loading}
+        signedIn={true}
         btnText={t("signIn")}
       />
     </InnerLayout>

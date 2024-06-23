@@ -29,5 +29,6 @@ export type FormProps = {
     password?: string;
     confirmPassword?: string;
     isSubmitting: boolean;
+    signedIn?: boolean;
     btnText: string;
 }
