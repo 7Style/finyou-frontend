@@ -1,10 +1,16 @@
 import Image from "next/image";
 
 export default function Loading() {
-  // Or a custom loading skeleton component
   return (
-    <div className="h-screen flex justify-center items-center">
-      <Image src="/images/loading.gif" width={30} height={30} alt="loader" />
+    <div className="flex h-screen justify-center items-center">
+      <Image
+        src="/images/loading.gif"
+        width={30}
+        height={30}
+        alt="Loading animation"
+        loading="lazy"
+        className="block mx-auto"
+      />
     </div>
   );
 }

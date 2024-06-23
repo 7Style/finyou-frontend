@@ -10,7 +10,7 @@ export interface RegisterResponse {
 export interface RegisterAPIMutationPayload {
   email: string;
   password: string;
-  fullName: string;
+  fullName?: string;
   companyName?: string;
 }
 

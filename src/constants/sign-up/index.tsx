@@ -1,4 +1,4 @@
-import { Companies, Company } from "@/types/Companies";
+import { Companies, Company } from "@/types/companies";
 
 const companyNameSuggestions: Company[] = [
   { id: 1, name: Companies.GOOGLE },
