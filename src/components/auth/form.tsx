@@ -12,7 +12,9 @@ import ButtonGroup from "@/components/common/button-group";
 
 const Form: React.FC<FormProps> = ({
   submitHandler,
-  fullName,
+  name,
+  username,
+  surname,
   email,
   password,
   confirmPassword,
@@ -29,19 +31,52 @@ const Form: React.FC<FormProps> = ({
 
   return (
     <form className="grid gap-6" onSubmit={handleSubmit(submitHandler)}>
-      {fullName && (
+      {name && (
         <div className="grid gap-2">
-          <Label htmlFor="fullName">{fullName}</Label>
+          <Label htmlFor="name">{name}</Label>
           <Input
-            id="fullName"
+            id="name"
             placeholder="maxrobinson"
             required
-            {...register("fullName", {
-              required: t("requiredError", { name: fullName }),
+            {...register("name", {
+              required: t("requiredError", { name: name }),
             })}
           />
-          {errors.fullName && (
-            <p className="text-neutral-500 text-xs pt-1">{errors.fullName.message}</p>
+          {errors.name && (
+            <p className="text-neutral-500 text-xs pt-1">{errors.name.message}</p>
+          )}
+        </div>
+      )}
+      {username && (
+        <div className="grid gap-2">
+          <Label htmlFor="username">{username}</Label>
+          <Input
+            id="username"
+            placeholder="maxrobinson"
+            required
+            {...register("username", {
+              required: t("requiredError", { name: username }),
+            })}
+          />
+          {errors.username && (
+            <p className="text-neutral-500 text-xs pt-1">{errors.username.message}</p>
+          )}
+        </div>
+      )}
+
+      {surname && (
+        <div className="grid gap-2">
+          <Label htmlFor="surname">{surname}</Label>
+          <Input
+            id="surname"
+            placeholder="maxrobinson"
+            required
+            {...register("surname", {
+              required: t("requiredError", { name: surname }),
+            })}
+          />
+          {errors.surname && (
+            <p className="text-neutral-500 text-xs pt-1">{errors.surname.message}</p>
           )}
         </div>
       )}

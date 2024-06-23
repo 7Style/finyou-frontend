@@ -57,7 +57,7 @@ export default function ForgotPassword() {
         >
             <Form
                 submitHandler={submitHandler}
-                email={t("workEmail")}
+                email={t("email")}
                 isSubmitting={isPending}
                 btnText={t("forgotPassword")}
             />

@@ -75,8 +75,10 @@
   "financePatents": "for R&D, finance, patents, IT, HR, strategy, M&A...",
   "findFunds": "finds funding",
 
-  "fullName": "Your first and last name",
-  "workEmail": "Work Email",
+  "name": "Name",
+  "username": "Username",
+  "surname": "Surname",
+  "email": "Email",
   "password": "Password",
   "changePassword": "Change Password",
   "confirmPassword": "Confirm Password",

@@ -17,11 +17,12 @@ export default function Signup() {
     () =>
       z
         .object({
-          fullName: z.string(),
-          companyName: z.string().optional(),
+          name: z.string(),
+          username: z.string(),
+          surname: z.string(),
           email: z
             .string()
-            .email(t("invalidFormat", { name: t("workEmail") }))
+            .email(t("invalidFormat", { name: t("email") }))
             .min(1),
           password: z
             .string()
@@ -91,8 +92,10 @@ export default function Signup() {
     >
       <Form
         submitHandler={submitHandler}
-        fullName={t("fullName")}
-        email={t("workEmail")}
+        name={t("name")}
+        username={t("username")}
+        surname={t("surname")}
+        email={t("email")}
         password={t("password")}
         confirmPassword={t("confirmPassword")}
         isSubmitting={isPending}

@@ -3,31 +3,13 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { login, refreshToken } from "@/hooks/auth/index";
 
 interface CredentialInput {
-  email: string;
+  username: string;
   password: string;
 };
 
 interface Token {
   token: string;
-  accessTokenExpires: number;
-  refreshToken: string;
   error?: string;
-}
-
-async function refreshAccessToken(token: Token): Promise<Token> {
-  try {
-    const refreshedTokens = await refreshToken(token.token)    
-    return {
-      token: refreshedTokens.token,
-      accessTokenExpires: Date.now() + 10 * 1000,
-      refreshToken: refreshedTokens.refreshToken,
-    }
-  } catch (error) {
-    return {
-      ...token,
-      error: "RefreshAccessTokenError",
-    }
-  }
 }
 
 export const authOptions = {
@@ -35,8 +17,8 @@ export const authOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: {
-          label: "Email",
+        username: {
+          label: "Username",
           type: "text",
           placeholder: "johndoe@test.com",
         },
@@ -49,16 +31,14 @@ export const authOptions = {
           }
       
           const resp = await login({
-            email: credentials.email,
+            username: credentials.username,
             password: credentials.password,
           });
       
-          // Assuming your performLogin function returns a response similar to the provided response structure
-          const { token, refreshToken, user } = resp;
+          const { data } = resp;
           return {
-            token,
-            refreshToken,
-            user,
+            token: data.access_token,
+            user: credentials
           };
         } catch (e: any) {
           return Promise.reject(new Error(e?.message || "Something Wrong"));
@@ -92,8 +72,6 @@ export const authOptions = {
       if (user?.token) {
         token = {
           token: user.token,
-          accessTokenExpires: Date.now() + 10 * 1000,
-          refreshToken: user.refreshToken,
           user: user,
         };
       }
@@ -102,10 +80,7 @@ export const authOptions = {
       //   token.user = await getUser(token.token as string);
       // }
 
-      if (Date.now() < token.accessTokenExpires) {
-        return token
-      }
-      return refreshAccessToken(token)
+      return token
     },
   },
 };

@@ -15,10 +15,7 @@ export default function Signin() {
   const schema = useMemo(
     () =>
       z.object({
-        email: z
-          .string()
-          .email(t("invalidFormat", { name: t("workEmail") }))
-          .min(1),
+        username: z.string(),
         password: z.string(),
       }),
     [t]
@@ -34,6 +31,7 @@ export default function Signin() {
         callbackUrl: "/dashboard",
       }).then((res) => {
         if (res?.ok) {
+          console.log(res, "res.....");
           toast.success(
             t("success", {
               name: t("signIn"),
@@ -51,8 +49,14 @@ export default function Signin() {
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
-        console.log(error);
-        setLoading(false);
+        if (error instanceof z.ZodError) {
+          error.errors.forEach((err) => {
+            if (err.path) {
+              console.log(err.message);
+            }
+          });
+          setLoading(false);
+        }
       }
     }
   };
@@ -65,7 +69,7 @@ export default function Signin() {
     >
       <Form
         submitHandler={submitHandler}
-        email={t("workEmail")}
+        username={t("username")}
         password={t("password")}
         isSubmitting={loading}
         btnText={t("signIn")}

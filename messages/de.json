@@ -75,8 +75,10 @@
   "financePatents": "zu F&E, Finanzen, Patenten, IT, HR, Strategie, M&A...",
   "findFunds": "findet Fördermittel",
 
-  "fullName": "Ihr Vor- und Nachname",
-  "workEmail": "Arbeits-Email",
+  "name": "Name",
+  "username": "Nutzername",
+  "surname": "Nachname",
+  "email": "Email",
   "password": "Passwort",
   "changePassword": "Kennwort ändern",
   "confirmPassword": "Bestätige das Passwort",

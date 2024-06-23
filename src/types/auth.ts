@@ -10,7 +10,9 @@ export type InnerLayoutProps = {
 }
 
 export type FormSchema = {
-    fullName?: string;
+    name?: string;
+    username?: string;
+    surname?: string;
     email: string;
     companyName?: string;
     password: string;
@@ -20,7 +22,9 @@ export type FormSchema = {
 
 export type FormProps = {
     submitHandler: SubmitHandler<FormSchema>;
-    fullName?: string;
+    name?: string;
+    username?: string;
+    surname?: string;
     email?: string;
     password?: string;
     confirmPassword?: string;
