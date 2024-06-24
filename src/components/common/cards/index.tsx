@@ -71,9 +71,9 @@ export const ImageCard: React.FC<ICard> = ({ src, alt, title, description }) => 
   );
 }
 
-export const InlineImageCard: React.FC<ICard> = ({ src, alt, title, description }) => {
+export const InlineImageCard: React.FC<ICard> = ({ src, alt, title }) => {
   return (
-    <div className='w-64 flex items-center gap-3'>
+    <div className='w-72 flex items-center gap-3'>
       <Image src={src} alt={alt} width={58} height={58} />
       <p className='text-base font-semibold'>{title}</p>
     </div>

@@ -77,14 +77,6 @@
   }
 }
 
-.-top-10{
-  top: -2.5rem
-}
-
-.-bottom-10{
-  bottom: -2.5rem
-}
-
 /* Custom CSS to target the div inside an active TabsTrigger */
 [data-state='active'] > .tab {
   @apply bg-sky-100 fill-cyan-500; /* Active state styles */
