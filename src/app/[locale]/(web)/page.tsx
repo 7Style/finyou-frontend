@@ -4,13 +4,7 @@ import { useTranslations } from 'next-intl';
 import { ImageCard, InlineImageCard } from '@/components/common/cards';
 import { Button } from '@/components/ui/button';
 import Animated from '@/components/animation';
-
-interface ICard {
-  src: string;
-  alt: string;
-  title: string;
-  description?: string;
-}
+import { projects, funding, invoices, imgCard } from '@/constants/common/index';
 
 interface IBox extends React.HTMLAttributes<HTMLElement> {
   section?: boolean;
@@ -42,86 +36,6 @@ const Box: React.FC<IBox> = ({ children, className, section, ...props }) => {
 
 const Home: React.FC = () => {
   const t = useTranslations();
-
-  const projects: ICard[] = [
-    {
-      src: '/images/marketing.svg',
-      alt: 'marketing',
-      title: 'servicePartners',
-      description: 'designMarketingSuppliers',
-    },
-    {
-      src: '/images/partner.svg',
-      alt: 'partner',
-      title: 'fePartners',
-      description: 'universityResearchCenters',
-    },
-    {
-      src: '/images/financial-advisor.svg',
-      alt: 'financial-advisor',
-      title: 'advisors',
-      description: 'financePatents',
-    },
-  ];
-
-
-  const funding: ICard[] = [
-    {
-      src: '/images/expense-project.svg',
-      alt: 'expense-project',
-      title: 'filterByExpense'
-    },
-    {
-      src: '/images/mix-funding.svg',
-      alt: 'mix-funding',
-      title: 'optimalFundingMix'
-    },
-    {
-      src: '/images/mix-financing.svg',
-      alt: 'mix-financing',
-      title: 'checkMixedFinancing'
-    },
-    {
-      src: '/images/compare-funding.svg',
-      alt: 'compare-funding',
-      title: 'compareFunctionLocation'
-    },
-  ];
-
-
-  const invoices: ICard[] = [
-    {
-      src: '/images/consultant.svg',
-      alt: 'consultant',
-      title: 'fundingCompliantProviders'
-    },
-    {
-      src: '/images/development-partner.svg',
-      alt: 'development-partner',
-      title: 'researchDevelopmentPartners'
-    },
-  ];
-
-  const imgCard: ICard[] = [
-    {
-      src: '/images/startup.png',
-      alt: 'startup',
-      title: 'startupFunding',
-      description: 'grantsFinancingMarketing',
-    },
-    {
-      src: '/images/alarm.png',
-      alt: 'alarm',
-      title: 'fundingAlert',
-      description: 'accessFundingOpportunity',
-    },
-    {
-      src: '/images/tracking.png',
-      alt: 'tracking',
-      title: 'competitorTracking',
-      description: 'fundingProgramCompetition',
-    },
-  ];
 
   return (
     <>
