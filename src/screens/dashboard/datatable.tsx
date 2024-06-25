@@ -11,6 +11,7 @@ import ProgressBar from "@/components/ProgressBar";
 import { Calender, Clock, EuroCoin, Share } from "@/icons/dashboard";
 import "./style.css";
 import { FaEdit } from "react-icons/fa";
+import Image from "next/image";
 
 // Define the type for your row data
 interface RowData {
@@ -197,7 +198,7 @@ export default function DataTable() {
       flex: 1,
       cellRenderer: (props: RenderCellProps) => (
         <div className="flex items-center gap-2">
-          <img
+          <Image
             src={props.data.image}
             width={32}
             height={32}

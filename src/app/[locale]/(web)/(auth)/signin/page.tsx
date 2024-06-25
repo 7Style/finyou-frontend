@@ -18,7 +18,7 @@ export default function Signin() {
         username: z.string(),
         password: z.string(),
       }),
-    [t]
+    []
   );
 
   const submitHandler = async (data: FormSchema) => {
