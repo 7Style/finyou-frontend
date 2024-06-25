@@ -8,7 +8,7 @@ export default function DashboardLayout({
     return (
       <div className='w-full px-8 dashboard'>
         <DashboardHeader />
-        {children}
+        {/* {children} */}
       </div>
     )
   }

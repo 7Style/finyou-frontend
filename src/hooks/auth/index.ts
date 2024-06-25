@@ -4,10 +4,10 @@ import { ENDPOINTS } from "../constant/endpoints";
 
 // Login
 export async function login({
-    email,
+    username,
     password,
   }: {
-    email: string;
+    username: string;
     password: string;
   }) {
     return service({
@@ -15,7 +15,7 @@ export async function login({
       noAuth: true,
       url: ENDPOINTS.LOGIN,
       body: {
-        email,
+        username,
         password,
       },
     });

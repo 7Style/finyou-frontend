@@ -11,44 +11,41 @@ type ButtonVariants =
   | "secondary"
   | "ghost";
 
-interface IButtonGroupProps {
-  readonly children?: React.ReactNode;
-  readonly array?: {
+interface IButtonGroup {
+  children?: React.ReactNode;
+  array?: {
     onClick: () => Promise<SignInResponse | undefined>;
     icon: React.ReactNode;
     title?: string;
   }[];
-  readonly variant?: ButtonVariants | undefined;
-  readonly className?: string;
-  readonly disabled?: boolean;
+  variant?: ButtonVariants;
+  className?: string;
+  disabled?: boolean;
 }
 
-function ButtonGroup({
-  children,
-  array,
-  variant,
-  className,
-  disabled,
-  ...props
-}: IButtonGroupProps): JSX.Element {
-  const t = useTranslations("page.auth.common");
+const ButtonGroup: React.FC<IButtonGroup> = ({ children, array, variant = "default", className = "",  disabled = false }) =>{
+  const t = useTranslations();
   const childrenArray = React.Children.toArray(children);
 
   return (
-    <div className={`flex space-x-2 ${className}`}>
-      {childrenArray.map((child, index) => (
-        <Button {...props} key={index} variant={variant} disabled={disabled}>
-          {child}
-        </Button>
-      ))}
+    <div className={`flex gap-2 flex-wrap ${className}`}>
+      {childrenArray.map((child, index) =>
+        React.isValidElement(child) ? (
+          <Button
+            key={`child-${index}`}
+            variant={variant}
+            disabled={disabled}
+            {...child.props}
+          />
+        ) : null
+      )}
       {array &&
         array.map((item, index) => (
           <Button
-            {...props}
-            key={index}
-            onClick={item.onClick}
+            key={item.title ?? index}
             variant={variant}
             disabled={disabled}
+            onClick={item.onClick}
           >
             {item.icon}
             {item.title && <span className="ml-2">{t(item.title)}</span>}
@@ -58,4 +55,4 @@ function ButtonGroup({
   );
 }
 
-export { ButtonGroup };
+export default ButtonGroup;

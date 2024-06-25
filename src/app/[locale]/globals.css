@@ -77,14 +77,6 @@
   }
 }
 
-.-top-10{
-  top: -2.5rem
-}
-
-.-bottom-10{
-  bottom: -2.5rem
-}
-
 /* Custom CSS to target the div inside an active TabsTrigger */
 [data-state='active'] > .tab {
   @apply bg-sky-100 fill-cyan-500; /* Active state styles */
@@ -127,15 +119,14 @@
   @apply h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
 }
 
-
-h1, h2, h3, h4, h5, h6, a, th, .ag-header-cell-text{
-  font-family: "Montserrat", sans-serif;
-}
-
-p, span, button, input {
+html, body{
   font-family: "Poppins", sans-serif;
 }
 
-.dashboard h3{
+h1, h2, h3, a, th, .ag-header-cell-text{
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-poppins{
   font-family: "Poppins", sans-serif;
 }

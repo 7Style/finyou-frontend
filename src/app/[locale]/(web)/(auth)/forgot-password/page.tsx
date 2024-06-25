@@ -1,37 +1,66 @@
-import { useState } from "react";
-import Link from "next/link"
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { toast } from "react-toastify";
-import { Loader2 } from "lucide-react"
-import { useForgotPassword } from "@/hooks/forgot-password";
-import { redirect } from "next/navigation";
-import Form from "./form";
+"use client";
+import { useMemo } from "react";
 import { useTranslations } from "next-intl";
-
-
+import { z } from "zod";
+import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
+import { useForgotPassword } from "@/hooks/forgot-password";
+import { InnerLayout } from "@/components/auth";
+import { FormSchema } from "@/types/auth";
+import Form from "@/components/auth/form";
 
 export default function ForgotPassword() {
-    const t = useTranslations('page.auth.forgotPassword');
-    const buttonTrans = useTranslations('common.button');
+    const t = useTranslations();
+    const { isPending, isSuccess, mutate, isError, error } = useForgotPassword();
+    const schema = useMemo(() =>
+        z.object({
+            email: z.string().email(t('invalidFormat', { name: t('email') })).min(1),
+        }), [t]);
+
+    const submitHandler = async (data: FormSchema) => {
+        try {
+            await schema.parse(data);
+            mutate(data);
+
+            if (isSuccess) {
+                toast.success(t('verfication'), {
+                    position: "top-right",
+                });
+                redirect("/signin");
+            } else if (isError) {
+                error?.message
+                    ? toast.error(error?.message, { position: "top-right" })
+                    : toast.error(t('error', { name: t('resetPassword') }), { position: "top-right" });
+            }
+        } catch (error) {
+            if (error instanceof z.ZodError) {
+                // Set Zod errors to the form state
+                // error.errors.forEach((err) => {
+                //     if (err.path) {
+                //         setError(err.path[0] as keyof FormData, {
+                //             type: "manual",
+                //             message: err.message,
+                //         });
+                //     }
+                // });
+                console.log(error);
+            }
+        }
+    };
+
     return (
-        <div className="mx-auto grid w-[350px] gap-6">
-            <div className="grid gap-2 text-center">
-                <h1 className="text-3xl font-bold">{t("title")}</h1>
-                <p className="text-balance text-muted-foreground">
-                    {t("description")}
-                </p>
-            </div>
-            <Form />
-            <div className="mt-4 text-center text-sm">
-                {t("link")}{" "}
-                <Link href="/signin" className="underline">
-                    {buttonTrans("signIn")}
-                </Link>
-            </div>
-        </div>
-    )
+        <InnerLayout
+            title={t("forgotTitle")}
+            description={t("forgotDescription")}
+            linkText={t("forgotLink")}
+            cta={t("signIn")}
+        >
+            <Form
+                submitHandler={submitHandler}
+                email={t("email")}
+                isSubmitting={isPending}
+                btnText={t("forgotPassword")}
+            />
+        </InnerLayout>
+    );
 }

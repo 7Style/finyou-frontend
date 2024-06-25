@@ -1,25 +1,80 @@
-import Link from "next/link";
+"use client";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import Form from "./form";
+import { signIn } from "next-auth/react";
+import { z } from "zod";
+import { toast } from "react-toastify";
+import { InnerLayout } from "@/components/auth";
+import { FormSchema } from "@/types/auth";
+import Form from "@/components/auth/form";
 
 export default function Signin() {
-  const t = useTranslations("page.auth.signIn");
-  const buttonTrans = useTranslations("common.button");
+  const t = useTranslations();
+  const [loading, setLoading] = useState(false);
+
+  const schema = useMemo(
+    () =>
+      z.object({
+        username: z.string(),
+        password: z.string(),
+      }),
+    []
+  );
+
+  const submitHandler = async (data: FormSchema) => {
+    try {
+      setLoading(true);
+      await schema.parse(data);
+      await signIn("credentials", {
+        ...data,
+        redirect: false,
+        callbackUrl: "/dashboard",
+      }).then((res) => {
+        if (res?.ok) {
+          console.log(res, "res.....");
+          toast.success(
+            t("success", {
+              name: t("signIn"),
+            }),
+            { position: "top-right" }
+          );
+          window.location.href = "/dashboard";
+        } else {
+          toast.error(
+            t("error", { name: t("signIn") }),
+            { position: "top-right" }
+          );
+        }
+        setLoading(false);
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        if (error instanceof z.ZodError) {
+          error.errors.forEach((err) => {
+            if (err.path) {
+              console.log(err.message);
+            }
+          });
+          setLoading(false);
+        }
+      }
+    }
+  };
 
   return (
-    <div className="mx-auto grid md:w-[350px] gap-6">
-      <div className="grid gap-2 text-center">
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
-        <p className="text-balance text-muted-foreground">{t("description")}</p>
-      </div>
-
-      <Form />
-      <div className="mt-4 text-center text-sm">
-        {t("link")}{" "}
-        <Link href="/signup" className="underline">
-          {buttonTrans("register")}
-        </Link>
-      </div>
-    </div>
+    <InnerLayout 
+      title={t("loginTitle")} 
+      linkText={t("loginLink")} 
+      cta={t("loginRegisterNow")}
+    >
+      <Form
+        submitHandler={submitHandler}
+        username={t("username")}
+        password={t("password")}
+        isSubmitting={loading}
+        signedIn={true}
+        btnText={t("signIn")}
+      />
+    </InnerLayout>
   );
 }
