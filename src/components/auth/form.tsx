@@ -1,16 +1,16 @@
-"use client";
-import React from 'react';
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Loader2 } from "lucide-react";
-import { FormProps, FormSchema } from "@/types/auth";
-import { providers } from "@/constants/common";
-import ButtonGroup from "@/components/common/button-group";
-import Link from 'next/link';
-import Checkbox from '../common/checkbox';
+'use client'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { useTranslations } from 'next-intl'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Loader2 } from 'lucide-react'
+import { FormProps, FormSchema } from '@/types/auth'
+import ButtonGroup from '@/components/button-group'
+import Link from 'next/link'
+import Checkbox from '../checkbox'
+import { providers } from '@/modules/home/mock'
 
 const Form: React.FC<FormProps> = ({
   submitHandler,
@@ -22,15 +22,15 @@ const Form: React.FC<FormProps> = ({
   confirmPassword,
   isSubmitting,
   signedIn,
-  btnText
+  btnText,
 }) => {
-  const t = useTranslations();
+  const t = useTranslations()
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
-  } = useForm<FormSchema>();
+    formState: { errors },
+  } = useForm<FormSchema>()
 
   return (
     <form className="grid gap-6" onSubmit={handleSubmit(submitHandler)}>
@@ -41,13 +41,11 @@ const Form: React.FC<FormProps> = ({
             id="name"
             placeholder="maxrobinson"
             required
-            {...register("name", {
-              required: t("requiredError", { name: name }),
+            {...register('name', {
+              required: t('requiredError', { name: name }),
             })}
           />
-          {errors.name && (
-            <p className="text-neutral-500 text-xs pt-1">{errors.name.message}</p>
-          )}
+          {errors.name && <p className="text-neutral-500 text-xs pt-1">{errors.name.message}</p>}
         </div>
       )}
       {username && (
@@ -57,13 +55,11 @@ const Form: React.FC<FormProps> = ({
             id="username"
             placeholder="maxrobinson"
             required
-            {...register("username", {
-              required: t("requiredError", { name: username }),
+            {...register('username', {
+              required: t('requiredError', { name: username }),
             })}
           />
-          {errors.username && (
-            <p className="text-neutral-500 text-xs pt-1">{errors.username.message}</p>
-          )}
+          {errors.username && <p className="text-neutral-500 text-xs pt-1">{errors.username.message}</p>}
         </div>
       )}
 
@@ -74,13 +70,11 @@ const Form: React.FC<FormProps> = ({
             id="surname"
             placeholder="maxrobinson"
             required
-            {...register("surname", {
-              required: t("requiredError", { name: surname }),
+            {...register('surname', {
+              required: t('requiredError', { name: surname }),
             })}
           />
-          {errors.surname && (
-            <p className="text-neutral-500 text-xs pt-1">{errors.surname.message}</p>
-          )}
+          {errors.surname && <p className="text-neutral-500 text-xs pt-1">{errors.surname.message}</p>}
         </div>
       )}
 
@@ -92,13 +86,11 @@ const Form: React.FC<FormProps> = ({
             type="email"
             placeholder="m@example.com"
             required
-            {...register("email", {
-              required: t("requiredError", { name: email }),
+            {...register('email', {
+              required: t('requiredError', { name: email }),
             })}
           />
-          {errors.email && (
-            <p className="text-neutral-500 text-xs pt-1">{errors.email.message}</p>
-          )}
+          {errors.email && <p className="text-neutral-500 text-xs pt-1">{errors.email.message}</p>}
         </div>
       )}
 
@@ -109,13 +101,11 @@ const Form: React.FC<FormProps> = ({
             id="password"
             type="password"
             required
-            {...register("password", {
-              required: t("requiredError", { name: password }),
+            {...register('password', {
+              required: t('requiredError', { name: password }),
             })}
           />
-          {errors.password && (
-            <p className="text-neutral-500 text-xs pt-1">{errors.password.message}</p>
-          )}
+          {errors.password && <p className="text-neutral-500 text-xs pt-1">{errors.password.message}</p>}
         </div>
       )}
 
@@ -126,33 +116,25 @@ const Form: React.FC<FormProps> = ({
             id="confirmPassword"
             type="password"
             required
-            {...register("confirmPassword", {
-              required: t("requiredError", { name: confirmPassword }),
+            {...register('confirmPassword', {
+              required: t('requiredError', { name: confirmPassword }),
             })}
           />
-          {errors.confirmPassword && (
-            <p className="text-neutral-500 text-xs pt-1">{errors.confirmPassword.message}</p>
-          )}
+          {errors.confirmPassword && <p className="text-neutral-500 text-xs pt-1">{errors.confirmPassword.message}</p>}
         </div>
       )}
 
-      {
-        signedIn && (
-          <div className="flex justify-between items-center pt-4">
-            <Checkbox label={t("keepSignedIn")} />
-            <Link
-              href="/forgot-password"
-              className="text-neutral-500 text-sm font-medium"
-            >
-              {t("forgotTitle")}?
-            </Link>
-          </div>
-        )
-      }
-
+      {signedIn && (
+        <div className="flex justify-between items-center pt-4">
+          <Checkbox label={t('keepSignedIn')} />
+          <Link href="/forgot-password" className="text-neutral-500 text-sm font-medium">
+            {t('forgotTitle')}?
+          </Link>
+        </div>
+      )}
 
       <Button
-        variant={"secondary"}
+        variant={'secondary'}
         type="submit"
         className="mt-8 w-full bg-cyan-100 rounded-md text-white text-base font-medium border-0 hover:bg-teal-600"
         disabled={isSubmitting}
@@ -161,14 +143,9 @@ const Form: React.FC<FormProps> = ({
         {btnText}
       </Button>
 
-      <ButtonGroup
-        array={providers}
-        variant="outline"
-        className="w-full"
-        disabled={isSubmitting}
-      />
+      <ButtonGroup array={providers} variant="outline" className="w-full" disabled={isSubmitting} />
     </form>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form
