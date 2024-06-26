@@ -25,7 +25,7 @@ interface ICard {
 
 export const ProfileCard: React.FC = () => {
   return (
-    <Card className='shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]'>
+    <Card className='rounded-xl border border-neutral-200'>
       <CardContent className='flex gap-5 px-6 py-3'>
         <Avatar className='mx-auto mt-0.5 rounded-md h-12 w-12'>
           <AvatarImage src='https://via.placeholder.com/65x65' />
@@ -42,11 +42,11 @@ export const ProfileCard: React.FC = () => {
             <Button
               variant='link'
               size={'xs'}
-              className='p-0 text-cyan-600 fill-cyan-600'
+              className='border-0 p-0 text-cyan-600 fill-cyan-600'
             >
               Rexell <RightChevon />
             </Button>
-            <p className='text-xs text-gray-400'>Yesterday, 14:30</p>
+            <p className='text-[10px] text-neutral-400'>Yesterday, 14:30</p>
           </div>
         </div>
       </CardContent>
@@ -126,27 +126,24 @@ export const CompanyOverview: React.FC = () => {
 
 export const JobCard: React.FC = () => {
   return (
-    <Card className='relative shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]'>
+    <Card className='rounded-xl border border-neutral-200'>
       <CardHeader className='p-4 pb-1'>
-        <Avatar className='mb-3 -mt-12 rounded-md h-16 w-16'>
+        <Avatar className='-mt-8 rounded-md h-11 w-11'>
           <AvatarImage src='https://via.placeholder.com/65x65' />
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>
-        <Button className='bg-transparent absolute right-0 top-0 hover:bg-transparent fill-cyan-700'>
+        {/* <Button className='bg-transparent absolute right-0 top-0 hover:bg-transparent fill-cyan-700'>
           <BookMark />
-        </Button>
-        <CardTitle className='font-semibold text-base'>
-          Marketing Officer (MO)
+        </Button> */}
+        <CardTitle className='font-semibold text-sm'>
+          Freelance UX/UI designer <span className='text-xs font-poppins'>— Self Employed</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className='p-4 pt-1'>
-        <p className='text-sm'>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Typesetting, remaining essentially unchanged.
-        </p>
+      <CardContent className='p-4 pt-1 text-xs'>
+       Work with clients and web studios as freelancer. creative landing corporate web sites and corporate identity sometimes.
       </CardContent>
       <CardFooter className='p-4 pt-0'>
-        <p className='text-xs'>2 Days ago</p>
+        <p className='text-neutral-800 text-xs'>Jun 2016 — Present &nbsp;<span className='text-cyan-700 font-medium'>3 yrs 3 mos</span></p>
       </CardFooter>
     </Card>
   );
