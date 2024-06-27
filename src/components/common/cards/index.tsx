@@ -23,6 +23,52 @@ interface ICard {
   description?: string;
 }
 
+export const Skills: React.FC = () => {
+  return (
+    <Card className='rounded-xl border border-neutral-200'>
+      <CardHeader className='flex-row pb-3 w-full items-center justify-between'>
+      <CardTitle className='text-lg font-semibold font-poppins'>User experience (UX)</CardTitle>
+      <CardDescription className='text-cyan-500 text-xl font-poppins'>6</CardDescription>
+      </CardHeader>
+      <CardContent className='flex gap-5 px-6 pt-0'>
+        <Avatar className='-mr-8 rounded-full h-8 w-8'>
+          <AvatarImage src='https://i.pravatar.cc/300' />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+
+        <Avatar className='-mr-8 rounded-full h-8 w-8'>
+          <AvatarImage src='https://i.pravatar.cc/400' />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+
+        <Avatar className='-mr-8 rounded-full h-8 w-8'>
+          <AvatarImage src='https://i.pravatar.cc/300' />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+
+        <Avatar className='-mr-8 rounded-full h-8 w-8'>
+          <AvatarImage src='https://i.pravatar.cc/500' />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+
+        <Avatar className='-mr-8 rounded-full h-8 w-8'>
+          <AvatarImage src='https://i.pravatar.cc/600' />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+
+        <Avatar className='-mr-8 rounded-full h-8 w-8'>
+          <AvatarImage src='https://i.pravatar.cc/300' />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+
+        <div className="w-8 h-8 relative bg-cyan-500 rounded-full flex items-center justify-center">
+          <p className='text-white text-xs font-semibold'>+1</p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 export const ProfileCard: React.FC = () => {
   return (
     <Card className='rounded-xl border border-neutral-200'>

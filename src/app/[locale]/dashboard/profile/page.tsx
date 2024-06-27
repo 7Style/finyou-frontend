@@ -1,14 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Puzzle, Tick } from '@/icons/dashboard';
-import { JobCard, ProfileCard } from '@/components/common/cards';
+import { Puzzle, RightChevon, Tick } from '@/icons/dashboard';
+import { JobCard, ProfileCard, Skills } from '@/components/common/cards';
+import Link from 'next/link';
 
 
 export default function Profile() {
@@ -19,7 +14,6 @@ export default function Profile() {
                 <div className="w-8/12 space-y-8">
                     <div className="space-y-4">
                         <h4 className='text-xl font-semibold'>Expert in:</h4>
-
                         <div className="flex flex-wrap lg:gap-10 gap-4 items-center">
                             <div className="flex gap-3">
                                 <Tick />
@@ -56,7 +50,14 @@ export default function Profile() {
                     </div>
 
                     <div className="space-y-4">
-                    <h4 className='text-xl font-semibold'>Experience</h4>
+                        <div className="flex justify-between items-center">
+                            <h4 className='text-xl font-semibold'>Experience</h4>
+
+                            <div className="flex gap-2">
+                                <div className="fill-cyan-500 rotate-180"><RightChevon /></div>
+                                <div className="fill-cyan-500"><RightChevon /></div>
+                            </div>
+                        </div>
                         <div className="grid grid-cols-2 gap-4 pt-3">
                             <JobCard />
                             <JobCard />
@@ -64,16 +65,37 @@ export default function Profile() {
                     </div>
 
                     <div className="space-y-4">
-                    <h4 className='text-xl font-semibold'>Education</h4>
+                        <h4 className='text-xl font-semibold'>Education</h4>
                         <div className="grid grid-cols-2 gap-4 pt-3">
                             <JobCard />
                             <JobCard />
                         </div>
                     </div>
 
-                    
                     <div className="space-y-4">
-                    <h4 className='text-xl font-semibold'>Network Connections</h4>
+                        <div className="flex justify-between items-center">
+                            <h4 className='text-xl font-semibold'>Skills & Accomplishments</h4>
+
+                            <div className="flex gap-2">
+                                <div className="fill-cyan-500 rotate-180"><RightChevon /></div>
+                                <div className="fill-cyan-500"><RightChevon /></div>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 pt-3">
+                            <Skills />
+                            <Skills />
+                        </div>
+
+                        
+                        <div className="flex justify-center">
+                            <Link href={"#"} className='text-sm font-poppins text-cyan-500 font-semibold'>Show All (17)</Link>
+                        </div>
+                    </div>
+
+
+
+                    <div className="space-y-4">
+                        <h4 className='text-xl font-semibold'>Network Connections</h4>
                         <div className="grid grid-cols-2 gap-4">
                             <ProfileCard />
                             <ProfileCard />
@@ -82,7 +104,7 @@ export default function Profile() {
                         </div>
                     </div>
 
-                    
+
 
                     <div className="space-y-4">
                         <h4 className='text-xl font-semibold'>Individual Area</h4>
@@ -96,7 +118,7 @@ export default function Profile() {
                         </div>
                     </div>
                 </div>
-                         
+
                 <div className='w-3/12 ml-auto space-y-8'>
                     <div className="space-y-4">
                         <h5 className='text-base font-semibold'>Similar Companies</h5>
@@ -131,7 +153,7 @@ export default function Profile() {
                         </div>
 
                         <div className="flex justify-center">
-                            <Button variant={"link"} className='border-0 text-cyan-700 font-semibold'>Find More</Button>
+                            <Link href={"#"} className='text-sm font-poppins text-cyan-500 font-semibold'>Find More</Link>
                         </div>
                     </div>
 
